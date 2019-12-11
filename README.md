@@ -71,7 +71,7 @@ faithful %>% ggplot(aes(y = )) +  geom_hdr_boxplot()
   - a straight line showing value of the density at the boundaries of
     each HDR
 
-ˆ
+<!-- end list -->
 
 ``` r
 hdr.den(faithful$eruptions)
@@ -81,16 +81,16 @@ hdr.den(faithful$eruptions)
 
     #> $hdr
     #>         [,1]     [,2]     [,3]     [,4]
-    #> 99% 1.323466 2.819357 3.152712 5.282281
-    #> 95% 1.500561 2.520957 3.500000 5.091871
-    #> 50% 1.923810 2.024934 3.940736 4.773118
+    #> 99% 1.323392 2.819361 3.152823 5.282328
+    #> 95% 1.500534 2.520984 3.500000 5.091921
+    #> 50% 1.923841 2.025015 3.940445 4.773299
     #> 
     #> $mode
-    #> [1] 4.37911
+    #> [1] 4.379365
     #> 
     #> $falpha
     #>         1%         5%        50% 
-    #> 0.06785144 0.15326254 0.36020576
+    #> 0.06791362 0.15330569 0.36003920
     #ggplot(faithful, aes(x=eruptions)) +  geom_density()
 
 # gg\_hdr (Proposal)

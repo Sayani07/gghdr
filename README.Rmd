@@ -37,7 +37,7 @@ There are different ways to summarize a distribution but the highest density reg
 - Region bounded by the interquartile range is replaced by 50% HDR
 - Region bounded by the whiskers is replaced by the 99% HDR
 - The mode is represented by a horizontal line
- 
+
  <!-- In both HDR and box plots, the interquartile range or 50% HDR will have a coverage probability of 50%. -->
 
 
@@ -60,14 +60,12 @@ library(ggplot2)
 faithful %>% ggplot(aes(y = )) +  geom_hdr_boxplot()
 ```
 
-
 # hdr.den (Existing)
 
 - a density plot
 - the endpoints of each interval in each HDR on the x-axis
 - a straight line showing value of the density at the boundaries of each HDR
 
-ˆ
 ```{r hdr.den}
 hdr.den(faithful$eruptions)
 #ggplot(faithful, aes(x=eruptions)) +  geom_density()
@@ -80,7 +78,6 @@ hdr.den(faithful$eruptions)
 - geom_hline() - The value of the density at the boundaries of each HDR
 
 gghdr() =  geom_density() + geom_hdr_rug() + geom_hline()
-
 
 ```{r gg_hdr, echo=TRUE, eval = FALSE}
 library(ggplot2)

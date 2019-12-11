@@ -1,0 +1,90 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# gghdr
+ 
+Package `gghdr` imports the package [`hdrcde`](https://pkg.robjhyndman.com/hdrcde/) and provides tools for plotting highest density regions in the ggplot2 framework.
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# Traditional boxplot
+
+- central box bounded by Q1 and Q3 representing the interquartile range
+- whiskers extending from Q1 - 1.5(Q3 - Q1)  to Q3 + to 1.5(Q3 - Q1), representing 99% coverage for large samples
+- median represented by a horizontal line
+
+```{r boxplot, echo=FALSE}
+library(hdrcde)
+library(ggplot2)
+ggplot(faithful, aes(y=eruptions)) +  geom_boxplot()
+```
+
+# hdr.boxplot (Existing)
+
+There are different ways to summarize a distribution but the highest density region allows the display of multimodality.
+
+- Region bounded by the interquartile range is replaced by 50% HDR
+- Region bounded by the whiskers is replaced by the 99% HDR
+- The mode is represented by a horizontal line
+ 
+ <!-- In both HDR and box plots, the interquartile range or 50% HDR will have a coverage probability of 50%. -->
+
+
+```{r hdrcde-boxplot, echo=TRUE}
+library(hdrcde)
+hdr.boxplot(faithful$eruptions)
+```
+
+<!-- # ```{r hdrcde-boxplot_more, echo=TRUE, eval = FALSE} -->
+<!-- # hdr.boxplot(x, prob = c(99, 50), h = hdrbw(BoxCox(x, lambda), -->
+<!-- #   mean(prob)), lambda = 1, boxlabels = "", col = gray((9:1)/10), -->
+<!-- #   main = "", xlab = "", ylab = "", pch = 1, border = 1, -->
+<!-- #   outline = TRUE, space = 0.25, ...) -->
+<!-- # ``` -->
+
+# geom_boxplot_hdr (Proposal)
+
+```{r gg_hdr-boxplot, echo=TRUE, eval = FALSE}
+library(ggplot2)
+faithful %>% ggplot(aes(y = )) +  geom_hdr_boxplot()
+```
+
+
+# hdr.den (Existing)
+
+- a density plot
+- the endpoints of each interval in each HDR on the x-axis
+- a straight line showing value of the density at the boundaries of each HDR
+
+ˆ
+```{r hdr.den}
+hdr.den(faithful$eruptions)
+#ggplot(faithful, aes(x=eruptions)) +  geom_density()
+```
+
+# gg_hdr (Proposal)
+
+- geom_density() - to represent the density
+- geom_hdr_rug() - The endpoints of each interval in each HDR on the x-axis
+- geom_hline() - The value of the density at the boundaries of each HDR
+
+gghdr() =  geom_density() + geom_hdr_rug() + geom_hline()
+
+
+```{r gg_hdr, echo=TRUE, eval = FALSE}
+library(ggplot2)
+faithful %>% ggplot(aes(y = , x = )) +  geom_hdr()
+```
+
+

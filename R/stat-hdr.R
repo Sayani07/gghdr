@@ -59,14 +59,10 @@ StatHdr <- ggproto("StatHdr", Stat,
                            box_num = list(rep(seq_len(max_boxes), each = length(prob)))
                          ))
 
-
-                         mode  <- hdr_stats$mode
-                         falpha <- hdr_stats$falpha
-
-
-                         # Mitch's code to merge in by Sayani
-
-                         hdr <- hdr(x, prob = prob)
+                         stat_df <- df %>% as_tibble()
+                         stat_df %>% rename("ymax" = "X0",
+                                            "ymin" = "X1") %>%
+                           mutate(probs = probs/100)
 
 
 

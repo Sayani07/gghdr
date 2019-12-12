@@ -68,9 +68,10 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
   class(guide) <- c("guide", "guide_prob")
   breaks <- probs
 
-  key <- as.data.frame(stats::setNames(list(scale$map(breaks)), aesthetic %||%
+  breaks_mapped <- darken_fill(rep("black", length(breaks)), breaks)
+  key <- as.data.frame(stats::setNames(list(breaks_mapped), aesthetic %||%
                                          scale$aesthetics[1]), stringsAsFactors = FALSE)
-  key$.label <- scale$get_labels(breaks)
+  key$.label <- scales::percent(breaks) #scale$get_labels(breaks)
   if (!scale$is_discrete()) {
     limits <- scale$get_limits()
     noob <- !is.na(breaks) & limits[1] <= breaks & breaks <=

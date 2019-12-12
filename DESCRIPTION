@@ -18,7 +18,8 @@ Imports:
     ggplot2,
     vctrs,
     grid,
-    scales
+    scales,
+    farver
 Suggests: 
     testthat (>= 2.1.0),
     vdiffr

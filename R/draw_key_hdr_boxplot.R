@@ -1,7 +1,14 @@
+
+#' @title col2hex
+#' @description converts colors to RGB
+#' @param col PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @rdname col2hex
 #' @export
 #' @importFrom grDevices rgb
-col2hex <- function(col){
-  grDevices::rgb(col,  maxColorValue=255)
+
+col2hex <- function(col) {
+  grDevices::rgb(col, maxColorValue = 255)
 }
 
 #' @importFrom  grid rectGrob

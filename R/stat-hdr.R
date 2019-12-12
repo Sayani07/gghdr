@@ -26,11 +26,12 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatHdr <- ggproto("Stat???", Stat,
+StatHdr <- ggproto("StatHdr", Stat,
                        required_aes = c("y"),
                        # non_missing_aes = "weight",
                        setup_data = function(data, params) {
                          # How are missing values handled?
+                         data
                        },
 
                        compute_group = function(data, scales, width = NULL, na.rm = FALSE) {

@@ -7,7 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2' 
+Description: Geom and Stat components to visualise highest density 
+             regions from the 'hdrcde' package with 'ggplot2'. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -19,4 +20,6 @@ Imports:
     grid,
     scales
 Suggests: 
-    testthat
+    testthat (>= 2.1.0),
+    vdiffr
+Depends: R (>= 2.10)

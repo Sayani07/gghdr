@@ -2,7 +2,7 @@
 #' @importFrom ggplot2 layer aes
 #' @export
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
-                             stat = "hdr", position = "dodge2",
+                             stat = "boxplot", position = "dodge2",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
@@ -70,7 +70,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            group = data$group
                          )
 
-                         whiskers <- new_data_frame(c(
+                         whiskers <- vctrs::new_data_frame(c(
                            list(
                              x = c(data$x, data$x),
                              xend = c(data$x, data$x),
@@ -79,9 +79,9 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                              alpha = c(NA_real_, NA_real_)
                            ),
                            common
-                         ), n = 2)
+                         ), n = 2L)
 
-                         box <- new_data_frame(c(
+                         box <- vctrs::new_data_frame(c(
                            list(
                              xmin = data$xmin,
                              xmax = data$xmax,
@@ -97,7 +97,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                          ))
 
                          if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
-                           outliers <- new_data_frame(list(
+                           outliers <- vctrs::new_data_frame(list(
                              y = data$outliers[[1]],
                              x = data$x[1],
                              colour = outlier.colour %||% data$colour[1],
@@ -114,8 +114,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                          }
 
                          ggname("geom_boxplot", grobTree(
-                           outliers_grob,
-                           ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
+                           #outliers_grob,
+                           #ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
                            ggplot2::GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
                          ))
                        },

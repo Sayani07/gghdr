@@ -6,7 +6,8 @@
 \alias{gghdr-package}
 \title{gghdr: Visualisation of Highest Density Regions}
 \description{
-Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2'
+Geom and Stat components to visualise highest density 
+             regions from the 'hdrcde' package with 'ggplot2'.
 }
 \author{
 \strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})

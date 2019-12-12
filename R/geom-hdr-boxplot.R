@@ -1,6 +1,21 @@
 # is this the right function name?
 #' @importFrom ggplot2 layer aes
+#' @param mapping
+#'
+#' @param data
+#' @param stat
+#' @param position
+#' @param ...
+#' @param varwidth
+#' @param na.rm
+#' @param show.legend
+#' @param inherit.aes
+#' @param prob
+#'
 #' @export
+#' @example
+#' ggplot(faithful, aes(y = eruptions)) +
+#' geom_hdr_boxplot()
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,

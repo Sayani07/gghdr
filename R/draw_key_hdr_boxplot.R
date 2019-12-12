@@ -10,16 +10,13 @@ col2hex <- function(col){
 #' @export
 draw_key_hdr_boxplot <- function(data, params, size) {
   fill_colour <- data$fill %||% "grey20"
-  fill_colour2 <- farver::convert_colour(t(
-    grDevices::col2rgb(fill_colour)), "RGB", "HSL")
-  fill_colour2[1,3] <- fill_colour2[1,3]*0.5
-  fill_colour2 <- farver::convert_colour(fill_colour2, "HSL", "RGB")
-  fill_colour2 <- col2hex(fill_colour2)
+  fill_colour <- darken_fill(rep(fill_colour, 2), c(0.5, 0.9))
+
   grid::grobTree(
     grid::rectGrob(height = 0.5, width = 0.75,
-                   gp = grid::gpar(fill = fill_colour)),
+                   gp = grid::gpar(fill = fill_colour[2])),
     grid::rectGrob(height = 0.25, width = 0.75,
-                   gp = grid::gpar(fill = fill_colour2)),
+                   gp = grid::gpar(fill = fill_colour[1])),
     gp = grid::gpar(col = "black",
               lwd = (data$size %||% 0.5) * .pt,
               lty = data$linetype %||% 1

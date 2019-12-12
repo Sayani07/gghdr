@@ -124,7 +124,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                          ))
                        },
 
-                       draw_key = ggplot2::draw_key_rect,
+                       draw_key = draw_key_hdr_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),

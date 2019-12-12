@@ -62,7 +62,6 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             data$width <- NULL
                             data$outliers <- NULL
 
-                            browser()
                             data
                           },
 
@@ -99,16 +98,14 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                                 xmin = data$xmin + 0.1* (data$xmax-data$xmin),
                                 xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                                ymin = data$ymin_real[[1]],
-                                ymax = data$ymax_real[[1]],
+                                ymin = data$box[[1]][,"lower"],
+                                ymax = data$box[[1]][,"upper"],
                                 fill = scales::alpha(fill_shade, data$alpha),
                                 colour = NA
                               ),
                               common
                             ))
 
-                            #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
-                            #browser()
                             mode <- tibble::as_tibble(c(
                               list(
                                 x = data$xmin,

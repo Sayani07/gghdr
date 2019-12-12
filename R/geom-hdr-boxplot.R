@@ -49,13 +49,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                                              notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
 
-                         # this may occur when using geom_boxplot(stat = "identity")
-                         if (nrow(data) != 1) {
-                           stop(
-                             "Can't draw more than one boxplot per group. Did you forget aes(group = ...)?",
-                             call. = FALSE
-                           )
-                         }
 
                          ## if values passed to 'prob' are integers instead of
                          ## decimals, convert them to decimals

@@ -29,7 +29,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomHdrBoxplot,
+    geom = GeomHdrRug,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -46,7 +46,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 
 #' @importFrom ggplot2 ggproto Geom
 #' @export
-GeomHdrBoxplot <- ggproto("GeomHdrRug", Geom,
+GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                           # If we're doing custom width, we need this:
                           # need to declare `width` here in case this geom is used with a stat that

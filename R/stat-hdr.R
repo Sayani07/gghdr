@@ -37,5 +37,19 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                        compute_group = function(data, scales, width = NULL, na.rm = FALSE) {
                          # ???
+                         browser()
+
+                         # imported from hdrcde
+                         hdr_stats <- hdrcde::hdr(data$y)
+
+                         # splitting the hdr into lower and upper cutoffs vector
+                         hdr <- tibble::as_tibble(hdr_stats$hdr)
+                         split_interval <- split(hdr, col(hdr)%%2)
+                         names(split_interval) <- c("upper", "lower")
+
+                         mode  <- hdr_stats$mode
+                         falpha <- hdr_stats$falpha
+
+
                        }
 )

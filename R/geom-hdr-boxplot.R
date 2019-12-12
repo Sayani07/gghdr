@@ -101,13 +101,13 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                              xmax = data$xmax - 0.1* (data$xmax-data$xmin),
                              ymin = data$ymin,
                              ymax = data$ymax,
-                             alpha = 1-data$box_probs
+                             alpha = scales::rescale(1-data$box_probs, to = c(0.3,0.4), from = range(1-data$box_probs))
                            ),
                            common
                          ))
 
                          #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
-                         browser()
+                         #browser()
                          mode <- vctrs::new_data_frame(c(
                            list(
                              x = data$xmin,

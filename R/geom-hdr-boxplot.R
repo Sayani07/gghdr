@@ -5,7 +5,8 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
                              show.legend = NA,
-                             inherit.aes = TRUE) {
+                             inherit.aes = TRUE,
+                             prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
 
@@ -20,6 +21,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
+      prob,
       ...
     )
   )
@@ -117,7 +119,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                        draw_key = draw_key_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
-                                         alpha = NA, shape = 19, linetype = "solid"),
+                                         alpha = NA, shape = 19, linetype = "solid",
+                                         prob = c(0.5, 0.95, 0.99)),
 
                        required_aes = c("x", "lower", "upper", "middle", "ymin", "ymax")
 )

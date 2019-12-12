@@ -1,4 +1,6 @@
 # is this the right function name?
+#' @importFrom ggplot2 layer aes
+#' @export
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
@@ -27,9 +29,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
   )
 }
 
-#' @rdname ggplot2-ggproto
-#' @format NULL
-#' @usage NULL
+#' @importFrom ggplot2 ggproto Geom
 #' @export
 GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
@@ -108,12 +108,12 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
                          ggname("geom_boxplot", grobTree(
                            outliers_grob,
-                           GeomSegment$draw_panel(whiskers, panel_params, coord),
-                           GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
+                           ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
+                           ggplot2::GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
                          ))
                        },
 
-                       draw_key = draw_key_boxplot,
+                       draw_key = ggplot2::draw_key_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),

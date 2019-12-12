@@ -4,9 +4,9 @@
 \name{gghdr-package}
 \alias{gghdr}
 \alias{gghdr-package}
-\title{gghdr: What the Package Does (One Line, Title Case)}
+\title{gghdr: Visualisation of Highest Density Regions}
 \description{
-What the package does (one paragraph).
+Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2'
 }
 \author{
 \strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})

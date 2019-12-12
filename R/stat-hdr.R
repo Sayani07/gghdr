@@ -40,14 +40,24 @@ StatHdr <- ggproto("StatHdr", Stat,
                          browser()
 
                          # imported from hdrcde
-                         hdr_stats <- hdrcde::hdr(data$y)
+                         hdr_stats <- hdrcde::hdr(data$y, prob = prob)
 
-                         # splitting the hdr into lower and upper cutoffs vector
+
                          hdr <- tibble::as_tibble(hdr_stats$hdr)
                          split_interval <- split(hdr, col(hdr)%%2)
                          names(split_interval) <- c("upper", "lower")
 
+                         # number of boxes (for all probabilities max number of boxes will be shown although it has got NA values)
+                         max_boxes <- ncol(hdr$hdr)/2
 
+                         df <- as.data.frame(c(
+                           # splitting the hdr into lower and upper cutoffs vector
+                           split(hdr$hdr, col(hdr$hdr) %% 2),
+                           # repitition of probs through the length of cutoff vectors
+                           probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
+                           # tagging the boxes through the length of cutoff vectors
+                           box_num = list(rep(seq_len(max_boxes), each = length(prob)))
+                         ))
 
 
                          mode  <- hdr_stats$mode
@@ -58,12 +68,6 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          hdr <- hdr(x, prob = prob)
 
-                         max_boxes <- ncol(hdr$hdr)/2
-                         as.data.frame(c(
-                           split(hdr$hdr, col(hdr$hdr) %% 2),
-                           probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
-                           box_num = list(rep(seq_len(max_boxes), each = length(prob)))
-                         ))
 
 
                        }

@@ -9,6 +9,8 @@ plotting highest density regions in the ggplot2 framework.
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 # Traditional boxplot
@@ -22,7 +24,6 @@ plotting highest density regions in the ggplot2 framework.
 <!-- end list -->
 
     #> This is hdrcde 3.3
-    #> Warning: package 'ggplot2' was built under R version 3.5.2
 
 ![](README_files/figure-gfm/boxplot-1.png)<!-- -->
 
@@ -33,8 +34,7 @@ density region allows the display of multimodality.
 
   - Region bounded by the interquartile range is replaced by 50% HDR
   - Region bounded by the whiskers is replaced by the 99% HDR
-  - The mode is represented by a horizontal
-line
+  - The mode is represented by a horizontal line
 
 <!-- In both HDR and box plots, the interquartile range or 50% HDR will have a coverage probability of 50%. -->
 
@@ -61,7 +61,9 @@ hdr.boxplot(faithful$eruptions)
 
 ``` r
 library(ggplot2)
-faithful %>% ggplot(aes(y = )) +  geom_hdr_boxplot()
+library(gghdr)
+ggplot(faithful, aes(y = eruptions)) +  
+  geom_hdr_boxplot(position = "identity")
 ```
 
 # hdr.den (Existing)
@@ -81,16 +83,16 @@ hdr.den(faithful$eruptions)
 
     #> $hdr
     #>         [,1]     [,2]     [,3]     [,4]
-    #> 99% 1.323392 2.819361 3.152823 5.282328
-    #> 95% 1.500534 2.520984 3.500000 5.091921
-    #> 50% 1.923841 2.025015 3.940445 4.773299
+    #> 99% 1.323766 2.819344 3.152257 5.282088
+    #> 95% 1.500661 2.520845 3.500000 5.091669
+    #> 50% 1.923610 2.024692 3.941872 4.772422
     #> 
     #> $mode
-    #> [1] 4.379365
+    #> [1] 4.378107
     #> 
     #> $falpha
     #>         1%         5%        50% 
-    #> 0.06791362 0.15330569 0.36003920
+    #> 0.06760665 0.15309392 0.36085651
     #ggplot(faithful, aes(x=eruptions)) +  geom_density()
 
 # gg\_hdr (Proposal)

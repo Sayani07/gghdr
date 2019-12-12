@@ -49,13 +49,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                                              notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
 
-                         # this may occur when using geom_boxplot(stat = "identity")
-                         if (nrow(data) != 1) {
-                           stop(
-                             "Can't draw more than one boxplot per group. Did you forget aes(group = ...)?",
-                             call. = FALSE
-                           )
-                         }
 
                          ## if values passed to 'prob' are integers instead of
                          ## decimals, convert them to decimals
@@ -83,61 +76,29 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            group = data$group
                          )
 
-                         whiskers <- vctrs::new_data_frame(c(
-                           list(
-                             x = c(data$x, data$x),
-                             xend = c(data$x, data$x),
-                             y = c(data$upper, data$lower),
-                             yend = c(data$ymax, data$ymin),
-                             alpha = c(NA_real_, NA_real_)
-                           ),
-                           common
-                         ), n = 2L)
-
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = data$xmin,
-                             xmax = data$xmax,
+                             xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
+                             xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
                              ymin = data$ymin,
-                             y = data$y,
                              ymax = data$ymax,
-                             ynotchlower = ifelse(notch, data$notchlower, NA),
-                             ynotchupper = ifelse(notch, data$notchupper, NA),
-                             notchwidth = notchwidth,
-                             alpha = data$alpha
+                             alpha = 1-data$box_probs
                            ),
                            common
                          ))
 
-                         if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
-                           outliers <- vctrs::new_data_frame(list(
-                             y = data$outliers[[1]],
-                             x = data$x[1],
-                             colour = outlier.colour %||% data$colour[1],
-                             fill = outlier.fill %||% data$fill[1],
-                             shape = outlier.shape %||% data$shape[1],
-                             size = outlier.size %||% data$size[1],
-                             stroke = outlier.stroke %||% data$stroke[1],
-                             fill = NA,
-                             alpha = outlier.alpha %||% data$alpha[1]
-                           ), n = length(data$outliers[[1]]))
-                           outliers_grob <- GeomPoint$draw_panel(outliers, panel_params, coord)
-                         } else {
-                           outliers_grob <- NULL
-                         }
-
-                         mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+                         #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
 
                          ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
-                           ggplot2::GeomRect$draw_panel(box, panel_params, coord),
-                           ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                           ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
+                           #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                          ))
                        },
 
                        draw_key = ggplot2::draw_key_rect,
 
-                       default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
+                       default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),
 
-                       required_aes = c("x", "lower", "upper", "middle", "ymin", "ymax")
+                       required_aes = c("ymax","ymin")
 )

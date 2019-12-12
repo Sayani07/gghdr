@@ -58,7 +58,8 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          df <- df[!is.na(df$ymin),]
 
-                         df_output <- list(df = df, mode = hdr_stats$mode)
-
+                         df_output <- data.frame(mode = hdr_stats$mode)
+                         df_output$boxes <- list(df)
+                         df_output
                        }
 )

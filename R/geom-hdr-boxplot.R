@@ -2,7 +2,7 @@
 #' @importFrom ggplot2 layer aes
 #' @export
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
-                             stat = "identity", position = "dodge2",
+                             stat = "hdr", position = "dodge2",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,

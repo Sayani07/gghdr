@@ -40,6 +40,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
                        setup_data = function(data, params) {
                          #
+
+                         data$outliers <- NULL
                          data
                        },
 
@@ -66,7 +68,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            colour = data$colour,
                            size = data$size,
                            linetype = data$linetype,
-                           fill = alpha(data$fill, data$alpha),
+                           fill = scales::alpha(data$fill, data$alpha),
                            group = data$group
                          )
 
@@ -113,7 +115,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            outliers_grob <- NULL
                          }
 
-                         ggname("geom_boxplot", grobTree(
+                         ggplot2:::ggname("geom_boxplot", grid::grobTree(
                            #outliers_grob,
                            #ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
                            ggplot2::GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)

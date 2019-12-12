@@ -15,7 +15,7 @@
 #' @export
 #' @example
 #' ggplot(faithful, aes(y = eruptions)) +
-#' geom_hdr_boxplot()
+#'   geom_hdr_boxplot()
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
@@ -26,6 +26,15 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
+
+  if (stat == "hdr") {
+    if (!inherits(mapping, "uneval")) {
+      mapping <- ggplot2::aes()
+    }
+    if (!is.null(prob)) {
+      mapping$prob <- quote(..prob..)
+    }
+  }
 
   layer(
     data = data,
@@ -38,7 +47,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
-      prob = prob,
+      probs = prob,
       ...
     )
   )
@@ -85,7 +94,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            prob <- prob / 100
                          }
 
-                         fill_shade <- darken_fill(rep_len(data$fill, length(data$box_probs[[1]])), data$box_probs[[1]])
+                         fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                          common <- list(
                            colour = data$colour,
                            size = data$size,
@@ -129,5 +138,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                        default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),
 
-                       required_aes = c("ymax","ymin")
+                       required_aes = c("ymax", "ymin"),
+                       optional_aes = "prob"
 )

@@ -39,13 +39,12 @@ StatHdr <- ggproto("StatHdr", Stat,
                          data
                        },
 
-                       compute_group = function(data, scales, width = NULL, prob = NULL, all.modes = TRUE, na.rm = FALSE) {
-                         # ???
+                       compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
                          if (length(unique(data$x)) > 1)
                            width <- diff(range(data$x)) * 0.9
 
                          # imported from hdrcde
-                         hdr_stats <- hdrcde::hdr(data$y, prob = prob*100, all.modes = all.modes)
+                         hdr_stats <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)
 
                          hdr <- hdr_stats$hdr
 
@@ -55,8 +54,8 @@ StatHdr <- ggproto("StatHdr", Stat,
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 
-                         df$box_probs <- list(rep(sort(prob, decreasing = TRUE), max_boxes))
-                         df$box_num <- list(rep(seq_len(max_boxes), each = length(prob)))
+                         df$prob <- list(rep(sort(probs, decreasing = TRUE), max_boxes))
+                         df$box_num <- list(rep(seq_len(max_boxes), each = length(probs)))
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)
                          df$ymax <- vapply(df$ymax_real, max, double(1L), na.rm = TRUE)
                          df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)

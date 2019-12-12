@@ -36,5 +36,12 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                        compute_group = function(data, scales, width = NULL, na.rm = FALSE) {
                          # ???
+                         browser()
+
+                         # imported from hdrcde
+                         hdr_stats <- hdrcde::hdr(data$y)
+                         stats <- hdr_stats$hdr
+                         mode  <- hdr_stats$mode
+                         falpha <- hdr_stats$falpha
                        }
 )

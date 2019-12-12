@@ -67,12 +67,11 @@ StatHdr <- ggproto("StatHdr", Stat,
                          df$box_probs <- list(rep(sort(prob, decreasing = TRUE), max_boxes))
                          df$box_num <- list(rep(seq_len(max_boxes), each = length(prob)))
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)
-                         df$ymax <- vapply(df$ymax_real, max, double(1L))
-                         df$ymin <- vapply(df$ymin_real, min, double(1L))
+                         df$ymax <- vapply(df$ymax_real, max, double(1L), na.rm = TRUE)
+                         df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)
                          df$mode <- list(hdr_stats$mode)
                          df$width <- width
                          df$x <- unique(data$x) # FIX LATER
-                         browser()
                          df
                        }
 )

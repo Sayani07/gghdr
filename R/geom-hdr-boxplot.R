@@ -55,6 +55,13 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            )
                          }
 
+                         ## if values passed to 'prob' are integers instead of
+                         ## decimals, convert them to decimals
+                         ## ex. 5 >>> 0.05, 95 >>> 0.95
+                         if (all(prob == floor(prob)) ) {
+                          prob <- prob / 100
+                         }
+
                          common <- list(
                            colour = data$colour,
                            size = data$size,

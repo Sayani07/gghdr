@@ -62,3 +62,5 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          #df_output <- list(df = df, mode = hdr_stats$mode)
                          df_output <- cbind(df, mode)
+                       }
+)

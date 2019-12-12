@@ -4,16 +4,14 @@ context("hdr-box-plot")
 
 test_that("hdr box plot draws correctly", {
 
-  # hdr_boxplot <- ggplot(faithful, aes(y = eruptions)) +
-  #   geom_hdr_boxplot(position = "identity")
-  #
-  # vdiffr::expect_doppelganger("hdr boxplot", hdr_boxplot)
-
-  disp_hdr_boxplot <- ggplot(faithful, aes(y = eruptions)) +
+  hdr_boxplot <- ggplot(faithful, aes(y = eruptions)) +
     geom_hdr_boxplot(prob = c(0.5, 0.9)) +
     theme_test()
-  vdiffr::expect_doppelganger("geom_hdr_boxplot", disp_hdr_boxplot)
+  vdiffr::expect_doppelganger("geom_hdr_boxplot", hdr_boxplot)
 
+  expect_equal(hdr_boxplot, ggplot(faithful, aes(y = eruptions)) +
+                 geom_hdr_boxplot(prob = c(0.5, 0.9)) +
+                 theme_test())
 })
 
 context("Histograms")

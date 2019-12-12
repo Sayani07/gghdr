@@ -54,5 +54,17 @@ StatHdr <- ggproto("StatHdr", Stat,
                          falpha <- hdr_stats$falpha
 
 
+                         # Mitch's code to merge in by Sayani
+
+                         hdr <- hdr(x, prob = prob)
+
+                         max_boxes <- ncol(hdr$hdr)/2
+                         as.data.frame(c(
+                           split(hdr$hdr, col(hdr$hdr) %% 2),
+                           probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
+                           box_num = list(rep(seq_len(max_boxes), each = length(prob)))
+                         ))
+
+
                        }
 )

@@ -60,8 +60,19 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                          ## if values passed to 'prob' are integers instead of
                          ## decimals, convert them to decimals
                          ## ex. 5 >>> 0.05, 95 >>> 0.95
-                         if (all(prob == floor(prob)) ) {
-                          prob <- prob / 100
+                         if(any(prob > 100 | prob < 0)) {
+                           stop(
+                             "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
+                             call. = FALSE
+                           )
+                         }
+
+                         if(any(prob > 1)) {
+                           warning(
+                             "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
+                             call. = FALSE
+                           )
+                           prob <- prob / 100
                          }
 
                          common <- list(

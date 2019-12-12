@@ -18,3 +18,5 @@ Imports:
     vctrs,
     grid,
     scales
+Suggests: 
+    testthat

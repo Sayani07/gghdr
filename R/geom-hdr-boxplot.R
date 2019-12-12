@@ -115,8 +115,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                        draw_key = draw_key_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
-                                         alpha = NA, shape = 19, linetype = "solid",
-                                         prob = c(0.5, 0.95, 0.99)),
+                                         alpha = NA, shape = 19, linetype = "solid"),
 
                        required_aes = c("x", "lower", "upper", "middle", "ymin", "ymax")
 )

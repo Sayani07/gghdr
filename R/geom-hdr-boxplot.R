@@ -76,48 +76,16 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            group = data$group
                          )
 
-                         whiskers <- vctrs::new_data_frame(c(
-                           list(
-                             x = c(data$x, data$x),
-                             xend = c(data$x, data$x),
-                             y = c(data$upper, data$lower),
-                             yend = c(data$ymax, data$ymin),
-                             alpha = c(NA_real_, NA_real_)
-                           ),
-                           common
-                         ), n = 2L)
-
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = data$xmin,
-                             xmax = data$xmax,
+                             xmin = data$x-1,
+                             xmax = data$x+1,
                              ymin = data$ymin,
-                             y = data$y,
                              ymax = data$ymax,
-                             ynotchlower = ifelse(notch, data$notchlower, NA),
-                             ynotchupper = ifelse(notch, data$notchupper, NA),
-                             notchwidth = notchwidth,
                              alpha = data$alpha
                            ),
                            common
                          ))
-
-                         if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
-                           outliers <- vctrs::new_data_frame(list(
-                             y = data$outliers[[1]],
-                             x = data$x[1],
-                             colour = outlier.colour %||% data$colour[1],
-                             fill = outlier.fill %||% data$fill[1],
-                             shape = outlier.shape %||% data$shape[1],
-                             size = outlier.size %||% data$size[1],
-                             stroke = outlier.stroke %||% data$stroke[1],
-                             fill = NA,
-                             alpha = outlier.alpha %||% data$alpha[1]
-                           ), n = length(data$outliers[[1]]))
-                           outliers_grob <- GeomPoint$draw_panel(outliers, panel_params, coord)
-                         } else {
-                           outliers_grob <- NULL
-                         }
 
                          mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
 

@@ -96,6 +96,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          box <- vctrs::new_data_frame(c(
                            list(
+
                              xmin = data$xmin + 0.1* (data$xmax-data$xmin),
                              xmax = data$xmax - 0.1* (data$xmax-data$xmin),
                              ymin = data$ymin,

@@ -62,7 +62,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            fill = scales::alpha(data$fill, data$alpha),
                            group = data$group
                          )
-                           # browser()
+
                          whiskers <- vctrs::new_data_frame(c(
                            list(
                              x = c(data$x, data$x),
@@ -73,7 +73,6 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            ),
                            common
                          ), n = 2L)
-
 
                          box <- vctrs::new_data_frame(c(
                            list(
@@ -91,7 +90,7 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                          ))
 
                          if (!is.null(data$outliers) && length(data$outliers[[1]] >= 1)) {
-                           outliers <- new_data_frame(list(
+                           outliers <- vctrs::new_data_frame(list(
                              y = data$outliers[[1]],
                              x = data$x[1],
                              colour = outlier.colour %||% data$colour[1],

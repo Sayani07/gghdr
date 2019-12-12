@@ -60,8 +60,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                          data
                        },
 
-                       draw_group = function(data, panel_params, coord, fatten = 2,
-                                             notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
+                       draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
 
 

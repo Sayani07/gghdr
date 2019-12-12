@@ -26,6 +26,23 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
+  ## if values passed to 'prob' are integers instead of
+  ## decimals, convert them to decimals
+  ## ex. 5 >>> 0.05, 95 >>> 0.95
+  if(any(prob > 100 | prob < 0)) {
+    stop(
+      "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
+      call. = FALSE
+    )
+  }
+
+  if(any(prob > 1)) {
+    warning(
+      "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
+      call. = FALSE
+    )
+    prob <- prob / 100
+  }
 
   if (stat == "hdr") {
     if (!inherits(mapping, "uneval")) {
@@ -73,23 +90,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                        draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
-                         ## if values passed to 'prob' are integers instead of
-                         ## decimals, convert them to decimals
-                         ## ex. 5 >>> 0.05, 95 >>> 0.95
-                         if(any(prob > 100 | prob < 0)) {
-                           stop(
-                             "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
-                             call. = FALSE
-                           )
-                         }
-
-                         if(any(prob > 1)) {
-                           warning(
-                             "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
-                             call. = FALSE
-                           )
-                           prob <- prob / 100
-                         }
 
                          fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                          common <- list(

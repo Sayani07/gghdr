@@ -52,15 +52,6 @@ StatHdr <- ggproto("StatHdr", Stat,
                          # number of boxes (for all probabilities max number of boxes will be shown although it has got NA values)
                          max_boxes <- ncol(hdr)/2
 
-                         df <- as.data.frame(c(
-                           # repitition of probs through the length of cutoff vectors
-                           box_probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
-                           # tagging the boxes through the length of cutoff vectors
-                           box_num = list(rep(seq_len(max_boxes), each = length(prob))),
-                           # splitting the hdr into lower and upper cutoffs vector
-                           split(hdr, ifelse(col(hdr) %% 2 == 0, "ymax", "ymin"))
-                         ))
-
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 

@@ -48,14 +48,18 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
 #' @export
 GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
-                       # If we're doing custom width, we need this:
                        # need to declare `width` here in case this geom is used with a stat that
                        # doesn't have a `width` parameter (e.g., `stat_identity`).
                        extra_params = c("na.rm", "width"),
 
                        setup_data = function(data, params) {
-                         #
+                         data$width <- data$width %||%
+                           params$width %||% (resolution(data$x, FALSE) * 0.9)
 
+                         data$xmin <- data$x - data$width / 2
+                         data$xmax <- data$x + data$width / 2
+
+                         data$width <- NULL
                          data$outliers <- NULL
                          data
                        },
@@ -92,8 +96,8 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
-                             xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
+                             xmin = data$xmin,
+                             xmax = data$xmax,
                              ymin = data$ymin,
                              ymax = data$ymax,
                              alpha = 1-data$box_probs

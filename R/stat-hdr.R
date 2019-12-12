@@ -37,7 +37,7 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                        compute_group = function(data, scales, width = NULL, prob = NULL, na.rm = FALSE) {
                          # ???
-                         browser()
+                         #browser()
 
                          # imported from hdrcde
                          hdr_stats <- hdrcde::hdr(data$y, prob = prob*100)
@@ -49,7 +49,7 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          df <- as.data.frame(c(
                            # repitition of probs through the length of cutoff vectors
-                           probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
+                           box_probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
                            # tagging the boxes through the length of cutoff vectors
                            box_num = list(rep(seq_len(max_boxes), each = length(prob))),
                            # splitting the hdr into lower and upper cutoffs vector
@@ -61,5 +61,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                          df_output <- data.frame(mode = hdr_stats$mode)
                          df_output$boxes <- list(df)
                          df_output
+
+                         df
                        }
 )

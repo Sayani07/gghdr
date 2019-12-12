@@ -2,7 +2,7 @@
 #' @importFrom ggplot2 layer aes
 #' @export
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
-                             stat = "boxplot", position = "dodge2",
+                             stat = "identity", position = "dodge2",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
@@ -31,7 +31,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
 
 #' @importFrom ggplot2 ggproto Geom
 #' @export
-GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
+GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                        # If we're doing custom width, we need this:
                        # need to declare `width` here in case this geom is used with a stat that
@@ -98,9 +98,9 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            list(
                              xmin = data$xmin,
                              xmax = data$xmax,
-                             ymin = data$lower,
-                             y = data$middle,
-                             ymax = data$upper,
+                             ymin = data$ymin,
+                             y = data$y,
+                             ymax = data$ymax,
                              ynotchlower = ifelse(notch, data$notchlower, NA),
                              ynotchupper = ifelse(notch, data$notchupper, NA),
                              notchwidth = notchwidth,
@@ -126,14 +126,15 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                            outliers_grob <- NULL
                          }
 
-                         ggplot2:::ggname("geom_boxplot", grid::grobTree(
-                           #outliers_grob,
-                           #ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
-                           ggplot2::GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
+                         mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+
+                         ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
+                           ggplot2::GeomRect$draw_panel(box, panel_params, coord),
+                           ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                          ))
                        },
 
-                       draw_key = ggplot2::draw_key_boxplot,
+                       draw_key = ggplot2::draw_key_rect,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),

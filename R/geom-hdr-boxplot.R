@@ -96,8 +96,9 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = data$xmin,
-                             xmax = data$xmax,
+
+                             xmin = data$xmin + 0.1* (data$xmax-data$xmin),
+                             xmax = data$xmax - 0.1* (data$xmax-data$xmin),
                              ymin = data$ymin,
                              ymax = data$ymax,
                              alpha = 1-data$box_probs
@@ -106,10 +107,20 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                          ))
 
                          #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+                         browser()
+                         mode <- vctrs::new_data_frame(c(
+                           list(
+                             x = data$xmin,
+                             xend = data$xmax,
+                             y = data$mode,
+                             yend = data$mode
+                           ),
+                           common
+                         ), n = length(data$mode))
 
                          ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
-                           ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
-                           #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                           ggplot2::GeomRect$draw_panel(box, panel_params, coord),
+                           ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                          ))
                        },
 

@@ -93,6 +93,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                          df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)
                          df$mode <- list(hdr_stats$mode)
                          df$width <- width
+                         df$f_alpha <- list(hdr_stats$falpha)
                          df$x <- unique(data$x) # FIX LATER
                          df
                        }

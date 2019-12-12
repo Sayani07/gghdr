@@ -40,7 +40,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                          #browser()
 
                          # imported from hdrcde
-                         hdr_stats <- hdrcde::hdr(data$y, prob = prob*100, all.modes)
+                         hdr_stats <- hdrcde::hdr(data$y, prob = prob*100, all.modes = all.modes)
 
                          hdr <- hdr_stats$hdr
 

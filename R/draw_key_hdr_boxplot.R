@@ -17,10 +17,10 @@ draw_key_hdr_boxplot <- function(data, params, size) {
   fill_colour2 <- col2hex(fill_colour2)
   grid::grobTree(
     grid::rectGrob(height = 0.5, width = 0.75,
-                   gp = gpar(fill = fill_colour)),
+                   gp = grid::gpar(fill = fill_colour)),
     grid::rectGrob(height = 0.25, width = 0.75,
-                   gp = gpar(fill = fill_colour2)),
-    gp = gpar(col = "black",
+                   gp = grid::gpar(fill = fill_colour2)),
+    gp = grid::gpar(col = "black",
               lwd = (data$size %||% 0.5) * .pt,
               lty = data$linetype %||% 1
     )

@@ -47,6 +47,9 @@ StatHdr <- ggproto("StatHdr", Stat,
                          split_interval <- split(hdr, col(hdr)%%2)
                          names(split_interval) <- c("upper", "lower")
 
+
+
+
                          mode  <- hdr_stats$mode
                          falpha <- hdr_stats$falpha
 

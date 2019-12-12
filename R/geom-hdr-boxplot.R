@@ -42,10 +42,6 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                        },
 
                        draw_group = function(data, panel_params, coord, fatten = 2,
-                                             outlier.colour = NULL, outlier.fill = NULL,
-                                             outlier.shape = 19,
-                                             outlier.size = 1.5, outlier.stroke = 0.5,
-                                             outlier.alpha = NULL,
                                              notch = FALSE, notchwidth = 0.5, varwidth = FALSE) {
 
                          # this may occur when using geom_boxplot(stat = "identity")

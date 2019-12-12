@@ -14,4 +14,7 @@ LazyData: true
 RoxygenNote: 7.0.2
 Imports: 
     hdrcde,
-    ggplot2
+    ggplot2,
+    vctrs,
+    grid,
+    scales

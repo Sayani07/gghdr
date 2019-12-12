@@ -78,27 +78,27 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = data$x-1,
-                             xmax = data$x+1,
+                             xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
+                             xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
                              ymin = data$ymin,
                              ymax = data$ymax,
-                             alpha = data$alpha
+                             alpha = 1-data$box_probs
                            ),
                            common
                          ))
 
-                         mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+                         #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
 
                          ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
-                           ggplot2::GeomRect$draw_panel(box, panel_params, coord),
-                           ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                           ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
+                           #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                          ))
                        },
 
                        draw_key = ggplot2::draw_key_rect,
 
-                       default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
+                       default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),
 
-                       required_aes = c("x", "lower", "upper", "middle", "ymin", "ymax")
+                       required_aes = c("ymax","ymin")
 )

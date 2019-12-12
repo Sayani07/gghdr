@@ -96,8 +96,8 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          box <- vctrs::new_data_frame(c(
                            list(
-                             xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
-                             xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
+                             xmin = data$xmin,
+                             xmax = data$xmax,
                              ymin = data$ymin,
                              ymax = data$ymax,
                              alpha = 1-data$box_probs

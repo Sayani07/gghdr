@@ -30,14 +30,19 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 StatHdr <- ggproto("StatHdr", Stat,
                        required_aes = c("y"),
                        # non_missing_aes = "weight",
+
+                       setup_params = ggplot2::StatBoxplot$setup_params,
+
                        setup_data = function(data, params) {
                          # How are missing values handled?
+                         data$x <- data$x %||% 0
                          data
                        },
 
                        compute_group = function(data, scales, width = NULL, prob = NULL, all.modes = TRUE, na.rm = FALSE) {
                          # ???
-                         #browser()
+                         if (length(unique(data$x)) > 1)
+                           width <- diff(range(data$x)) * 0.9
 
                          # imported from hdrcde
                          hdr_stats <- hdrcde::hdr(data$y, prob = prob*100, all.modes = all.modes)
@@ -60,7 +65,8 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          mode <- rep(hdr_stats$mode, each = length(prob))
 
-                         #df_output <- list(df = df, mode = hdr_stats$mode)
-                         df_output <- cbind(df, mode)
+                         df$mode <- mode
+                         df$width <- width
+                         df
                        }
 )

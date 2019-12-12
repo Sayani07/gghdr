@@ -67,7 +67,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                        draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
 
-
                          ## if values passed to 'prob' are integers instead of
                          ## decimals, convert them to decimals
                          ## ex. 5 >>> 0.05, 95 >>> 0.95
@@ -86,37 +85,38 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            prob <- prob / 100
                          }
 
+                         fill_shade <- darken_fill(rep_len(data$fill, length(data$box_probs[[1]])), data$box_probs[[1]])
                          common <- list(
                            colour = data$colour,
                            size = data$size,
                            linetype = data$linetype,
-                           fill = scales::alpha(data$fill, data$alpha),
-                           group = data$group
+                           group = data$group,
+                           alpha = NA
                          )
 
-                         box <- vctrs::new_data_frame(c(
+                         box <- as_tibble(c(
                            list(
 
                              xmin = data$xmin + 0.1* (data$xmax-data$xmin),
                              xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                             ymin = data$ymin,
-                             ymax = data$ymax,
-                             alpha = scales::rescale(1-data$box_probs, to = c(0.3,0.4), from = range(1-data$box_probs))
+                             ymin = data$ymin_real[[1]],
+                             ymax = data$ymax_real[[1]],
+                             fill = scales::alpha(fill_shade, data$alpha)
                            ),
                            common
                          ))
 
                          #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
                          #browser()
-                         mode <- vctrs::new_data_frame(c(
+                         mode <- as_tibble(c(
                            list(
                              x = data$xmin,
                              xend = data$xmax,
-                             y = data$mode,
-                             yend = data$mode
+                             y = data$mode[[1]],
+                             yend = data$mode[[1]]
                            ),
                            common
-                         ), n = length(data$mode))
+                         ), n = length(data$mode[[1]]))
 
                          ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
                            ggplot2::GeomRect$draw_panel(box, panel_params, coord),

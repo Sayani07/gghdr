@@ -60,7 +60,7 @@ guide_prob <- function(title = waiver(), ...) {
 #' @importFrom ggplot2 guide_colourbar guide_train
 #' @keywords internal
 guide_train.prob_guide <- function(guide, scale, aesthetic) {
-
+  args <- append(guide[!(names(guide)%in%c("args"))], guide$args)
   probs <- scale$range$probs
   if (length(probs) == 0 || all(is.na(probs)))
     return()

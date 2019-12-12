@@ -54,6 +54,38 @@ StatHdr <- ggproto("StatHdr", Stat,
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 
+                         # each box showing a mode
+                         # earlier we had one mode or multiple modes
+
+
+                         # den <- density(data$y, bw = hdrbw(data$y, mean(prob)), n=1001)
+                         # box = array(NA, nrow(df))
+                         # for(i in 1: nrow(df)) {
+                         #   box <- den$x[i]#dplyr::filter()
+                         #
+                         #   den$x[df$ymin<=den$x[i] & df$ymax>=den$x[i]]
+                         #
+                         #
+                         #   n <- length(box[i])
+                         #   y <- c(0, den$y)
+                         #   idx <- ((y[2:(n-1)] > y[1:(n-2)]) & (y[2:(n-1)] > y[3:n])) | (den$y == max(den$y))
+                         #   mode[i] <- den$x[idx]
+                         # }
+                         #
+                         # # which(hdr_stats$mode==den$x)
+                         # df$mode <- array()
+                         #
+                         # if (length(hdr_stats$mode) == 1) {
+                         #   unimode <- hdr_stats$mode
+                         #   #idx_lower <- min(which(unimode > df$ymin))
+                         #
+                         #   idx <- min(which(unimode > df$ymin))
+                         #   df$mode <- df$mode[(idx*(length(probs)) - 0:2),]
+                         # }
+                         # else{
+                         #   mode <- rep(hdr_stats$mode, each = length(prob))
+                         # }
+
                          df$prob <- list(rep(sort(probs, decreasing = TRUE), max_boxes))
                          df$box_num <- list(rep(seq_len(max_boxes), each = length(probs)))
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)

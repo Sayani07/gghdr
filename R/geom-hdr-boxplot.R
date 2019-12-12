@@ -31,9 +31,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     if (!inherits(mapping, "uneval")) {
       mapping <- ggplot2::aes()
     }
-    if (!is.null(prob)) {
-      mapping$prob <- quote(..prob..)
-    }
+    mapping$prob <- quote(..prob..)
   }
 
   layer(
@@ -75,7 +73,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                        draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                              prob = c(0.5, 0.95, 0.99)) {
-
                          ## if values passed to 'prob' are integers instead of
                          ## decimals, convert them to decimals
                          ## ex. 5 >>> 0.05, 95 >>> 0.95
@@ -103,7 +100,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            alpha = NA
                          )
 
-                         box <- as_tibble(c(
+                         box <- tibble::as_tibble(c(
                            list(
 
                              xmin = data$xmin + 0.1* (data$xmax-data$xmin),
@@ -117,7 +114,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
                          #browser()
-                         mode <- as_tibble(c(
+                         mode <- tibble::as_tibble(c(
                            list(
                              x = data$xmin,
                              xend = data$xmax,
@@ -136,7 +133,7 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                        draw_key = draw_key_hdr_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
-                                         alpha = NA, shape = 19, linetype = "solid"),
+                                         alpha = NA, shape = 19, linetype = "solid", prob = NA),
 
                        required_aes = c("ymax", "ymin"),
                        optional_aes = "prob"

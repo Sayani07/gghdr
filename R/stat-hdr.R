@@ -25,6 +25,7 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 
 #' @format NULL
 #' @usage NULL
+#' @importFrom ggplot2 Stat
 #' @export
 StatHdr <- ggproto("StatHdr", Stat,
                        required_aes = c("y"),

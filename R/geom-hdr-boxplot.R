@@ -1,11 +1,14 @@
 # is this the right function name?
+#' @importFrom ggplot2 layer aes
+#' @export
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
                              show.legend = NA,
-                             inherit.aes = TRUE) {
+                             inherit.aes = TRUE,
+                             prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
 
@@ -20,14 +23,13 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
+      prob = prob,
       ...
     )
   )
 }
 
-#' @rdname ggplot2-ggproto
-#' @format NULL
-#' @usage NULL
+#' @importFrom ggplot2 ggproto Geom
 #' @export
 GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
@@ -42,7 +44,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                        },
 
                        draw_group = function(data, panel_params, coord, fatten = 2,
-                                             notch = FALSE, notchwidth = 0.5, varwidth = FALSE) {
+                                             notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
+                                             prob = c(0.5, 0.95, 0.99)) {
 
                          # this may occur when using geom_boxplot(stat = "identity")
                          if (nrow(data) != 1) {
@@ -105,12 +108,12 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
                          ggname("geom_boxplot", grobTree(
                            outliers_grob,
-                           GeomSegment$draw_panel(whiskers, panel_params, coord),
-                           GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
+                           ggplot2::GeomSegment$draw_panel(whiskers, panel_params, coord),
+                           ggplot2::GeomCrossbar$draw_panel(box, fatten = fatten, panel_params, coord)
                          ))
                        },
 
-                       draw_key = draw_key_boxplot,
+                       draw_key = ggplot2::draw_key_boxplot,
 
                        default_aes = aes(weight = 1, colour = "grey20", fill = "white", size = 0.5,
                                          alpha = NA, shape = 19, linetype = "solid"),

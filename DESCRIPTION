@@ -1,5 +1,5 @@
 Package: gghdr
-Title: What the Package Does (One Line, Title Case)
+Title: Visualisation of Highest Density Regions
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -7,8 +7,11 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2' 
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
+Imports: 
+    hdrcde,
+    ggplot2

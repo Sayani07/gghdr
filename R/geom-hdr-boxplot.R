@@ -102,10 +102,20 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                          ))
 
                          #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+                         browser()
+                         mode <- vctrs::new_data_frame(c(
+                           list(
+                             x = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
+                             xend = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
+                             yend = data$mode,
+                             alpha = NA
+                           ),
+                           common
+                         ), n = length(data$mode))
 
                          ggplot2:::ggname("geom_hdr_boxplot", grid::grobTree(
-                           ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
-                           #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                           ggplot2::GeomRect$draw_panel(box, panel_params, coord),
+                           ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                          ))
                        },
 

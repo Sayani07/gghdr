@@ -35,12 +35,12 @@ StatHdr <- ggproto("StatHdr", Stat,
                          data
                        },
 
-                       compute_group = function(data, scales, width = NULL, prob = NULL, na.rm = FALSE) {
+                       compute_group = function(data, scales, width = NULL, prob = NULL, all.modes = TRUE, na.rm = FALSE) {
                          # ???
                          #browser()
 
                          # imported from hdrcde
-                         hdr_stats <- hdrcde::hdr(data$y, prob = prob*100)
+                         hdr_stats <- hdrcde::hdr(data$y, prob = prob*100, all.modes)
 
                          hdr <- hdr_stats$hdr
 
@@ -58,10 +58,9 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          df <- df[!is.na(df$ymin),]
 
-                         df_output <- data.frame(mode = hdr_stats$mode)
-                         df_output$boxes <- list(df)
-                         df_output
+                         mode <- rep(hdr_stats$mode, each = length(prob))
 
-                         df
+                         #df_output <- list(df = df, mode = hdr_stats$mode)
+                         df_output <- cbind(df, mode)
                        }
 )

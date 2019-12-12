@@ -93,7 +93,6 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                          fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                          common <- list(
-                           colour = data$colour,
                            size = data$size,
                            linetype = data$linetype,
                            group = data$group,
@@ -107,7 +106,8 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                              xmax = data$xmax - 0.1* (data$xmax-data$xmin),
                              ymin = data$ymin_real[[1]],
                              ymax = data$ymax_real[[1]],
-                             fill = scales::alpha(fill_shade, data$alpha)
+                             fill = scales::alpha(fill_shade, data$alpha),
+                             colour = NA
                            ),
                            common
                          ))
@@ -119,7 +119,8 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                              x = data$xmin,
                              xend = data$xmax,
                              y = data$mode[[1]],
-                             yend = data$mode[[1]]
+                             yend = data$mode[[1]],
+                             colour = data$colour
                            ),
                            common
                          ), n = length(data$mode[[1]]))

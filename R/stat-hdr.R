@@ -51,20 +51,13 @@ StatHdr <- ggproto("StatHdr", Stat,
                          max_boxes <- ncol(hdr$hdr)/2
 
                          df <- as.data.frame(c(
-                           # splitting the hdr into lower and upper cutoffs vector
-                           split(hdr$hdr, col(hdr$hdr) %% 2),
                            # repitition of probs through the length of cutoff vectors
                            probs = list(rep(sort(prob, decreasing = TRUE), max_boxes)),
                            # tagging the boxes through the length of cutoff vectors
-                           box_num = list(rep(seq_len(max_boxes), each = length(prob)))
+                           box_num = list(rep(seq_len(max_boxes), each = length(prob))),
+                           # splitting the hdr into lower and upper cutoffs vector
+                           split(hdr$hdr, ifelse(col(hdr$hdr) %% 2 == 0, "ymax", "ymin"))
                          ))
-
-                         stat_df <- df %>% as_tibble()
-                         stat_df %>% rename("ymax" = "X0",
-                                            "ymin" = "X1") %>%
-                           mutate(probs = probs/100)
-
-
 
                        }
 )

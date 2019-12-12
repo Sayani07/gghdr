@@ -1,5 +1,5 @@
 #' @export
-stat_hdr <- function(mapping = NULL, data = NULL,
+stat_hdrcde <- function(mapping = NULL, data = NULL,
                          geom = "hdr_boxplot", position = "dodge2",
                          ...,
                          coef = 1.5,
@@ -9,7 +9,7 @@ stat_hdr <- function(mapping = NULL, data = NULL,
   layer(
     data = data,
     mapping = mapping,
-    stat = StatHdr,
+    stat = StatHdrcde,
     geom = geom,
     position = position,
     show.legend = show.legend,
@@ -27,7 +27,7 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @importFrom ggplot2 Stat
 #' @export
-StatHdr <- ggproto("StatHdr", Stat,
+StatHdrcde <- ggproto("StatHdrcde", Stat,
                        required_aes = c("y"),
                        # non_missing_aes = "weight",
 
@@ -42,6 +42,10 @@ StatHdr <- ggproto("StatHdr", Stat,
                        compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
                          if (length(unique(data$x)) > 1)
                            width <- diff(range(data$x)) * 0.9
+
+                         if(!all(data$x == data$x[1])){
+                           stop("Conditional density estimation is not yet supported. Make sure each plot group contains only one x value.")
+                         }
 
                          # imported from hdrcde
                          hdr_stats <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)

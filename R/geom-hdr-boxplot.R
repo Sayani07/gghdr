@@ -17,7 +17,7 @@
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_boxplot()
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
-                             stat = "hdr", position = "dodge2",
+                             stat = "hdrcde", position = "dodge2",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
@@ -44,7 +44,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     prob <- prob / 100
   }
 
-  if (stat == "hdr") {
+  if (stat == "hdrcde") {
     if (!inherits(mapping, "uneval")) {
       mapping <- ggplot2::aes()
     }

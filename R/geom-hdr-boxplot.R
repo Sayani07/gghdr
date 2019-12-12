@@ -40,6 +40,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
 
                        setup_data = function(data, params) {
                          #
+
+                         data$outliers <- NULL
                          data
                        },
 

@@ -21,7 +21,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
-      prob,
+      prob = prob,
       ...
     )
   )
@@ -44,7 +44,8 @@ GeomHdrBoxplot <- ggproto("GeomBoxplot", Geom,
                        },
 
                        draw_group = function(data, panel_params, coord, fatten = 2,
-                                             notch = FALSE, notchwidth = 0.5, varwidth = FALSE) {
+                                             notch = FALSE, notchwidth = 0.5, varwidth = FALSE,
+                                             prob = c(0.5, 0.95, 0.99)) {
 
                          # this may occur when using geom_boxplot(stat = "identity")
                          if (nrow(data) != 1) {

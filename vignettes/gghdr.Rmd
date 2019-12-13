@@ -217,7 +217,8 @@ ggplot(data = mpg,
 
 ```{r binned_scatterplot, fig.width = 5, fig.height = 4}
 ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
-  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) 
+  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) +
+  scale_colour_viridis_d(direction = -1)
 ```
 
 Feel free to combine this with a rug for more `gghdr` goodness.
@@ -225,5 +226,6 @@ Feel free to combine this with a rug for more `gghdr` goodness.
 ```{r all_together_now, fig.width = 5, fig.height = 4}
 ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
   geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) +
-  geom_hdr_rug(fill = "blue")
+  geom_hdr_rug() +
+  scale_colour_viridis_d(direction = -1)
 ```

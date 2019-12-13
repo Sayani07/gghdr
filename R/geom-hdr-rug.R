@@ -68,61 +68,84 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-browser()
-                            ## if values passed to 'prob' are integers instead of
-                            ## decimals, convert them to decimals
-                            ## ex. 5 >>> 0.05, 95 >>> 0.95
-                            if(any(prob > 100 | prob < 0)) {
-                              stop(
-                                "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
-                                call. = FALSE
-                              )
-                            }
+                            sides <- "bl"
+                            rugs <- list()
 
-                            if(any(prob > 1)) {
-                              warning(
-                                "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
-                                call. = FALSE
-                              )
-                              prob <- prob / 100
-                            }
+                            # box <- tibble::as_tibble(c(
+                            #   list(
+                            #
+                            #     xmin = unit(0,"npc"),
+                            #     xmax = unit(0.03, "npc"),
+                            #     ymin = data$box_y[[1]][,"lower"],
+                            #     ymax = data$box_y[[1]][,"upper"],
+                            #     fill = scales::alpha(rep(fill_shade, length.out = nrow(data$box_y[[1]])), data$alpha),
+                            #     colour = NA
+                            #   ),
+                            #   common
+                            # ))
+                            #
+                            # mode <- tibble::as_tibble(c(
+                            #   list(
+                            #     x = unit(0,"npc"),
+                            #     xend = unit(0.03, "npc"),
+                            #     y = data$mode[[1]],
+                            #     yend = data$mode[[1]],
+                            #     colour = data$colour
+                            #   ),
+                            #   common
+                            # ), n = length(data$mode[[1]]))
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
-                            common <- list(
-                              size = data$size,
-                              linetype = data$linetype,
-                              group = data$group
-                            )
+                            gp <- gpar(col = alpha(data$colour, data$alpha), fill = fill_shade,
+                                       lty = data$linetype, lwd = data$size * .pt)
+                            if (!is.null(data$box_x)) {
+                              box <- data$box_x[[1]]
+                              browser()
+                              width <- box[,"upper"] - box[,"lower"]
+                              if (grepl("b", sides)) {
+                                rugs$x_b <- rectGrob(
+                                  x = unit(4, "native"), width = unit(1, "native"),
+                                  y = rep(unit(0.5, "npc"), nrow(box)), height = rep(unit(0.03, "npc"), nrow(box)),
+                                  just = c(0,0),
+                                  gp = gp
+                                )
+
+                                rugs$x_b <- segmentsGrob(
+                                  x0 = unit(box[,"lower"], "native"), x1 = unit(box[,"upper"], "native"),
+                                  y0 = unit(0, "npc"), y1 = unit(0.03, "npc"),
+                                  gp = gp
+                                )
+                              }
+                              #
+                              # if (grepl("t", sides)) {
+                              #   rugs$x_t <- segmentsGrob(
+                              #     x0 = unit(data$x, "native"), x1 = unit(data$x, "native"),
+                              #     y0 = unit(1, "npc"), y1 = rug_length$max,
+                              #     gp = gp
+                              #   )
+                              # }
+                            }
+
+                            if (!is.null(data$box_y)) {
+                              if (grepl("l", sides)) {
+                                rugs$y_l <- segmentsGrob(
+                                  y0 = unit(data$y, "native"), y1 = unit(data$y, "native"),
+                                  x0 = unit(0, "npc"), x1 = rug_length$min,
+                                  gp = gp
+                                )
+                              }
+
+                              # if (grepl("r", sides)) {
+                              #   rugs$y_r <- segmentsGrob(
+                              #     y0 = unit(data$y, "native"), y1 = unit(data$y, "native"),
+                              #     x0 = unit(1, "npc"), x1 = rug_length$max,
+                              #     gp = gp
+                              #   )
+                              # }
+                            }
 
 
-                            box <- tibble::as_tibble(c(
-                              list(
-
-                                xmin = unit(0,"npc"),
-                                xmax = unit(0.03, "npc"),
-                                ymin = data$box_y[[1]][,"lower"],
-                                ymax = data$box_y[[1]][,"upper"],
-                                fill = scales::alpha(rep(fill_shade, length.out = nrow(data$box_y[[1]])), data$alpha),
-                                colour = NA
-                              ),
-                              common
-                            ))
-
-                            mode <- tibble::as_tibble(c(
-                              list(
-                                x = unit(0,"npc"),
-                                xend = unit(0.03, "npc"),
-                                y = data$mode[[1]],
-                                yend = data$mode[[1]],
-                                colour = data$colour
-                              ),
-                              common
-                            ), n = length(data$mode[[1]]))
-
-                            ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
-                              ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
-                              #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
-                            ))
+                            ggplot2::gTree(children = do.call(ggplot2::gList, rugs))
                           },
 
                           draw_key = draw_key_hdr_boxplot,
@@ -130,6 +153,5 @@ browser()
                           default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                             alpha = NA, shape = 19, linetype = "solid", prob = NA),
 
-                          required_aes = c("ymax", "ymin"),
-                          optional_aes = "prob"
+                          optional_aes = c("x", "y", "prob")
 )

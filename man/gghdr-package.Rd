@@ -12,13 +12,13 @@ Geom and Stat components to visualise highest density
              regions from the 'hdrcde' package with 'ggplot2'.
 }
 \author{
-\strong{Maintainer}: Sayani Gupta (\href{https://orcid.org/FIXME}{ORCID})
+\strong{Maintainer}: Mitchell O'Hara-Wild \email{mail@mitchelloharawild.com} (\href{https://orcid.org/0000-0001-6729-7695}{ORCID})
 
 Authors:
 \itemize{
-  \item Mitchell O'Hara-Wild \email{mail@mitchelloharawild.com} (\href{https://orcid.org/0000-0001-6729-7695}{ORCID})
   \item Stephen Pearce (\href{https://orcid.org/0000-0002-9400-8091}{ORCID})
   \item Ryo Nakagawara \email{ryonakagawara@gmail.com} (\href{https://orcid.org/FIXME}{ORCID})
+  \item Sayani Gupta (\href{https://orcid.org/FIXME}{ORCID})
   \item Darya Vanichkina \email{d.vanichkina@gmail.com} (\href{https://orcid.org/0000-0002-0406-164X}{ORCID})
   \item Emi Tanaka (\href{https://orcid.org/FIXME}{ORCID})
   \item Thomas Fung (\href{https://orcid.org/FIXME}{ORCID})

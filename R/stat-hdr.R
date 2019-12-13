@@ -1,6 +1,6 @@
 #' @export
 stat_hdr <- function(mapping = NULL, data = NULL,
-                         geom = "hdr_boxplot", position = "dodge2",
+                         geom = "hdr_rug", position = "dodge2",
                          ...,
                          coef = 1.5,
                          na.rm = FALSE,
@@ -31,33 +31,36 @@ StatHdr <- ggproto("StatHdr", Stat,
                        required_aes = c("y"),
                        # non_missing_aes = "weight",
 
-                       setup_params = ggplot2::StatBoxplot$setup_params,
+                       # setup_params = ggplot2::StatBoxplot$setup_params,
 
                        setup_data = function(data, params) {
                          # How are missing values handled?
-                         data$x <- data$x %||% 0
                          data
                        },
 
                        compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
-                         if (length(unique(data$x)) > 1)
-                           width <- diff(range(data$x)) * 0.9
-
-                         # imported from hdrcde
-                         hdr_stats <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)
-
-                         hdr <- hdr_stats$hdr
-
-                         # number of boxes (for all probabilities max number of boxes will be shown although it has got NA values)
-                         max_boxes <- ncol(hdr)/2
-
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 
-                         # each box showing a mode
-                         # earlier we had one mode or multiple modes
-
-
+                         has_x <- !is.null(data$x)
+                         has_y <- !is.null(data$y)
+                         # imported from hdrcde
+                         if (has_x) {
+                           hdr_x <- hdrcde::hdr(data$x, prob = probs*100, all.modes = all.modes)
+                           df$box_x <- list(hdr_boxes(hdr_x))
+                           df$mode_x <- list(hdr_x$mode)
+                           df$f_alpha_x <- list(hdr_x$falpha)
+                           df$xmax <- max(c(df$box_x[[1]][,"upper"], df$box_x[[1]][,"upper"]), na.rm = TRUE)
+                           df$xmin <- max(c(df$box_x[[1]][,"lower"], df$box_x[[1]][,"lower"]), na.rm = TRUE)
+                         }
+                         if (has_y) {
+                           hdr_y <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)
+                           df$box_y <- list(hdr_boxes(hdr_y))
+                           df$mode_y <- list(hdr_y$mode)
+                           df$f_alpha_y <- list(hdr_y$falpha)
+                           df$ymax <- max(c(df$box_y[[1]][,"upper"], df$box_y[[1]][,"upper"]), na.rm = TRUE)
+                           df$ymin <- max(c(df$box_y[[1]][,"lower"], df$box_y[[1]][,"lower"]), na.rm = TRUE)
+                         }
                          # den <- density(data$y, bw = hdrbw(data$y, mean(prob)), n=1001)
                          # box = array(NA, nrow(df))
                          # for(i in 1: nrow(df)) {
@@ -90,7 +93,6 @@ StatHdr <- ggproto("StatHdr", Stat,
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)
                          df$ymax <- vapply(df$ymax_real, max, double(1L), na.rm = TRUE)
                          df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)
-                         df$width <- width
 
 # manipulation to make sure that no mode should lie outside the box
                          mode_proxy <- matrix(0, length(hdr_stats$mode), df$ymax)
@@ -108,6 +110,10 @@ StatHdr <- ggproto("StatHdr", Stat,
 
                          df$f_alpha <- list(hdr_stats$falpha)
                          df$x <- unique(data$x) # FIX LATER
+
+                         df$prob <- list(sort(probs, decreasing = TRUE))
+                         df$width <- width
                          df
+
                        }
 )

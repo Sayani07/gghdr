@@ -15,7 +15,7 @@
 #' @export
 #' @example
 #' ggplot(faithful, aes(y = eruptions)) +
-#' geom_hdr_boxplot()
+#'   geom_hdr_rug()
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
@@ -24,6 +24,15 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              show.legend = NA,
                              inherit.aes = TRUE,
                              prob = c(0.5, 0.95, 0.99)) {
+
+  # Add basic input checks if needed
+
+  if (stat == "hdr") {
+    if (!inherits(mapping, "uneval")) {
+      mapping <- ggplot2::aes()
+    }
+    mapping$prob <- quote(..prob..)
+  }
 
   layer(
     data = data,
@@ -40,7 +49,6 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
       ...
     )
   )
-
 }
 
 

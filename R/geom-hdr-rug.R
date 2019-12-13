@@ -5,6 +5,8 @@
 #' @return geom_hdr_rug
 #' @rdname geom_hdr_rug
 #' @examples
+#' library(ggplot2)
+#'
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_rug()
 #' @export
@@ -48,9 +50,12 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 }
 
 #' @title GeomHdrRug
+#' @description ggproto object for geom_hrdr_rug
 #' @rdname GeomHdrRug
 #' @importFrom ggplot2 ggproto Geom
+#' @importFrom grid segmentsGrob
 #' @export
+
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                           # If we're doing custom width, we need this:

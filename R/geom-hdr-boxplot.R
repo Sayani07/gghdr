@@ -8,7 +8,9 @@
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_bar
 #' @examples
-#' ggplot2::ggplot(faithful, ggplot2::aes(y = eruptions)) +
+#' library(ggplot2)
+#'
+#' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_boxplot()
 #' @export
 

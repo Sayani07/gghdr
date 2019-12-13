@@ -74,6 +74,8 @@ A box plot for the highest density region
 Calculates and plots the boxplot of highest density regions in one dimension.
 }
 \examples{
-ggplot2::ggplot(faithful, ggplot2::aes(y = eruptions)) +
+library(ggplot2)
+
+ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_boxplot()
 }

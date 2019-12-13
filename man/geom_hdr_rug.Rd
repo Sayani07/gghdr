@@ -8,7 +8,7 @@ geom_hdr_rug(
   mapping = NULL,
   data = NULL,
   stat = "hdr",
-  position = "dodge2",
+  position = "identity",
   ...,
   varwidth = FALSE,
   na.rm = FALSE,
@@ -29,6 +29,8 @@ geom_hdr_rug
 rug visualization for HDR plot
 }
 \examples{
+library(ggplot2)
+
 ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_rug()
 }

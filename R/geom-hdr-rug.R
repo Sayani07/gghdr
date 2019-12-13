@@ -79,7 +79,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
-                            gp <- gpar(col = alpha(data$colour, data$alpha), fill = fill_shade,
+                            gp <- gpar(col = NA, fill = alpha(fill_shade, data$alpha),
                                        lty = data$linetype, lwd = data$size * .pt)
 
 

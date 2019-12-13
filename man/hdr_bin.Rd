@@ -4,7 +4,7 @@
 \alias{hdr_bin}
 \title{Binning highest density regions in one or two dimensions}
 \usage{
-hdr_bin(x, y, prob = c(0.5, 0.9, 0.99), ...)
+hdr_bin(x, y = NULL, prob = c(0.5, 0.9, 0.99), ...)
 }
 \arguments{
 \item{x}{Numeric vector}

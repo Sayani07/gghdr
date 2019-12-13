@@ -13,10 +13,10 @@ hdr_bin(x, y, prob = c(0.5, 0.9, 0.99), ...)
 
 \item{prob}{Probability coverage required for HDRs}
 
-\item{...}{}
+\item{...}{...}
 }
 \value{
-
+probability coverage for each element of the numeric vectors.
 }
 \description{
 Binning highest density regions in one or two dimensions

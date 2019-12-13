@@ -1,3 +1,8 @@
+#' @title stat_hdrcde
+#' @description stat for hdrcde
+#' @param geom PARAM_DESCRIPTION, Default: 'hdr_boxplot'
+#' @param position PARAM_DESCRIPTION, Default: 'dodge2'
+#' @rdname stat_hdrcde
 #' @export
 stat_hdr <- function(mapping = NULL, data = NULL,
                          geom = "hdr_rug", position = "dodge2",
@@ -6,7 +11,7 @@ stat_hdr <- function(mapping = NULL, data = NULL,
                          na.rm = FALSE,
                          show.legend = NA,
                          inherit.aes = TRUE) {
-  layer(
+  ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatHdr,

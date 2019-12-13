@@ -86,7 +86,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               )
                               prob <- prob / 100
                             }
-browser()
+
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
                               colour = data$colour,

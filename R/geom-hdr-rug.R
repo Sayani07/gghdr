@@ -15,11 +15,11 @@
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "identity",
                              ...,
-                             varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
                              show.legend = NA,
                              inherit.aes = TRUE,
                              sides = "bl",
+                             rug_width = unit(0.03, "npc"),
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
@@ -40,9 +40,9 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      varwidth = varwidth,
       na.rm = na.rm,
       sides = sides,
+      rug_width = rug_width,
       probs = prob,
       ...
     )
@@ -67,24 +67,29 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             data
                           },
 
-                          draw_group = function(data, panel_params, coord, varwidth = FALSE,
+                          draw_group   = function(data, panel_params, coord,
                                                 sides = sides,
+                                                rug_width = rug_width,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-
+                            if (!inherits(rug_width, "unit")) {
+                              stop("'length' must be a 'unit' object.", call. = FALSE)
+                            }
 
                             rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             gp <- gpar(col = alpha(data$colour, data$alpha), fill = fill_shade,
                                        lty = data$linetype, lwd = data$size * .pt)
+
+
                             if (!is.null(data$box_x)) {
                               box <- data$box_x[[1]]
                               box <- coord$transform(data.frame(xmin = box[,"lower"], xmax = box[,"upper"]), panel_params)
                               if (grepl("b", sides)) {
                                 rugs$x_b <- rectGrob(
                                   x = box$xmin, width = box$xmax - box$xmin,
-                                  y = rep(unit(0, "npc"), nrow(box)), height = rep(unit(0.03, "npc"), nrow(box)),
+                                  y = rep(unit(0, "npc"), nrow(box)), height = rep(rug_width, nrow(box)),
                                   just = c(0,0),
                                   gp = gp,
                                   default.units = "native"
@@ -94,7 +99,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               if (grepl("t", sides)) {
                                 rugs$x_t <- rectGrob(
                                   x = box$xmin, width = box$xmax - box$xmin,
-                                  y = rep(unit(0.97, "npc"), nrow(box)), height = rep(unit(0.03, "npc"), nrow(box)),
+                                  y = rep(unit(1, "npc")-rug_width, nrow(box)), height = rep(rug_width, nrow(box)),
                                   just = c(0,0),
                                   gp = gp,
                                   default.units = "native"
@@ -107,7 +112,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               box <- coord$transform(data.frame(ymin = box[,"lower"], ymax = box[,"upper"]), panel_params)
                               if (grepl("l", sides)) {
                                 rugs$y_l <- rectGrob(
-                                  x = rep(unit(0.0, "npc"), nrow(box)), width = rep(unit(0.03, "npc"), nrow(box)),
+                                  x = rep(unit(0.0, "npc"), nrow(box)), width = rep(rug_width, nrow(box)),
                                   y = box$ymin, height = box$ymax-box$ymin,
                                   just = c(0,0),
                                   gp = gp,
@@ -117,7 +122,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                               if (grepl("r", sides)) {
                                 rugs$y_r <- rectGrob(
-                                  x = rep(unit(0.97, "npc"), nrow(box)), width = rep(unit(0.03, "npc"), nrow(box)),
+                                  x = rep(unit(1, "npc")-rug_width, nrow(box)), width = rep(rug_width, nrow(box)),
                                   y = box$ymin, height = box$ymax-box$ymin,
                                   just = c(0,0),
                                   gp = gp,

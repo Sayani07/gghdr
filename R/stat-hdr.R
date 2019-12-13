@@ -90,6 +90,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)
                          df$ymax <- vapply(df$ymax_real, max, double(1L), na.rm = TRUE)
                          df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)
+                         df$width <- width
 
 # manipulation to make sure that no mode should lie outside the box
                          mode_proxy <- matrix(0, length(hdr_stats$mode), df$ymax)
@@ -102,7 +103,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                            }
                            else mode_proxy[i, j] <- 1
                          }
-                         hdr_mode <- hdr_stats$mode[which(colSums(mode_proxy)==0)]
+                         hdr_mode <- hdr_stats$mode[which(rowSums(mode_proxy)==0)]
                          df$mode <- list(hdr_mode)
 
                          df$f_alpha <- list(hdr_stats$falpha)

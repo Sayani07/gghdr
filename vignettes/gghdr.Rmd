@@ -1,0 +1,100 @@
+---
+title: "Getting Started with gghdr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{gghdr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message =  FALSE,
+  warning = FALSE
+)
+```
+
+The `gghdr` imports the [`hdrcde` package](https://cran.r-project.org/web/packages/hdrcde/index.html) and provides tools for plotting highest density regions with [`ggplot2`](https://ggplot2.tidyverse.org/). 
+
+> The following vignette assumes familiarity with the grammar of graphics as implemented in ggplot2. 
+
+## Introduction: the limitations of a boxplot
+
+Let's begin by using ggplot2 to create a boxplot of the `eruptions` variable of the `faithful` dataset, built into the `hdrcde` library. 
+
+In a standard boxplot:
+
+- The central box is bounded by Q1 and Q3, which represents the interquartile range. 
+- The whiskers extend from Q1 - 1.5 (Q3 - Q1) to Q3 + to 1.5 (Q3 - Q1), which represents 99% coverage for large samples. 
+- Finally, the horizontal line represents the median.
+
+
+```{r prework}
+library(ggplot2)
+library(hdrcde)
+ggplot(data = faithful, aes(y=eruptions)) + geom_boxplot() 
+# fixme? show the interquartile range with labels on the plot
+```
+
+
+
+
+If we look more closely at our data, however, we can see that it's actually multimodal, but our choice of visualisation technique limited our ability to see this:
+
+```{r hist}
+ggplot(data = faithful, aes(x=eruptions)) + geom_density()
+```
+
+## High-density regions enable us to effectively summarise and visualise multimodal datasets
+
+The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
+
+
+Formally, HDRs are [defined in the following manner (Hyndman  1996  American Statistician, **50**, 120-126)](https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/):
+
+> If $f(x)$ is the density function of a random variable X, 
+> then the  $100 (1 -\alpha)$ HDR is the subset R($f_\alpha$) of the sample space of X such that 
+> $R(f_\alpha) = \{x: f(x) \geq f_\alpha\}$, where $f_\alpha$ is the largest constant such that Pr(X $\in R(f_\alpha)) \geq 1-\alpha$)
+
+
+
+The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
+
+We can use this package to create a density plot of the `eruptions` variable.
+
+```{r densityHDR2, fig.width = 5, echo=TRUE, eval=FALSE}
+hdr.den(faithful$eruptions)
+```
+
+```{r densityHDR, fig.width = 5, echo=FALSE,  fig.height = 4}
+invisible(hdr.den(faithful$eruptions))
+```
+
+
+
+- 50% of the dataset is "located" in the regions shown by the blue rectangles/dashed lines
+- 95% of the dataset is "located" in the regions shown by the green rectangles/dashed lines
+- 99% of the dataset is "located" in the regions shown by the red rectangles/dashed lines
+
+This can be visualised more compactly using the `hdr.boxplot` function, in which:
+
+- The region bounded by the interquartile range is replaced by 50% HDR (blue region in figure above)
+- The region shown using the whiskers is replaced by the 99% HDR (red region in figure above)
+- The horizontal line represents the mode
+
+
+```{r hdrboxplot, fig.width = 5, fig.height = 4}
+hdr.boxplot(faithful$eruptions)
+```
+
+`hdr.boxplot()` uses base plotting tools to create the visualisation, limiting users' ability to customise the visualisation and combine it with other `ggplot2` images. 
+
+
+
+```{r setup}
+library(gghdr)
+```
+
+

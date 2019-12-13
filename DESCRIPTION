@@ -22,5 +22,8 @@ Imports:
     farver
 Suggests: 
     testthat (>= 2.1.0),
-    vdiffr
+    vdiffr,
+    knitr,
+    rmarkdown
 Depends: R (>= 2.10)
+VignetteBuilder: knitr

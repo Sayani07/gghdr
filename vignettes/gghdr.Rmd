@@ -12,7 +12,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   message =  FALSE,
-  warning = FALSE
+  fig.width = 5,
+  fig.height = 4
 )
 ```
 
@@ -34,6 +35,8 @@ In a standard boxplot:
 ```{r prework}
 library(ggplot2)
 library(hdrcde)
+# we will set the ggplot2 theme to use theme_minimal() for the vignette
+theme_set(theme_minimal())
 ggplot(data = faithful, aes(y=eruptions)) + geom_boxplot() 
 # fixme? show the interquartile range with labels on the plot
 ```
@@ -47,7 +50,7 @@ If we look more closely at our data, however, we can see that it's actually mult
 ggplot(data = faithful, aes(x=eruptions)) + geom_density()
 ```
 
-## High-density regions enable us to effectively summarise and visualise multimodal datasets
+## High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets
 
 The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
 
@@ -65,18 +68,20 @@ The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) provides tools
 We can use this package to create a density plot of the `eruptions` variable.
 
 ```{r densityHDR2, fig.width = 5, echo=TRUE, eval=FALSE}
-hdr.den(faithful$eruptions)
+hdr.den(faithful$eruptions, 
+        col = c("skyblue", "slateblue2", "slateblue4"))
 ```
 
 ```{r densityHDR, fig.width = 5, echo=FALSE,  fig.height = 4}
-invisible(hdr.den(faithful$eruptions))
+invisible(hdr.den(faithful$eruptions, 
+                  col = c("skyblue", "slateblue2", "slateblue4")))
 ```
 
 
 
-- 50% of the dataset is "located" in the regions shown by the blue rectangles/dashed lines
-- 95% of the dataset is "located" in the regions shown by the green rectangles/dashed lines
-- 99% of the dataset is "located" in the regions shown by the red rectangles/dashed lines
+- 50% of the dataset is "located" in the regions shown by the darkest blue rectangles/dashed lines
+- 95% of the dataset is "located" in the regions shown by the blue rectangles/dashed lines
+- 99% of the dataset is "located" in the regions shown by the light blue rectangles/dashed lines
 
 This can be visualised more compactly using the `hdr.boxplot` function, in which:
 
@@ -86,15 +91,121 @@ This can be visualised more compactly using the `hdr.boxplot` function, in which
 
 
 ```{r hdrboxplot, fig.width = 5, fig.height = 4}
-hdr.boxplot(faithful$eruptions)
+hdr.boxplot(faithful$eruptions, 
+            prob = c(99, 95, 50),
+            col = c("skyblue", "slateblue2", "slateblue4"))
 ```
 
-`hdr.boxplot()` uses base plotting tools to create the visualisation, limiting users' ability to customise the visualisation and combine it with other `ggplot2` images. 
+`hdr.boxplot()` uses base plotting tools to create the visualisation, limiting users' ability to customise and combine it with other `ggplot2` visualisations.
 
 
+## HDR boxplots in ggplot2: geom_hdr_boxplot()
+
+We can visualise the same dataset using `geom_hdr_boxplot()`. By default, it will plot respectively darker boxes for 99%, 95% or 50% of the data.
 
 ```{r setup}
 library(gghdr)
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot() 
+
 ```
+
+## Adding colour
+
+We can specify the base colour we'd like to use.
+
+```{r speccols}
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot(fill = c("blue")) 
+```
+
+## Specifying your own probabilities
+
+We can also specify which set of probability coverages we'd like to display HDRs for. For example, we can visualise the 10%, 25%, 50%, 75% and 95% HDR of the faithful eruptions.
+
+```{r diftProbs}
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot(prob = c(0.1, 0.25,0.5, 0.75, 0.95),
+                   fill = c("blue")) 
+```
+
+We can also specify the probabilities as percentages, i.e. out of 100. 
+
+```{r percentProbs}
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot(prob = c(10,25,50,75,95),
+                   fill = c("blue")) 
+```
+
+This will produce a warning, but achieve the same result. Note that mixing the two will result in all of your probabilities $\leq1$ being divided by 100.
+
+```{r percentProbs2}
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot(prob = c(0.1,25,50,75,95),
+                   fill = c("blue")) 
+```
+
+
+## Combining geom_hdr_boxplot() with geom_jitter() to visualise both the raw data and HDRs
+
+We can combine all sorts of ggplot2 geoms with `geom_hdr_boxplot()`. For example, we can use `geom_jitter()` to showcase the underlying data.
+
+```{r withJitter}
+ggplot(data = faithful, 
+       aes(y=eruptions)) + 
+  geom_hdr_boxplot(fill = c("blue")) + 
+  geom_jitter(aes(x=0))
+```
+
+## Combining geom_hdr_boxplot() with geom_rug() to visualise the HDRs and distribution of the data
+
+We can use `geom_rug()` to show this distribution in the margin along the y axis. 
+
+```{r withRug}
+ggplot(data = faithful, aes(y=eruptions)) + 
+  geom_hdr_boxplot(fill = c("blue")) + 
+  geom_rug()
+```
+
+## Marginal HDRs are supported with `geom_hdr_rug()` 
+
+Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug`, which enables us to plot HDRs in the margins of other plots. 
+
+```{r hdrRug}
+ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
+  geom_point() +
+  geom_hdr_rug(fill = "blue")
+  #geom_hdr_boxplot(fill = c("blue")) + 
+ # geom_rug()
+```
+
+
+## Grouped HDR boxplots
+
+One of the most exciting features `geom_hdr_boxplot()` supports (unlike `hdr.boxplot`) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2's native syntax to do this. Let's explore the `ggplot2::mpg` dataset. First, let's look at a histogram of the data, faceted by number of cylinders
+
+
+```{r showMPG}
+ggplot(data = mpg, 
+       aes(x = hwy, fill = as.factor(cyl))) +
+  facet_grid(as.factor(cyl)~.) + 
+  geom_histogram(bins = 50) 
+```
+
+We can see that cars with 6 cylinders seem to be bimodally distributed. Let's visualise this using `geom_hdr_boxplot()`.
+
+
+```{r mpgBox1}
+ggplot(data = mpg, 
+       # make sure to change x to y from geom_density to geom_hdr_boxplot
+       aes(y = hwy, fill = as.factor(cyl))) + 
+  geom_hdr_boxplot()
+```
+
 
 

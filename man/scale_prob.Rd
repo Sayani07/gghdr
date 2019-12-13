@@ -6,8 +6,6 @@
 \title{prob colour scales}
 \usage{
 scale_prob_identity(..., guide = "prob")
-
-scale_prob_identity(..., guide = "prob")
 }
 \arguments{
 \item{...}{Arguments passed on to \code{continuous_scale}
@@ -83,8 +81,6 @@ expand the scale by 5\% on each side for continuous variables, and by
 
 \item{guide}{Type of legend. Use \code{"colourbar"} for continuous
 colour bar, or \code{"legend"} for discrete colour legend.}
-
-\item{low, high}{Colours for low and high ends of the gradient.}
 }
 \value{
 A ggproto object inheriting from `Scale`

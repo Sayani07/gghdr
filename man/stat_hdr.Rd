@@ -17,9 +17,23 @@ stat_hdr(
 )
 }
 \arguments{
+\item{mapping}{Default: NULL}
+
+\item{data}{Default: NULL}
+
 \item{geom}{PARAM_DESCRIPTION, Default: 'hdr_boxplot'}
 
 \item{position}{PARAM_DESCRIPTION, Default: 'dodge2'}
+
+\item{...}{...}
+
+\item{coef}{Default: 1.5}
+
+\item{na.rm}{Default: FALSE}
+
+\item{show.legend}{Default: NA}
+
+\item{inherit.aes}{Default: TRUE}
 }
 \description{
 stat for hdr (rug)

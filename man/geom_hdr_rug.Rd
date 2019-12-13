@@ -18,7 +18,23 @@ geom_hdr_rug(
 )
 }
 \arguments{
+\item{mapping}{Default: NULL}
+
+\item{data}{data}
+
+\item{stat}{stat}
+
+\item{position}{Default: "identity"}
+
+\item{...}{...}
+
 \item{varwidth}{width, Default: FALSE}
+
+\item{na.rm}{Default: FALSE}
+
+\item{show.legend}{Default: NA}
+
+\item{inherit.aes}{Default: TRUE}
 
 \item{prob}{PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)}
 }

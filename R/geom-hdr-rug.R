@@ -2,6 +2,14 @@
 #' @description rug visualization for HDR plot
 #' @param varwidth width, Default: FALSE
 #' @param prob PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)
+#' @param mapping Default: NULL
+#' @param ... ...
+#' @param na.rm Default: FALSE
+#' @param show.legend Default: NA
+#' @param inherit.aes Default: TRUE
+#' @param data data
+#' @param stat stat
+#' @param position Default: "identity"
 #' @return geom_hdr_rug
 #' @rdname geom_hdr_rug
 #' @examples

@@ -2,15 +2,23 @@
 #' @description stat for hdr (rug)
 #' @param geom PARAM_DESCRIPTION, Default: 'hdr_boxplot'
 #' @param position PARAM_DESCRIPTION, Default: 'dodge2'
+#' @param mapping Default: NULL
+#' @param data Default: NULL
+#' @param ... ...
+#' @param coef Default: 1.5
+#' @param na.rm Default: FALSE
+#' @param show.legend Default: NA
+#' @param inherit.aes Default: TRUE
 #' @rdname stat_hdr
 #' @export
+
 stat_hdr <- function(mapping = NULL, data = NULL,
-                         geom = "hdr_rug", position = "dodge2",
-                         ...,
-                         coef = 1.5,
-                         na.rm = FALSE,
-                         show.legend = NA,
-                         inherit.aes = TRUE) {
+                     geom = "hdr_rug", position = "dodge2",
+                     ...,
+                     coef = 1.5,
+                     na.rm = FALSE,
+                     show.legend = NA,
+                     inherit.aes = TRUE) {
   ggplot2::layer(
     data = data,
     mapping = mapping,

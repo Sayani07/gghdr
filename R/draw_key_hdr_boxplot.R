@@ -1,5 +1,8 @@
 #' @title draw_key_hdr_boxplot
 #' @description draw legend key for HDR box plot
+#' @param data data
+#' @param params parameters
+#' @param size size of legend key
 #' @importFrom grid rectGrob grobTree gpar
 #' @importFrom grDevices col2rgb
 #' @export

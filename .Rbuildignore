@@ -1,4 +1,5 @@
 ^README\.Rmd$
+^README_files/
 ^gghdr\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$

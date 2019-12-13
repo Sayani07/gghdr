@@ -2,12 +2,12 @@
 % Please edit documentation in R/geom-hdr-boxplot.R
 \name{geom_hdr_boxplot}
 \alias{geom_hdr_boxplot}
-\title{geom_hdr_boxplot}
+\title{A box plot for the highest density region}
 \usage{
 geom_hdr_boxplot(
   mapping = NULL,
   data = NULL,
-  stat = "hdr",
+  stat = "hdrcde",
   position = "dodge2",
   ...,
   varwidth = FALSE,
@@ -66,7 +66,7 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \item{prob}{Probability coverage required for HDRs}
 }
 \description{
-geom_hdr_boxplot
+A box plot for the highest density region
 }
 \details{
 A box plot for the highest density region

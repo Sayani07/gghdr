@@ -1,4 +1,4 @@
-prob_range <- function(){
+prob_range <- function() {
   ggplot2::ggproto(NULL, RangeProb)
 }
 

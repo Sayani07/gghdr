@@ -15,7 +15,7 @@
 #' @export
 #' @example
 #' ggplot(faithful, aes(y = eruptions)) +
-#' geom_hdr_boxplot()
+#'   geom_hdr_rug()
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
@@ -24,6 +24,15 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              show.legend = NA,
                              inherit.aes = TRUE,
                              prob = c(0.5, 0.95, 0.99)) {
+
+  # Add basic input checks if needed
+
+  if (stat == "hdr") {
+    if (!inherits(mapping, "uneval")) {
+      mapping <- ggplot2::aes()
+    }
+    mapping$prob <- quote(..prob..)
+  }
 
   layer(
     data = data,
@@ -40,7 +49,6 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
       ...
     )
   )
-
 }
 
 
@@ -48,6 +56,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 #' @export
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
+                          # If we're doing custom width, we need this:
                           # need to declare `width` here in case this geom is used with a stat that
                           # doesn't have a `width` parameter (e.g., `stat_identity`).
                           extra_params = c("na.rm", "width"),
@@ -58,6 +67,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                                 prob = c(0.5, 0.95, 0.99)) {
+
+
                             ## if values passed to 'prob' are integers instead of
                             ## decimals, convert them to decimals
                             ## ex. 5 >>> 0.05, 95 >>> 0.95
@@ -75,22 +86,23 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               )
                               prob <- prob / 100
                             }
-
+browser()
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
+                              colour = data$colour,
                               size = data$size,
                               linetype = data$linetype,
-                              group = data$group,
-                              alpha = NA
+                              fill = scales::alpha(data$fill, data$alpha),
+                              group = data$group
                             )
 
                             box <- tibble::as_tibble(c(
                               list(
 
-                                xmin = data$xmin + 0.1* (data$xmax-data$xmin),
-                                xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                                ymin = data$box[[1]][,"lower"],
-                                ymax = data$box[[1]][,"upper"],
+                                xmin = unit(0,"npc"),
+                                xmax = unit(0.03, "npc"),
+                                ymin = data$box_y[[1]][,"lower"],
+                                ymax = data$box_y[[1]][,"upper"],
                                 fill = scales::alpha(fill_shade, data$alpha),
                                 colour = NA
                               ),
@@ -99,8 +111,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                             mode <- tibble::as_tibble(c(
                               list(
-                                x = data$xmin,
-                                xend = data$xmax,
+                                x = unit(0,"npc"),
+                                xend = unit(0.03, "npc"),
                                 y = data$mode[[1]],
                                 yend = data$mode[[1]],
                                 colour = data$colour
@@ -109,8 +121,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             ), n = length(data$mode[[1]]))
 
                             ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
-                              ggplot2::GeomRect$draw_panel(box, panel_params, coord),
-                              ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                              ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
+                              #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                             ))
                           },
 

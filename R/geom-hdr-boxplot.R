@@ -1,7 +1,9 @@
 #' A box plot for the highest density region
-#'
+#' @details A box plot for the highest density region
 #' Calculates and plots the boxplot of highest density regions in one dimension.
-#'
+#' @rdname geom_hdr_boxplot
+#' @importFrom ggplot2 layer aes
+#' @param mapping
 #' @importFrom ggplot2 layer aes
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_bar

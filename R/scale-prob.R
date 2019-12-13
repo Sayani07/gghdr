@@ -30,9 +30,8 @@ scale_prob_identity <- scale_prob_identity
 
 ScaleProb <- ggplot2::ggproto(NULL, ggplot2::ScaleDiscrete, map = identity)
 
-#' @importFrom ggplot2 waiver
-prob_scale <- function (...)
-{
+#' @importFrom ggplot2 waiver discrete_scale
+prob_scale <- function(...) {
   scale <- ggplot2::discrete_scale(..., super = ScaleProb)
   scale$range <- prob_range()
   scale
@@ -50,7 +49,7 @@ guide_prob <- function(title = waiver(), ...) {
   structure(list(title = title,
                  available_aes = "prob",
                  args = list(...)),
-            class=c("guide", "prob_guide"))
+            class = c("guide", "prob_guide"))
 }
 
 #' Helper methods for guides

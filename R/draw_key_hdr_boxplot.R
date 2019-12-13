@@ -1,20 +1,38 @@
-
 #' @title col2hex
 #' @description converts colors to RGB
-#' @param col PARAM_DESCRIPTION
-#' @return OUTPUT_DESCRIPTION
+#' @param col colors
+#' @return RGB colors
 #' @rdname col2hex
 #' @export
 #' @importFrom grDevices rgb
-
-col2hex <- function(col) {
-  grDevices::rgb(col, maxColorValue = 255)
+col2hex <- function(col){
+  grDevices::rgb(col,  maxColorValue = 255)
 }
 
-#' @importFrom  grid rectGrob
+#' @title darken_fill
+#' @description darken fill colors for probability ranges
+#' @param col colors
+#' @param prob probability values
+#' @return
+#' @rdname darken_fill
+#' @export
 #' @importFrom farver convert_colour
 #' @importFrom grDevices col2rgb
+
+darken_fill <- function(col, prob) {
+  col <- farver::convert_colour(t(grDevices::col2rgb(col)), "RGB", "HSL")
+  n_prob <- length(unique(prob))
+  col[,3] <- seq(90 - (n_prob - 1)*10, 90, length.out = n_prob)[match(prob, sort(unique(prob)))]
+  col <- farver::convert_colour(col, "HSL", "RGB")
+  col2hex(col)
+}
+
+#' @title draw_key_hdr_boxplot
+#' @description draw legend key for HDR box plot
+#' @importFrom grid rectGrob grobTree gpar
+#' @importFrom grDevices col2rgb
 #' @export
+
 draw_key_hdr_boxplot <- function(data, params, size) {
   fill_colour <- data$fill %||% "grey20"
   fill_colour <- darken_fill(rep(fill_colour, 2), c(0.5, 0.9))

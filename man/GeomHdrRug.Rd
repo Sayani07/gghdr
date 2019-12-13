@@ -4,11 +4,11 @@
 \name{GeomHdrRug}
 \alias{GeomHdrRug}
 \title{GeomHdrRug}
-\format{An object of class \code{GeomHdrRug} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 8.}
+\format{An object of class \code{GeomHdrRug} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 7.}
 \usage{
 GeomHdrRug
 }
 \description{
-GeomHdrRug
+ggproto object for geom_hrdr_rug
 }
 \keyword{datasets}

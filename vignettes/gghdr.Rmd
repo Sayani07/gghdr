@@ -166,7 +166,7 @@ ggplot(data = faithful,
 
 We can use `geom_rug()` to show this distribution in the margin along the y axis. 
 
-```{r withJitter}
+```{r withRug}
 ggplot(data = faithful, aes(y=eruptions)) + 
   geom_hdr_boxplot(fill = c("blue")) + 
   geom_rug()

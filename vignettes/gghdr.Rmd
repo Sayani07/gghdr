@@ -11,9 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  message =  FALSE,
-  fig.width = 5,
-  fig.height = 4
+  message =  FALSE
 )
 ```
 
@@ -85,9 +83,9 @@ invisible(hdr.den(faithful$eruptions,
 
 This can be visualised more compactly using the `hdr.boxplot` function, in which:
 
-- The region bounded by the interquartile range is replaced by 50% HDR (blue region in figure above)
-- The region shown using the whiskers is replaced by the 99% HDR (red region in figure above)
-- The horizontal line represents the mode
+- The region bounded by the interquartile range is replaced by 50% HDR (dark blue)
+- The region shown using the whiskers is replaced by the 99% HDR (light blue)
+- The horizontal line represents the mode 
 
 
 ```{r hdrboxplot, fig.width = 5, fig.height = 4}
@@ -99,7 +97,7 @@ hdr.boxplot(faithful$eruptions,
 `hdr.boxplot()` uses base plotting tools to create the visualisation, limiting users' ability to customise and combine it with other `ggplot2` visualisations.
 
 
-## HDR boxplots in ggplot2: geom_hdr_boxplot()
+## HDR boxplots in ggplot2: `geom_hdr_boxplot()`
 
 We can visualise the same dataset using `geom_hdr_boxplot()`. By default, it will plot respectively darker boxes for 99%, 95% or 50% of the data.
 
@@ -151,7 +149,7 @@ ggplot(data = faithful,
 ```
 
 
-## Combining geom_hdr_boxplot() with geom_jitter() to visualise both the raw data and HDRs
+## Combining `geom_hdr_boxplot()` with `geom_jitter()` to visualise both the raw data and HDRs
 
 We can combine all sorts of ggplot2 geoms with `geom_hdr_boxplot()`. For example, we can use `geom_jitter()` to showcase the underlying data.
 
@@ -162,7 +160,7 @@ ggplot(data = faithful,
   geom_jitter(aes(x=0))
 ```
 
-## Combining geom_hdr_boxplot() with geom_rug() to visualise the HDRs and distribution of the data
+## Combining `geom_hdr_boxplot()` with `geom_rug()` to visualise the HDRs and distribution of the data
 
 We can use `geom_rug()` to show this distribution in the margin along the y axis. 
 
@@ -174,16 +172,25 @@ ggplot(data = faithful, aes(y=eruptions)) +
 
 ## Marginal HDRs are supported with `geom_hdr_rug()` 
 
-Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug`, which enables us to plot HDRs in the margins of other plots. 
+Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug()`, which enables us to plot HDRs in the margins of other plots. 
 
 ```{r hdrRug}
 ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
   geom_point() +
   geom_hdr_rug(fill = "blue")
-  #geom_hdr_boxplot(fill = c("blue")) + 
- # geom_rug()
 ```
 
+`geom_hdr_rug()` supports multiple probability specifications, just like `geom_hdr_boxplot()`. FIXME
+
+
+
+
+
+```{r hdrRugmultprob}
+ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
+  geom_point() +
+  geom_hdr_rug(prob = c(0.1,0.2,0.3,0.5,0.95), fill = "blue")
+```
 
 ## Grouped HDR boxplots
 
@@ -197,7 +204,7 @@ ggplot(data = mpg,
   geom_histogram(bins = 50) 
 ```
 
-We can see that cars with 6 cylinders seem to be bimodally distributed. Let's visualise this using `geom_hdr_boxplot()`.
+We can see that cars with 6 cylinders seem to be bimodally distributed. As expected,  `geom_hdr_boxplot()` nicely shows us both modes in the data.
 
 
 ```{r mpgBox1}

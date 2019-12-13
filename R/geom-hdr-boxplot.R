@@ -1,4 +1,5 @@
-# is this the right function name?
+#' @title geom_hdr_boxplot
+#' @rdname geom_hdr_boxplot
 #' @importFrom ggplot2 layer aes
 #' @param mapping
 #'

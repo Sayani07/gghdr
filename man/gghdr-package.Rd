@@ -11,6 +11,13 @@
 Geom and Stat components to visualise highest density 
              regions from the 'hdrcde' package with 'ggplot2'.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ropenscilabs/gghdr}
+}
+
+}
 \author{
 \strong{Maintainer}: Mitchell O'Hara-Wild \email{mail@mitchelloharawild.com} (\href{https://orcid.org/0000-0001-6729-7695}{ORCID})
 

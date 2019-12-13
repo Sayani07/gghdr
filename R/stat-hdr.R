@@ -74,8 +74,8 @@ StatHdr <- ggproto("StatHdr", Stat,
                            df$box_y <- list(hdr_boxes(hdr_y))
                            df$mode_y <- list(hdr_y$mode)
                            df$f_alpha_y <- list(hdr_y$falpha)
-                           df$ymax <- max(c(df$box_y[[1]][,"upper"], df$box_y[[1]][,"upper"]), na.rm = TRUE)
-                           df$ymin <- max(c(df$box_y[[1]][,"lower"], df$box_y[[1]][,"lower"]), na.rm = TRUE)
+                           df$ymax <- max(c(df$box_y[[1]][,"upper"]), na.rm = TRUE)
+                           df$ymin <- min(c(df$box_y[[1]][,"lower"]), na.rm = TRUE)
                          }
 
 

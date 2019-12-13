@@ -5,6 +5,8 @@
 #' @return geom_hdr_rug
 #' @rdname geom_hdr_rug
 #' @examples
+#' library(ggplot2)
+#'
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_rug()
 #' @export
@@ -17,6 +19,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              na.rm = FALSE,
                              show.legend = NA,
                              inherit.aes = TRUE,
+                             sides = "bl",
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
@@ -39,6 +42,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
+      sides = sides,
       probs = prob,
       ...
     )
@@ -46,9 +50,12 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 }
 
 #' @title GeomHdrRug
+#' @description ggproto object for geom_hrdr_rug
 #' @rdname GeomHdrRug
 #' @importFrom ggplot2 ggproto Geom
+#' @importFrom grid segmentsGrob
 #' @export
+
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                           # If we're doing custom width, we need this:
@@ -61,9 +68,11 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           },
 
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
+                                                sides = sides,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-                            sides <- "btlr"
+
+
                             rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])

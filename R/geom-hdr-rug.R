@@ -62,9 +62,6 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           extra_params = c("na.rm", "width"),
 
                           setup_data = function(data, params) {
-                            #
-
-                            data$outliers <- NULL
                             data
                           },
 
@@ -89,7 +86,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               )
                               prob <- prob / 100
                             }
-browser()
+
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
                               colour = data$colour,
@@ -99,7 +96,9 @@ browser()
                               group = data$group
                             )
 
-                            box <- vctrs::new_data_frame(c(
+                            browser()
+
+                            box <- tibble::as_tibble(c(
                               list(
 
                                 xmin = unit(0,"npc"),

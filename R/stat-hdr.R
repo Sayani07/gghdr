@@ -41,7 +41,7 @@ StatHdr <- ggproto("StatHdr", Stat,
                        compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
-browser()
+
                          has_x <- !is.null(data$x)
                          has_y <- !is.null(data$y)
                          # imported from hdrcde

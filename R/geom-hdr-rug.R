@@ -89,7 +89,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               )
                               prob <- prob / 100
                             }
-
+browser()
+                            fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
                               colour = data$colour,
                               size = data$size,
@@ -100,16 +101,27 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                             box <- vctrs::new_data_frame(c(
                               list(
-                                xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
-                                xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
-                                ymin = data$ymin,
-                                ymax = data$ymax,
-                                alpha = 1-data$box_probs
+
+                                xmin = unit(0,"npc"),
+                                xmax = unit(0.03, "npc"),
+                                ymin = data$box_y[[1]][,"lower"],
+                                ymax = data$box_y[[1]][,"upper"],
+                                fill = scales::alpha(fill_shade, data$alpha),
+                                colour = NA
                               ),
                               common
                             ))
 
-                            #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
+                            mode <- tibble::as_tibble(c(
+                              list(
+                                x = unit(0,"npc"),
+                                xend = unit(0.03, "npc"),
+                                y = data$mode[[1]],
+                                yend = data$mode[[1]],
+                                colour = data$colour
+                              ),
+                              common
+                            ), n = length(data$mode[[1]]))
 
                             ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
                               ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,

@@ -1,21 +1,15 @@
-# is this the right function name?
-#' @importFrom ggplot2 layer aes
-#' @param mapping
-#'
-#' @param data
-#' @param stat
-#' @param position
-#' @param ...
-#' @param varwidth
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param prob
-#'
-#' @export
-#' @example
+#' @title geom_hdr_rug
+#' @description rug visualization for HDR plot
+#' @param varwidth width, Default: FALSE
+#' @param prob PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)
+#' @return geom_hdr_rug
+#' @rdname geom_hdr_rug
+#' @examples
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_rug()
+#' @export
+#' @importFrom ggplot2 aes layer
+
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",
                              ...,
@@ -51,7 +45,8 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @title GeomHdrRug
+#' @rdname GeomHdrRug
 #' @importFrom ggplot2 ggproto Geom
 #' @export
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,

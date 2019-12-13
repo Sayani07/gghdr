@@ -13,7 +13,6 @@ col2hex <- function(col){
 #' @description darken fill colors for probability ranges
 #' @param col colors
 #' @param prob probability values
-#' @return
 #' @rdname darken_fill
 #' @export
 #' @importFrom farver convert_colour

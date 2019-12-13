@@ -1,6 +1,7 @@
 #' @title geom_hdr_rug
 #' @description rug visualization for HDR plot
-#' @param varwidth width, Default: FALSE
+#' @param rug_width width of rugs, Default: unit(0.03, "npc")
+#' @param sides position to put rugs
 #' @param prob PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)
 #' @param mapping Default: NULL
 #' @param ... ...

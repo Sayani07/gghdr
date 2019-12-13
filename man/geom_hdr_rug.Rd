@@ -10,10 +10,11 @@ geom_hdr_rug(
   stat = "hdr",
   position = "identity",
   ...,
-  varwidth = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
+  sides = "bl",
+  rug_width = unit(0.03, "npc"),
   prob = c(0.5, 0.95, 0.99)
 )
 }
@@ -28,13 +29,15 @@ geom_hdr_rug(
 
 \item{...}{...}
 
-\item{varwidth}{width, Default: FALSE}
-
 \item{na.rm}{Default: FALSE}
 
 \item{show.legend}{Default: NA}
 
 \item{inherit.aes}{Default: TRUE}
+
+\item{sides}{position to put rugs}
+
+\item{rug_width}{width of rugs, Default: unit(0.03, "npc")}
 
 \item{prob}{PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)}
 }

@@ -45,7 +45,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
-      probs = prob,
+      prob = prob,
       ...
     )
   )
@@ -56,25 +56,22 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 #' @export
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
+                          # If we're doing custom width, we need this:
                           # need to declare `width` here in case this geom is used with a stat that
                           # doesn't have a `width` parameter (e.g., `stat_identity`).
                           extra_params = c("na.rm", "width"),
 
                           setup_data = function(data, params) {
-                            data$width <- data$width %||%
-                              params$width %||% (resolution(data$x, FALSE) * 0.9)
+                            #
 
-                            data$xmin <- data$x - data$width / 2
-                            data$xmax <- data$x + data$width / 2
-
-                            data$width <- NULL
                             data$outliers <- NULL
-
                             data
                           },
 
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                                 prob = c(0.5, 0.95, 0.99)) {
+
+
                             ## if values passed to 'prob' are integers instead of
                             ## decimals, convert them to decimals
                             ## ex. 5 >>> 0.05, 95 >>> 0.95
@@ -93,49 +90,37 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               prob <- prob / 100
                             }
 
-                            fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
+                              colour = data$colour,
                               size = data$size,
                               linetype = data$linetype,
-                              group = data$group,
-                              alpha = NA
+                              fill = scales::alpha(data$fill, data$alpha),
+                              group = data$group
                             )
 
-                            box <- tibble::as_tibble(c(
+                            box <- vctrs::new_data_frame(c(
                               list(
-
-                                xmin = data$xmin + 0.1* (data$xmax-data$xmin),
-                                xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                                ymin = data$box[[1]][,"lower"],
-                                ymax = data$box[[1]][,"upper"],
-                                fill = scales::alpha(fill_shade, data$alpha),
-                                colour = NA
+                                xmin = -Inf,#ggplot2::resolution(data$x, TRUE) * -0.9,
+                                xmax = Inf,#ggplot2::resolution(data$x, TRUE) * 0.9,
+                                ymin = data$ymin,
+                                ymax = data$ymax,
+                                alpha = 1-data$box_probs
                               ),
                               common
                             ))
 
-                            mode <- tibble::as_tibble(c(
-                              list(
-                                x = data$xmin,
-                                xend = data$xmax,
-                                y = data$mode[[1]],
-                                yend = data$mode[[1]],
-                                colour = data$colour
-                              ),
-                              common
-                            ), n = length(data$mode[[1]]))
+                            #mode <- transform(data, x = xmin, xend = xmax, yend = y, size = size , alpha = NA)
 
                             ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
-                              ggplot2::GeomRect$draw_panel(box, panel_params, coord),
-                              ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
+                              ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
+                              #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
                             ))
                           },
 
-                          draw_key = draw_key_hdr_boxplot,
+                          draw_key = ggplot2::draw_key_rect,
 
                           default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
-                                            alpha = NA, shape = 19, linetype = "solid", prob = NA),
+                                            alpha = NA, shape = 19, linetype = "solid"),
 
-                          required_aes = c("ymax", "ymin"),
-                          optional_aes = "prob"
+                          required_aes = c("ymax","ymin")
 )

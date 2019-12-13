@@ -4,13 +4,16 @@
 \alias{guide_prob}
 \title{prob shade bar guide}
 \usage{
-guide_prob(title = waiver(), ...)
+guide_prob(title = waiver(), max_discrete = 5, ...)
 }
 \arguments{
 \item{title}{A character string or expression indicating a title of guide.
 If \code{NULL}, the title is not shown. By default
 (\code{\link[ggplot2:waiver]{waiver()}}), the name of the scale object or the name
 specified in \code{\link[ggplot2:labs]{labs()}} is used for the title.}
+
+\item{max_discrete}{The maximum number of probs to be shown using \code{\link[ggplot2]{guide_legend}}.
+If the number of probs exceeds this value, prob shades are shown with \code{\link[ggplot2]{guide_colourbar}}.}
 
 \item{...}{Further arguments passed onto either \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}}
 }

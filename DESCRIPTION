@@ -32,7 +32,8 @@ Authors@R: c(
     person(given = "Thomas",
            family = "Fung",
            role = c("aut"),
-           comment = c(ORCID = "FIXME"))  
+           email = "thomas.fung.dr@gmail.com ",
+           comment = c(ORCID = "0000-0003-2601-0728"))  
            )
 Description: Geom and Stat components to visualise highest density 
              regions from the 'hdrcde' package with 'ggplot2'. 

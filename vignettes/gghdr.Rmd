@@ -50,7 +50,7 @@ ggplot(data = faithful, aes(x=eruptions)) + geom_density()
 
 ## High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets
 
-The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
+The [`hdrcde package`](http://pkg.robjhyndman.com/hdrcde/index.html) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
 
 
 Formally, HDRs are [defined in the following manner (Hyndman  1996  American Statistician, **50**, 120-126)](https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/):
@@ -61,7 +61,7 @@ Formally, HDRs are [defined in the following manner (Hyndman  1996  American Sta
 
 
 
-The [`hdr package`](http://pkg.robjhyndman.com/hdrcde/index.html) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
+The [`hdrcde package`](http://pkg.robjhyndman.com/hdrcde/index.html) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
 
 We can use this package to create a density plot of the `eruptions` variable.
 
@@ -211,5 +211,19 @@ ggplot(data = mpg,
   geom_hdr_boxplot()
 ```
 
+## Scatterplots with HDR information
 
+`gghdr` provides the `hdr_bin()` function for annotating data with the HDR they fall under. Providing this to the `colour` aesthetic produces scatterplots with the HDR information.
 
+```{r binned_scatterplot, fig.width = 5, fig.height = 4}
+ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
+  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) 
+```
+
+Feel free to combine this with a rug for more `gghdr` goodness.
+
+```{r all_together_now, fig.width = 5, fig.height = 4}
+ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
+  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) +
+  geom_hdr_rug(fill = "blue")
+```

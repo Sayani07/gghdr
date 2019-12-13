@@ -162,17 +162,31 @@ ggplot(data = faithful,
   geom_jitter(aes(x=0))
 ```
 
+## geom_hdr_rug() ...
+
 
 
 ## Grouped HDR boxplots
 
-One of the most exciting features `geom_hdr_boxplot()` supports (unlike `hdr.boxplot`) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2's native syntax to do this. Let's explore the `ggplot2::mpg` dataset. First, let's look at a histogram of the data.
+One of the most exciting features `geom_hdr_boxplot()` supports (unlike `hdr.boxplot`) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2's native syntax to do this. Let's explore the `ggplot2::mpg` dataset. First, let's look at a histogram of the data, faceted by number of cylinders
+
 
 ```{r showMPG}
-#ggplot(mpg, )
-
+ggplot(data = mpg, 
+       aes(x = hwy, fill = as.factor(cyl))) +
+  facet_grid(as.factor(cyl)~.) + 
+  geom_histogram(bins = 50) 
 ```
 
+We can see that cars with 6 cylinders seem to be characterised by 
+
+
+```{r mpgBox1}
+ggplot(data = mpg, 
+       # make sure to change x to y from geom_density to geom_hdr_boxplot
+       aes(y = hwy, fill = as.factor(cyl))) + 
+  geom_hdr_boxplot()
+```
 
 
 

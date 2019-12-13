@@ -58,8 +58,8 @@ StatHdr <- ggproto("StatHdr", Stat,
                            df$box_x <- list(hdr_boxes(hdr_x))
                            df$mode_x <- list(hdr_x$mode)
                            df$f_alpha_x <- list(hdr_x$falpha)
-                           df$xmax <- max(c(df$box_x[[1]][,"upper"], df$box_x[[1]][,"upper"]), na.rm = TRUE)
-                           df$xmin <- max(c(df$box_x[[1]][,"lower"], df$box_x[[1]][,"lower"]), na.rm = TRUE)
+                           df$xmax <- max(c(df$box_x[[1]][,"upper"]), na.rm = TRUE)
+                           df$xmin <- min(c(df$box_x[[1]][,"lower"]), na.rm = TRUE)
                          }
                          if (has_y) {
                            hdr_y <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)

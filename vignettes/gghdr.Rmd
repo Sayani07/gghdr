@@ -35,7 +35,8 @@ library(ggplot2)
 library(hdrcde)
 # we will set the ggplot2 theme to use theme_minimal() for the vignette
 theme_set(theme_minimal())
-ggplot(data = faithful, aes(y=eruptions)) + geom_boxplot() 
+ggplot(data = faithful, aes(y = eruptions)) + 
+  geom_boxplot() 
 # fixme? show the interquartile range with labels on the plot
 ```
 
@@ -45,7 +46,7 @@ ggplot(data = faithful, aes(y=eruptions)) + geom_boxplot()
 If we look more closely at our data, however, we can see that it's actually multimodal, but our choice of visualisation technique limited our ability to see this:
 
 ```{r hist}
-ggplot(data = faithful, aes(x=eruptions)) + geom_density()
+ggplot(data = faithful, aes(x = eruptions)) + geom_density()
 ```
 
 ## High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets
@@ -104,7 +105,7 @@ We can visualise the same dataset using `geom_hdr_boxplot()`. By default, it wil
 ```{r setup}
 library(gghdr)
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
+       aes(y = eruptions)) + 
   geom_hdr_boxplot() 
 
 ```
@@ -115,7 +116,7 @@ We can specify the base colour we'd like to use.
 
 ```{r speccols}
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
+       aes(y = eruptions)) + 
   geom_hdr_boxplot(fill = c("blue")) 
 ```
 
@@ -125,7 +126,7 @@ We can also specify which set of probability coverages we'd like to display HDRs
 
 ```{r diftProbs}
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
+       aes(y = eruptions)) + 
   geom_hdr_boxplot(prob = c(0.25, 0.5, 0.75, 0.95, 0.99),
                    fill = c("blue")) 
 ```
@@ -134,8 +135,8 @@ We can also specify the probabilities as percentages, i.e. out of 100.
 
 ```{r percentProbs}
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
-  geom_hdr_boxplot(prob = c(25,50,75,95,99),
+       aes(y = eruptions)) + 
+  geom_hdr_boxplot(prob = c(25, 50, 75, 95, 99),
                    fill = c("blue")) 
 ```
 
@@ -143,8 +144,8 @@ This will produce a warning, but achieve the same result. Note that mixing the t
 
 ```{r percentProbs2}
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
-  geom_hdr_boxplot(prob = c(2.55,50,75,95,99),
+       aes(y = eruptions)) + 
+  geom_hdr_boxplot(prob = c(2.55, 50, 75, 95, 99),
                    fill = c("blue")) 
 ```
 
@@ -155,9 +156,9 @@ We can combine all sorts of ggplot2 geoms with `geom_hdr_boxplot()`. For example
 
 ```{r withJitter}
 ggplot(data = faithful, 
-       aes(y=eruptions)) + 
+       aes(y = eruptions)) + 
   geom_hdr_boxplot(fill = c("blue")) + 
-  geom_jitter(aes(x=0))
+  geom_jitter(aes(x = 0))
 ```
 
 ## Combining `geom_hdr_boxplot()` with `geom_rug()` to visualise the HDRs and distribution of the data
@@ -165,7 +166,7 @@ ggplot(data = faithful,
 We can use `geom_rug()` to show this distribution in the margin along the y axis. 
 
 ```{r withRug}
-ggplot(data = faithful, aes(y=eruptions)) + 
+ggplot(data = faithful, aes(y = eruptions)) + 
   geom_hdr_boxplot(fill = c("blue")) + 
   geom_rug()
 ```
@@ -175,7 +176,7 @@ ggplot(data = faithful, aes(y=eruptions)) +
 Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug()`, which enables us to plot HDRs in the margins of other plots. 
 
 ```{r hdrRug, fig.width = 5, fig.height = 4}
-ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
+ggplot(data = faithful, aes(x = waiting, y = eruptions)) + 
   geom_point() +
   geom_hdr_rug(fill = "blue")
 ```
@@ -184,9 +185,9 @@ ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
 
 
 ```{r hdrRugmultprob, fig.width = 5, fig.height = 4}
-ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
+ggplot(data = faithful, aes(x = waiting, y = eruptions)) + 
   geom_point() +
-  geom_hdr_rug(prob = c(10,20,50,99), fill = "blue")
+  geom_hdr_rug(prob = c(10, 20, 50, 99), fill = "blue")
 ```
 
 ## Grouped HDR boxplots
@@ -217,13 +218,15 @@ ggplot(data = mpg,
 
 ```{r binned_scatterplot, fig.width = 5, fig.height = 4}
 ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
-  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) 
+  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) +
+  scale_colour_viridis_d(direction = -1)
 ```
 
 Feel free to combine this with a rug for more `gghdr` goodness.
 
 ```{r all_together_now, fig.width = 5, fig.height = 4}
-ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
+ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
   geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) +
-  geom_hdr_rug(fill = "blue")
+  geom_hdr_rug() +
+  scale_colour_viridis_d(direction = -1)
 ```

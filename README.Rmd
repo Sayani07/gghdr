@@ -17,7 +17,8 @@ Package `gghdr` imports the package [`hdrcde`](https://pkg.robjhyndman.com/hdrcd
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build status](https://github.com/ropenscilabs/gghdr/workflows/R-CMD-check/badge.svg)](https://github.com/ropenscilabs/gghdr)
+[![R build status](https://github.com/ropenscilabs/gghdr/workflows/ghci/badge.svg)](https://github.com/ropenscilabs/gghdr)
+[![Codecov test coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master)
 <!-- badges: end -->
 
 # Traditional boxplot

@@ -55,6 +55,8 @@ Suggests:
     testthat (>= 2.1.0),
     vdiffr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 Depends: R (>= 2.10)
 VignetteBuilder: knitr
+BugReports: https://github.com/ropenscilabs/gghdr/issues

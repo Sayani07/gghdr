@@ -16,7 +16,8 @@
 #' @examples
 #' library(ggplot2)
 #'
-#' ggplot(faithful, aes(y = eruptions)) +
+#' ggplot(faithful, aes(x= waiting, y = eruptions)) +
+#'   geom_point() +
 #'   geom_hdr_rug()
 #' @export
 #' @importFrom ggplot2 aes layer

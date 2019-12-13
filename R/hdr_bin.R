@@ -1,6 +1,15 @@
+#' Binning highest density regions in one or two dimensions
+#'
+#' @param x Numeric vector
+#' @param y Numeric vector of same length as x.
+#' @param prob Probability coverage required for HDRs
+#' @param ...
+#'
+#' @return probability coverage for each element of the numeric vectors.
+#'
+#' @export
 hdr_bin <- function(x, y, prob = c(0.5, 0.9, 0.99), ...){
   hdr_x <- hdrcde::hdr(x, prob = prob*100)
-  browser()
   hdr_box <- hdr_boxes((hdr_x))
   prob <- rep(sort(prob, decreasing = TRUE), length.out = nrow(hdr_box))
   df <- cbind(hdr_box, prob)[order(prob),]

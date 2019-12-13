@@ -121,12 +121,12 @@ ggplot(data = faithful,
 
 ## Specifying your own probabilities
 
-We can also specify which set of probability coverages we'd like to display HDRs for. For example, we can visualise the 10%, 25%, 50%, 75% and 95% HDR of the faithful eruptions.
+We can also specify which set of probability coverages we'd like to display HDRs for. For example, we can visualise the 25%, 50%, 75%, 95%, and 99% HDR of the faithful eruptions.
 
 ```{r diftProbs}
 ggplot(data = faithful, 
        aes(y=eruptions)) + 
-  geom_hdr_boxplot(prob = c(0.1, 0.25,0.5, 0.75, 0.95),
+  geom_hdr_boxplot(prob = c(0.25, 0.5, 0.75, 0.95, 0.99),
                    fill = c("blue")) 
 ```
 
@@ -135,7 +135,7 @@ We can also specify the probabilities as percentages, i.e. out of 100.
 ```{r percentProbs}
 ggplot(data = faithful, 
        aes(y=eruptions)) + 
-  geom_hdr_boxplot(prob = c(10,25,50,75,95),
+  geom_hdr_boxplot(prob = c(25,50,75,95,99),
                    fill = c("blue")) 
 ```
 
@@ -144,7 +144,7 @@ This will produce a warning, but achieve the same result. Note that mixing the t
 ```{r percentProbs2}
 ggplot(data = faithful, 
        aes(y=eruptions)) + 
-  geom_hdr_boxplot(prob = c(0.1,25,50,75,95),
+  geom_hdr_boxplot(prob = c(2.55,50,75,95,99),
                    fill = c("blue")) 
 ```
 

@@ -16,7 +16,8 @@ jobs:
           sudo apt-get update && apt-get install -y --no-install-recommends \
           libfontconfig1-dev \
           libcairo2-dev \
-          libxml2-dev
+          libxml2-dev \
+          libssl-dev
       - name: Install package dependencies
         run: Rscript -e "install.packages(c('remotes', 'rcmdcheck'))" -e "remotes::install_deps(dependencies = TRUE)"
       - name: Check

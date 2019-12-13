@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# gghdr
+# gghdr <img src="man/figures/logo.png" align="right" width="120" />
  
 Package `gghdr` imports the package [`hdrcde`](https://pkg.robjhyndman.com/hdrcde/) and provides tools for plotting highest density regions in the ggplot2 framework.
 
@@ -56,7 +56,7 @@ hdr.boxplot(faithful$eruptions)
 
 # geom_boxplot_hdr (Proposal)
 
-```{r gg_hdr-boxplot, echo=TRUE, eval = FALSE}
+```{r gg_hdr-boxplot, echo=TRUE, eval = T}
 library(ggplot2)
 library(gghdr)
 ggplot(faithful, aes(y = eruptions)) +  
@@ -107,7 +107,7 @@ as_tibble(faithful) %>%
 hdrcde::hdr.boxplot(faithful$eruptions, prob = c(50,70, 99))
 
 
-devtools::load_all("../ggplot2/")
+#devtools::load_all("../ggplot2/")
 ggplot(faithful, aes(y = eruptions)) + 
   geom_hdr_boxplot(prob = c(.5,.90, 0.99), fill = "blue") + 
   theme_minimal()

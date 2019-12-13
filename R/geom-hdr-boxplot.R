@@ -1,20 +1,15 @@
-# is this the right function name?
-#' @importFrom ggplot2 layer aes
-#' @param mapping
+#' A box plot for the highest density region
 #'
-#' @param data
-#' @param stat
-#' @param position
-#' @param ...
-#' @param varwidth
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param prob
+#' Calculates and plots the boxplot of highest density regions in one dimension.
+#'
+#' @importFrom ggplot2 layer aes
+#' @inheritParams ggplot2::layer
+#' @inheritParams ggplot2::geom_bar
+#' @param prob Probability coverage required for HDRs
 #'
 #' @export
-#' @example
-#' ggplot(faithful, aes(y = eruptions)) +
+#' @examples
+#' ggplot2::ggplot(faithful, ggplot2::aes(y = eruptions)) +
 #'   geom_hdr_boxplot()
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "dodge2",

@@ -84,7 +84,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               )
                               prob <- prob / 100
                             }
-
+browser()
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
                               size = data$size,
@@ -96,10 +96,10 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             box <- tibble::as_tibble(c(
                               list(
 
-                                xmin = data$xmin + 0.1* (data$xmax-data$xmin),
-                                xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                                ymin = data$box[[1]][,"lower"],
-                                ymax = data$box[[1]][,"upper"],
+                                xmin = unit(0,"npc"),
+                                xmax = unit(0.03, "npc"),
+                                ymin = data$box_y[[1]][,"lower"],
+                                ymax = data$box_y[[1]][,"upper"],
                                 fill = scales::alpha(fill_shade, data$alpha),
                                 colour = NA
                               ),
@@ -108,8 +108,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                             mode <- tibble::as_tibble(c(
                               list(
-                                x = data$xmin,
-                                xend = data$xmax,
+                                x = unit(0,"npc"),
+                                xend = unit(0.03, "npc"),
                                 y = data$mode[[1]],
                                 yend = data$mode[[1]],
                                 colour = data$colour

@@ -174,7 +174,7 @@ ggplot(data = faithful, aes(y=eruptions)) +
 
 Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug()`, which enables us to plot HDRs in the margins of other plots. 
 
-```{r hdrRug}
+```{r hdrRug, fig.width = 5, fig.height = 4}
 ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
   geom_point() +
   geom_hdr_rug(fill = "blue")
@@ -186,7 +186,7 @@ ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
 
 
 
-```{r hdrRugmultprob}
+```{r hdrRugmultprob, fig.width = 5, fig.height = 4}
 ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
   geom_point() +
   geom_hdr_rug(prob = c(0.1,0.2,0.3,0.5,0.95), fill = "blue")
@@ -197,7 +197,7 @@ ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
 One of the most exciting features `geom_hdr_boxplot()` supports (unlike `hdr.boxplot`) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2's native syntax to do this. Let's explore the `ggplot2::mpg` dataset. First, let's look at a histogram of the data, faceted by number of cylinders
 
 
-```{r showMPG}
+```{r showMPG, fig.width = 5, fig.height = 4}
 ggplot(data = mpg, 
        aes(x = hwy, fill = as.factor(cyl))) +
   facet_grid(as.factor(cyl)~.) + 
@@ -207,7 +207,7 @@ ggplot(data = mpg,
 We can see that cars with 6 cylinders seem to be bimodally distributed. As expected,  `geom_hdr_boxplot()` nicely shows us both modes in the data.
 
 
-```{r mpgBox1}
+```{r mpgBox1, fig.width = 5, fig.height = 4}
 ggplot(data = mpg, 
        # make sure to change x to y from geom_density to geom_hdr_boxplot
        aes(y = hwy, fill = as.factor(cyl))) + 

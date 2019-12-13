@@ -1,5 +1,3 @@
-library(ggplot2)
-
 context("hdr-box-plot")
 
 test_that("hdr box plot draws correctly", {
@@ -8,5 +6,6 @@ test_that("hdr box plot draws correctly", {
     geom_hdr_boxplot() +
     theme_bw()
 
-  vdiffr::expect_doppelganger("hdr boxplot", hdr_boxplot)
+  vdiffr::expect_doppelganger("hdr boxplot",
+                              hdr_boxplot)
 })

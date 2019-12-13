@@ -6,6 +6,13 @@
 \usage{
 draw_key_hdr_boxplot(data, params, size)
 }
+\arguments{
+\item{data}{data}
+
+\item{params}{parameters}
+
+\item{size}{size of legend key}
+}
 \description{
 draw legend key for HDR box plot
 }

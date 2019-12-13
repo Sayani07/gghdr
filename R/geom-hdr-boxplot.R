@@ -1,18 +1,19 @@
-#' A box plot for the highest density region
-#' @details A box plot for the highest density region
-#' Calculates and plots the boxplot of highest density regions in one dimension.
+#' @title A box plot for the highest density region
+#' @details Calculates and plots the boxplot of highest density regions in one dimension.
+#' @param varwidth width, Default: FALSE
+#' @param prob Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)
 #' @rdname geom_hdr_boxplot
 #' @importFrom ggplot2 layer aes
-#' @param mapping
 #' @importFrom ggplot2 layer aes
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_bar
-#' @param prob Probability coverage required for HDRs
-#'
-#' @export
 #' @examples
-#' ggplot2::ggplot(faithful, ggplot2::aes(y = eruptions)) +
+#' library(ggplot2)
+#'
+#' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_boxplot()
+#' @export
+
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
                              stat = "hdrcde", position = "dodge2",
                              ...,
@@ -65,8 +66,12 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' @title GeomHdrBoxplot
+#' @rdname GeomHdrBoxplot
 #' @importFrom ggplot2 ggproto Geom
+#' @importFrom tibble as_tibble
 #' @export
+
 GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                        # need to declare `width` here in case this geom is used with a stat that

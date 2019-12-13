@@ -3,30 +3,20 @@
 #' This set of scales defines new scales for prob geoms equivalent to the
 #' ones already defined by ggplot2. This allows the shade of confidence intervals
 #' to work with the legend output.
-#'
 #' @return A ggproto object inheriting from `Scale`
-#'
 #' @family scale_prob_*
-#'
 #' @name scale_prob
 #' @rdname scale_prob
-#'
+
 NULL
 
 #' @rdname scale_prob
-#'
 #' @inheritParams ggplot2::scale_colour_gradient
-#' @param low,high Colours for low and high ends of the gradient.
-#'
 #' @export
+
 scale_prob_identity <- function(..., guide = "prob") {
   prob_scale("prob", "identity", identity, guide = guide, ...)
 }
-
-#' @rdname scale_prob
-#'
-#' @export
-scale_prob_identity <- scale_prob_identity
 
 ScaleProb <- ggplot2::ggproto(NULL, ggplot2::ScaleDiscrete, map = identity)
 
@@ -37,14 +27,12 @@ prob_scale <- function(...) {
   scale
 }
 
-#' prob shade bar guide
-#'
-#' The prob guide shows the colour from the forecast intervals which is blended with the series colour.
-#'
+#' @title prob shade bar guide
+#' @description The prob guide shows the colour from the forecast intervals which is blended with the series colour.
 #' @inheritParams ggplot2::guide_colourbar
 #' @param ... Further arguments passed onto either \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}
-#'
 #' @export
+
 guide_prob <- function(title = waiver(), ...) {
   structure(list(title = title,
                  available_aes = "prob",
@@ -52,12 +40,13 @@ guide_prob <- function(title = waiver(), ...) {
             class = c("guide", "prob_guide"))
 }
 
-#' Helper methods for guides
-#'
+#' @title Helper methods for guides
 #' @export
 #' @rdname guide-helpers
-#' @importFrom ggplot2 guide_colourbar guide_train
+#' @importFrom ggplot2 guide_colourbar guide_train guide_legend
+#' @importFrom digest digest
 #' @keywords internal
+
 guide_train.prob_guide <- function(guide, scale, aesthetic) {
   args <- append(guide[!(names(guide)%in%c("args"))], guide$args)
   probs <- scale$range$probs
@@ -86,7 +75,7 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
 }
 
 #' @export
-#' @importFrom ggplot2 guide_geom
+#' @importFrom ggplot2 guide_geom guide_legend
 #' @rdname guide-helpers
 guide_geom.guide_prob <- function (guide, layers, default_mapping)
 {

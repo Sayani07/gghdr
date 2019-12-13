@@ -1,31 +1,55 @@
-# is this the right function name?
-#' @importFrom ggplot2 layer aes
-#' @param mapping
+#' @title geom_hdr_rug
+#' @description rug visualization for HDR plot
+#' @param varwidth width, Default: FALSE
+#' @param prob PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)
+#' @param mapping Default: NULL
+#' @param ... ...
+#' @param na.rm Default: FALSE
+#' @param show.legend Default: NA
+#' @param inherit.aes Default: TRUE
+#' @param data data
+#' @param stat stat
+#' @param position Default: "identity"
+#' @return geom_hdr_rug
+#' @rdname geom_hdr_rug
+#' @examples
+#' library(ggplot2)
 #'
-#' @param data
-#' @param stat
-#' @param position
-#' @param ...
-#' @param varwidth
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param prob
-#'
-#' @export
-#' @example
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_rug()
+#' @export
+#' @importFrom ggplot2 aes layer
+
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
-                             stat = "hdr", position = "dodge2",
+                             stat = "hdr", position = "identity",
                              ...,
-                             varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
                              show.legend = NA,
                              inherit.aes = TRUE,
+                             sides = "bl",
+                             rug_width = unit(0.03, "npc"),
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
+
+  # Add basic input checks if needed
+  ## if values passed to 'prob' are integers instead of
+  ## decimals, convert them to decimals
+  ## ex. 5 >>> 0.05, 95 >>> 0.95
+  if(any(prob > 100 | prob < 0)) {
+    stop(
+      "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
+      call. = FALSE
+    )
+  }
+
+  if(any(prob > 1)) {
+    warning(
+      "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
+      call. = FALSE
+    )
+    prob <- prob / 100
+  }
 
   if (stat == "hdr") {
     if (!inherits(mapping, "uneval")) {
@@ -43,17 +67,22 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      varwidth = varwidth,
       na.rm = na.rm,
+      sides = sides,
+      rug_width = rug_width,
       probs = prob,
       ...
     )
   )
 }
 
-
+#' @title GeomHdrRug
+#' @description ggproto object for geom_hrdr_rug
+#' @rdname GeomHdrRug
 #' @importFrom ggplot2 ggproto Geom
+#' @importFrom grid segmentsGrob
 #' @export
+
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                           # If we're doing custom width, we need this:
@@ -65,65 +94,71 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             data
                           },
 
-                          draw_group = function(data, panel_params, coord, varwidth = FALSE,
+                          draw_group   = function(data, panel_params, coord,
+                                                sides = sides,
+                                                rug_width = rug_width,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-
-                            ## if values passed to 'prob' are integers instead of
-                            ## decimals, convert them to decimals
-                            ## ex. 5 >>> 0.05, 95 >>> 0.95
-                            if(any(prob > 100 | prob < 0)) {
-                              stop(
-                                "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
-                                call. = FALSE
-                              )
+                            if (!inherits(rug_width, "unit")) {
+                              stop("'length' must be a 'unit' object.", call. = FALSE)
                             }
 
-                            if(any(prob > 1)) {
-                              warning(
-                                "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
-                                call. = FALSE
-                              )
-                              prob <- prob / 100
-                            }
+                            rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
-                            common <- list(
-                              colour = data$colour,
-                              size = data$size,
-                              linetype = data$linetype,
-                              fill = scales::alpha(data$fill, data$alpha),
-                              group = data$group
-                            )
+                            gp <- gpar(col = NA, fill = alpha(fill_shade, data$alpha),
+                                       lty = data$linetype, lwd = data$size * .pt)
 
-                            box <- tibble::as_tibble(c(
-                              list(
 
-                                xmin = unit(0,"npc"),
-                                xmax = unit(0.03, "npc"),
-                                ymin = data$box_y[[1]][,"lower"],
-                                ymax = data$box_y[[1]][,"upper"],
-                                fill = scales::alpha(fill_shade, data$alpha),
-                                colour = NA
-                              ),
-                              common
-                            ))
+                            if (!is.null(data$box_x)) {
+                              box <- data$box_x[[1]]
+                              box <- coord$transform(data.frame(xmin = box[,"lower"], xmax = box[,"upper"]), panel_params)
+                              if (grepl("b", sides)) {
+                                rugs$x_b <- rectGrob(
+                                  x = box$xmin, width = box$xmax - box$xmin,
+                                  y = rep(unit(0, "npc"), nrow(box)), height = rep(rug_width, nrow(box)),
+                                  just = c(0,0),
+                                  gp = gp,
+                                  default.units = "native"
+                                )
+                              }
 
-                            mode <- tibble::as_tibble(c(
-                              list(
-                                x = unit(0,"npc"),
-                                xend = unit(0.03, "npc"),
-                                y = data$mode[[1]],
-                                yend = data$mode[[1]],
-                                colour = data$colour
-                              ),
-                              common
-                            ), n = length(data$mode[[1]]))
+                              if (grepl("t", sides)) {
+                                rugs$x_t <- rectGrob(
+                                  x = box$xmin, width = box$xmax - box$xmin,
+                                  y = rep(unit(1, "npc")-rug_width, nrow(box)), height = rep(rug_width, nrow(box)),
+                                  just = c(0,0),
+                                  gp = gp,
+                                  default.units = "native"
+                                )
+                              }
+                            }
 
-                            ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
-                              ggplot2::GeomRect$draw_panel(box, panel_params, coord)#,
-                              #ggplot2::GeomSegment$draw_panel(mode, panel_params, coord)
-                            ))
+                            if (!is.null(data$box_y)) {
+                              box <- data$box_y[[1]]
+                              box <- coord$transform(data.frame(ymin = box[,"lower"], ymax = box[,"upper"]), panel_params)
+                              if (grepl("l", sides)) {
+                                rugs$y_l <- rectGrob(
+                                  x = rep(unit(0.0, "npc"), nrow(box)), width = rep(rug_width, nrow(box)),
+                                  y = box$ymin, height = box$ymax-box$ymin,
+                                  just = c(0,0),
+                                  gp = gp,
+                                  default.units = "native"
+                                )
+                              }
+
+                              if (grepl("r", sides)) {
+                                rugs$y_r <- rectGrob(
+                                  x = rep(unit(1, "npc")-rug_width, nrow(box)), width = rep(rug_width, nrow(box)),
+                                  y = box$ymin, height = box$ymax-box$ymin,
+                                  just = c(0,0),
+                                  gp = gp,
+                                  default.units = "native"
+                                )
+                              }
+                            }
+
+                            ggplot2:::ggname("geom_hdr_rug", do.call(grid::grobTree, rugs))
                           },
 
                           draw_key = draw_key_hdr_boxplot,
@@ -131,6 +166,5 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
                                             alpha = NA, shape = 19, linetype = "solid", prob = NA),
 
-                          required_aes = c("ymax", "ymin"),
-                          optional_aes = "prob"
+                          optional_aes = c("x", "y", "prob")
 )

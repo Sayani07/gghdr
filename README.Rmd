@@ -88,3 +88,43 @@ faithful %>% ggplot(aes(y = , x = )) +  geom_hdr()
 ```
 
 
+
+
+# Rough testing code
+
+```{r}
+library(tidyverse)
+
+p <- ggplot(mpg, aes(y = hwy, fill = factor(cyl), x = factor(cyl)))
+p + geom_boxplot()
+p + geom_hdr_boxplot(width = 1) + geom_jitter()
+
+
+as_tibble(faithful) %>% 
+  ggplot(aes(y = eruptions)) + 
+  geom_boxplot()
+
+hdrcde::hdr.boxplot(faithful$eruptions, prob = c(50,70, 99))
+
+
+devtools::load_all("../ggplot2/")
+ggplot(faithful, aes(y = eruptions)) + 
+  geom_hdr_boxplot(prob = c(.5,.90, 0.99), fill = "blue") + 
+  theme_minimal()
+
+
+ggplot(faithful, aes(x = eruptions, y = waiting)) + 
+  geom_point() + 
+  geom_hdr_rug()
+
+ggplot(faithful) +
+  geom_point(aes(x = eruptions, y = waiting)) + 
+  geom_hdr_rug(aes(y = waiting))
+
+
+
+library(hdrcde)
+hdr(c(rnorm(100), rnorm(100, 4)), all.modes = TRUE)
+
+```
+

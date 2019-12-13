@@ -49,6 +49,8 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
+\item{varwidth}{width, Default: FALSE}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
@@ -63,16 +65,17 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{prob}{Probability coverage required for HDRs}
+\item{prob}{Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)}
 }
 \description{
 A box plot for the highest density region
 }
 \details{
-A box plot for the highest density region
 Calculates and plots the boxplot of highest density regions in one dimension.
 }
 \examples{
-ggplot2::ggplot(faithful, ggplot2::aes(y = eruptions)) +
+library(ggplot2)
+
+ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_boxplot()
 }

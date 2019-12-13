@@ -58,38 +58,6 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
                          # initialise 1 row data.frame
                          df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 
-                         # each box showing a mode
-                         # earlier we had one mode or multiple modes
-
-
-                         # den <- density(data$y, bw = hdrbw(data$y, mean(prob)), n=1001)
-                         # box = array(NA, nrow(df))
-                         # for(i in 1: nrow(df)) {
-                         #   box <- den$x[i]#dplyr::filter()
-                         #
-                         #   den$x[df$ymin<=den$x[i] & df$ymax>=den$x[i]]
-                         #
-                         #
-                         #   n <- length(box[i])
-                         #   y <- c(0, den$y)
-                         #   idx <- ((y[2:(n-1)] > y[1:(n-2)]) & (y[2:(n-1)] > y[3:n])) | (den$y == max(den$y))
-                         #   mode[i] <- den$x[idx]
-                         # }
-                         #
-                         # # which(hdr_stats$mode==den$x)
-                         # df$mode <- array()
-                         #
-                         # if (length(hdr_stats$mode) == 1) {
-                         #   unimode <- hdr_stats$mode
-                         #   #idx_lower <- min(which(unimode > df$ymin))
-                         #
-                         #   idx <- min(which(unimode > df$ymin))
-                         #   df$mode <- df$mode[(idx*(length(probs)) - 0:2),]
-                         # }
-                         # else{
-                         #   mode <- rep(hdr_stats$mode, each = length(prob))
-                         # }
-
                          box <- split(hdr, col(hdr) %% 2)
                          is_box <- complete.cases(box)
                          df$prob <- list(rep(sort(probs, decreasing = TRUE), max_boxes)[is_box])
@@ -99,7 +67,21 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
                          )[is_box,])
                          df$ymax <- max(box[[1]], na.rm = TRUE)
                          df$ymin <- min(box[[2]], na.rm = TRUE)
-                         df$mode <- list(hdr_stats$mode)
+
+                         # keep only modes within boxes
+                         mode_proxy <- matrix(0, length(hdr_stats$mode), df$ymax)
+                         for(i in 1:length(hdr_stats$mode))
+                         {
+                           for(j in 1:length(df$ymax))
+                             if(hdr_stats$mode[i]<=df$ymax[j] & hdr_stats$mode[i]>= df$ymin[j])
+                             {
+                               mode_proxy[i, j] <- 0
+                             }
+                           else mode_proxy[i, j] <- 1
+                         }
+                         hdr_mode <- hdr_stats$mode[which(rowSums(mode_proxy)==0)]
+                         df$mode <- list(hdr_mode)
+
                          df$width <- width
                          df$f_alpha <- list(hdr_stats$falpha)
                          df$x <- unique(data$x) # FIX LATER

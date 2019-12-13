@@ -5,9 +5,8 @@
 #' @rdname col2hex
 #' @export
 #' @importFrom grDevices rgb
-
-col2hex <- function(col) {
-  grDevices::rgb(col, maxColorValue = 255)
+col2hex <- function(col){
+  grDevices::rgb(col,  maxColorValue = 255)
 }
 
 #' @title darken_fill
@@ -43,7 +42,7 @@ draw_key_hdr_boxplot <- function(data, params, size) {
                    gp = grid::gpar(fill = fill_colour[2])),
     grid::rectGrob(height = 0.25, width = 0.75,
                    gp = grid::gpar(fill = fill_colour[1])),
-    gp = grid::gpar(col = NA,
+    gp = grid::gpar(col = "black",
               lwd = (data$size %||% 0.5) * .pt,
               lty = data$linetype %||% 1
     )

@@ -7,7 +7,7 @@
 geom_hdr_boxplot(
   mapping = NULL,
   data = NULL,
-  stat = "hdrcde",
+  stat = "hdr",
   position = "dodge2",
   ...,
   varwidth = FALSE,

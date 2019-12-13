@@ -85,14 +85,26 @@ StatHdr <- ggproto("StatHdr", Stat,
                          # else{
                          #   mode <- rep(hdr_stats$mode, each = length(prob))
                          # }
-
                          df$prob <- list(rep(sort(probs, decreasing = TRUE), max_boxes))
                          df$box_num <- list(rep(seq_len(max_boxes), each = length(probs)))
                          df[c("ymax_real","ymin_real")] <- lapply(split(hdr, col(hdr) %% 2), list)
                          df$ymax <- vapply(df$ymax_real, max, double(1L), na.rm = TRUE)
                          df$ymin <- vapply(df$ymin_real, min, double(1L), na.rm = TRUE)
-                         df$mode <- list(hdr_stats$mode)
-                         df$width <- width
+
+# manipulation to make sure that no mode should lie outside the box
+                         mode_proxy <- matrix(0, length(hdr_stats$mode), df$ymax)
+                         for(i in 1:length(hdr_stats$mode))
+                         {
+                           for(j in 1:length(df$ymax))
+                           if(hdr_stats$mode[i]<=df$ymax[j] & hdr_stats$mode[i]>= df$ymin[j])
+                           {
+                            mode_proxy[i, j] <- 0
+                           }
+                           else mode_proxy[i, j] <- 1
+                         }
+                         hdr_mode <- hdr_stats$mode[which(colSums(mode_proxy)==0)]
+                         df$mode <- list(hdr_mode)
+
                          df$f_alpha <- list(hdr_stats$falpha)
                          df$x <- unique(data$x) # FIX LATER
                          df

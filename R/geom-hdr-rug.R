@@ -53,15 +53,6 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           extra_params = c("na.rm", "width"),
 
                           setup_data = function(data, params) {
-                            data$width <- data$width %||%
-                              params$width %||% (resolution(data$x, FALSE) * 0.9)
-
-                            data$xmin <- data$x - data$width / 2
-                            data$xmax <- data$x + data$width / 2
-
-                            data$width <- NULL
-                            data$outliers <- NULL
-
                             data
                           },
 

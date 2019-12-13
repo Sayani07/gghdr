@@ -1,21 +1,15 @@
-# is this the right function name?
-#' @importFrom ggplot2 layer aes
-#' @param mapping
-#'
-#' @param data
-#' @param stat
-#' @param position
-#' @param ...
-#' @param varwidth
-#' @param na.rm
-#' @param show.legend
-#' @param inherit.aes
-#' @param prob
-#'
-#' @export
-#' @example
+#' @title geom_hdr_rug
+#' @description rug visualization for HDR plot
+#' @param varwidth width, Default: FALSE
+#' @param prob PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)
+#' @return geom_hdr_rug
+#' @rdname geom_hdr_rug
+#' @examples
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_rug()
+#' @export
+#' @importFrom ggplot2 aes layer
+
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              stat = "hdr", position = "identity",
                              ...,
@@ -51,7 +45,8 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @title GeomHdrRug
+#' @rdname GeomHdrRug
 #' @importFrom ggplot2 ggproto Geom
 #' @export
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
@@ -104,17 +99,18 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               width <- box[,"upper"] - box[,"lower"]
                               if (grepl("b", sides)) {
                                 rugs$x_b <- rectGrob(
-                                  x = unit(4, "native"), width = unit(1, "native"),
-                                  y = rep(unit(0.5, "npc"), nrow(box)), height = rep(unit(0.03, "npc"), nrow(box)),
+                                  x = box[,"lower"], width = box[,"upper"]-box[,"lower"],
+                                  y = rep(unit(0.0, "npc"), nrow(box)), height = rep(unit(0.03, "npc"), nrow(box)),
                                   just = c(0,0),
-                                  gp = gp
+                                  gp = gp,
+                                  default.units = "native"
                                 )
 
-                                rugs$x_b <- segmentsGrob(
-                                  x0 = unit(box[,"lower"], "native"), x1 = unit(box[,"upper"], "native"),
-                                  y0 = unit(0, "npc"), y1 = unit(0.03, "npc"),
-                                  gp = gp
-                                )
+                                # rugs$x_b <- segmentsGrob(
+                                #   x0 = unit(box[,"lower"], "native"), x1 = unit(box[,"upper"], "native"),
+                                #   y0 = unit(0, "npc"), y1 = unit(0.03, "npc"),
+                                #   gp = gp
+                                # )
                               }
                               #
                               # if (grepl("t", sides)) {
@@ -127,11 +123,15 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             }
 
                             if (!is.null(data$box_y)) {
+                              box <- data$box_y[[1]]
+                              width <- box[,"upper"] - box[,"lower"]
                               if (grepl("l", sides)) {
-                                rugs$y_l <- segmentsGrob(
-                                  y0 = unit(data$y, "native"), y1 = unit(data$y, "native"),
-                                  x0 = unit(0, "npc"), x1 = rug_length$min,
-                                  gp = gp
+                                rugs$y_l <- rectGrob(
+                                  x = rep(unit(0.0, "npc"), nrow(box)), width = rep(unit(0.03, "npc"), nrow(box)),
+                                  y = box[,"lower"], height = box[,"upper"]-box[,"lower"],
+                                  just = c(0,0),
+                                  gp = gp,
+                                  default.units = "native"
                                 )
                               }
 
@@ -145,7 +145,11 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             }
 
 
-                            ggplot2::gTree(children = do.call(ggplot2::gList, rugs))
+
+
+                            ggplot2:::ggname("geom_hdr_rug", grid::grobTree(
+                              rugs$x_b, rugs$y_l
+                            ))
                           },
 
                           draw_key = draw_key_hdr_boxplot,

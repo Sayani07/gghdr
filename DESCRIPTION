@@ -1,12 +1,43 @@
 Package: gghdr
-Title: Visualisation of Highest Density Regions
+Title: Visualisation of Highest Density Regions (HDR) using ggplot2
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R: c(
+    person(given = "Mitchell",
+           family = "O'Hara-Wild",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "mail@mitchelloharawild.com",
+           comment = c(ORCID = "0000-0001-6729-7695")),
+    person(given = "Stephen",
+           family = "FIXME",
+           role = c("aut", "cre"),
+           email = "FIXME",
+           comment = c(ORCID = "FIXME")),
+    person(given = "Ryo",
+           family = "FIXME",
+           role = c("aut", "cre"),
+           email = "FIXME",
+           comment = c(ORCID = "FIXME")),
+    person(given = "Sayani",
+           family = "Gupta",
+           role = c("aut", "cre"),
+           email = "FIXME",
+           comment = c(ORCID = "FIXME")),
+    person(given = "Darya",
+           family = "Vanichkina",
+           role = c("aut", "cre"),
+           email = "d.vanichkina@gmail.com",
+           comment = c(ORCID = "0000-0002-0406-164X")),
+    person(given = "Emi",
+           family = "Tanaka",
+           role = c("aut", "cre"),
+           email = "FIXME ",
+           comment = c(ORCID = "FIXME")),
+    person(given = "Thomas",
+           family = "Fung",
+           role = c("aut", "cre"),
+           email = "FIXME ",
+           comment = c(ORCID = "FIXME"))  
+           )
 Description: Geom and Stat components to visualise highest density 
              regions from the 'hdrcde' package with 'ggplot2'. 
 License: GPL-3

@@ -162,8 +162,27 @@ ggplot(data = faithful,
   geom_jitter(aes(x=0))
 ```
 
-## geom_hdr_rug() ...
+## Combining geom_hdr_boxplot() with geom_rug() to visualise the HDRs and distribution of the data
 
+We can use `geom_rug()` to show this distribution in the margin along the y axis. 
+
+```{r withJitter}
+ggplot(data = faithful, aes(y=eruptions)) + 
+  geom_hdr_boxplot(fill = c("blue")) + 
+  geom_rug()
+```
+
+## Marginal HDRs are supported with `geom_hdr_rug()` 
+
+Inspired by this feature of `geom_rug()`, we provide `geom_hdr_rug`, which enables us to plot HDRs in the margins of other plots. 
+
+```{r hdrRug}
+ggplot(data = faithful, aes(x = waiting, y=eruptions)) + 
+  geom_point() +
+  geom_hdr_rug(fill = "blue")
+  #geom_hdr_boxplot(fill = c("blue")) + 
+ # geom_rug()
+```
 
 
 ## Grouped HDR boxplots
@@ -178,7 +197,7 @@ ggplot(data = mpg,
   geom_histogram(bins = 50) 
 ```
 
-We can see that cars with 6 cylinders seem to be characterised by 
+We can see that cars with 6 cylinders seem to be bimodally distributed. Let's visualise this using `geom_hdr_boxplot()`.
 
 
 ```{r mpgBox1}

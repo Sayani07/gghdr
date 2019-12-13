@@ -4,7 +4,13 @@
 #' @param prob Probability coverage required for HDRs
 #' @param ... ...
 #' @return probability coverage for each element of the numeric vectors.
+#' @examples
+#' library(ggplot2)
+#'
+#' ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
+#'    geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions)))
 #' @export
+
 hdr_bin <- function(x, y = NULL, prob = c(0.5, 0.9, 0.99), ...){
   if (is.null(y)) {
     hdr_x <- hdrcde::hdr(x, prob = prob * 100, ...)

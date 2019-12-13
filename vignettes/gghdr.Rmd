@@ -216,7 +216,7 @@ ggplot(data = mpg,
 `gghdr` provides the `hdr_bin()` function for annotating data with the HDR they fall under. Providing this to the `colour` aesthetic produces scatterplots with the HDR information.
 
 ```{r binned_scatterplot, fig.width = 5, fig.height = 4}
-ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
+ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
   geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions))) 
 ```
 

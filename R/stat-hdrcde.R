@@ -1,3 +1,6 @@
+#' @title stat_hdrcde
+#' @description layer for hdrcde
+#' @rdname stat_hdrcde
 #' @export
 stat_hdrcde <- function(mapping = NULL, data = NULL,
                          geom = "hdr_boxplot", position = "dodge2",
@@ -22,11 +25,14 @@ stat_hdrcde <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @title StatHdrcde
+#' @description stat for hdrcde
 #' @format NULL
 #' @usage NULL
 #' @importFrom ggplot2 Stat
+#' @rdname StatHdrcde
 #' @export
+
 StatHdrcde <- ggproto("StatHdrcde", Stat,
                        required_aes = c("y"),
                        # non_missing_aes = "weight",

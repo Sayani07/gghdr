@@ -1,8 +1,8 @@
-#' @title stat_hdrcde
-#' @description stat for hdrcde
+#' @title stat_hdrc (rug)
+#' @description stat for hdr (rug)
 #' @param geom PARAM_DESCRIPTION, Default: 'hdr_boxplot'
 #' @param position PARAM_DESCRIPTION, Default: 'dodge2'
-#' @rdname stat_hdrcde
+#' @rdname stat_hdr
 #' @export
 stat_hdr <- function(mapping = NULL, data = NULL,
                          geom = "hdr_rug", position = "dodge2",
@@ -27,11 +27,14 @@ stat_hdr <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @title stat_hdr
+#' @description stat for hdr
 #' @format NULL
 #' @usage NULL
 #' @importFrom ggplot2 Stat
+#' @rdname StatHdr
 #' @export
+
 StatHdr <- ggproto("StatHdr", Stat,
                        optional_aes = c("x", "y"),
                        # non_missing_aes = "weight",

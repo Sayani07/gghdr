@@ -45,7 +45,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
-      prob = prob,
+      probs = prob,
       ...
     )
   )
@@ -96,8 +96,6 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                               group = data$group
                             )
 
-                            browser()
-
                             box <- tibble::as_tibble(c(
                               list(
 
@@ -128,10 +126,11 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             ))
                           },
 
-                          draw_key = ggplot2::draw_key_rect,
+                          draw_key = draw_key_hdr_boxplot,
 
                           default_aes = aes(weight = 1, colour = "grey20", fill = "black", size = 0.5,
-                                            alpha = NA, shape = 19, linetype = "solid"),
+                                            alpha = NA, shape = 19, linetype = "solid", prob = NA),
 
-                          required_aes = c("ymax","ymin")
+                          required_aes = c("ymax", "ymin"),
+                          optional_aes = "prob"
 )

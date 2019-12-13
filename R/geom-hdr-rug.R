@@ -11,7 +11,7 @@
 #' @importFrom ggplot2 aes layer
 
 geom_hdr_rug <- function(mapping = NULL, data = NULL,
-                             stat = "hdr", position = "dodge2",
+                             stat = "hdr", position = "identity",
                              ...,
                              varwidth = FALSE, # do we want this?
                              na.rm = FALSE,
@@ -63,7 +63,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-
+browser()
                             ## if values passed to 'prob' are integers instead of
                             ## decimals, convert them to decimals
                             ## ex. 5 >>> 0.05, 95 >>> 0.95
@@ -84,12 +84,11 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             common <- list(
-                              colour = data$colour,
                               size = data$size,
                               linetype = data$linetype,
-                              fill = scales::alpha(data$fill, data$alpha),
                               group = data$group
                             )
+
 
                             box <- tibble::as_tibble(c(
                               list(
@@ -98,7 +97,7 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                                 xmax = unit(0.03, "npc"),
                                 ymin = data$box_y[[1]][,"lower"],
                                 ymax = data$box_y[[1]][,"upper"],
-                                fill = scales::alpha(fill_shade, data$alpha),
+                                fill = scales::alpha(rep(fill_shade, length.out = nrow(data$box_y[[1]])), data$alpha),
                                 colour = NA
                               ),
                               common

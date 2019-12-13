@@ -28,7 +28,7 @@ Authors:
   \item Sayani Gupta (\href{https://orcid.org/FIXME}{ORCID})
   \item Darya Vanichkina \email{d.vanichkina@gmail.com} (\href{https://orcid.org/0000-0002-0406-164X}{ORCID})
   \item Emi Tanaka (\href{https://orcid.org/FIXME}{ORCID})
-  \item Thomas Fung (\href{https://orcid.org/FIXME}{ORCID})
+  \item Thomas Fung \email{thomas.fung.dr@gmail.com } (\href{https://orcid.org/0000-0003-2601-0728}{ORCID})
 }
 
 }

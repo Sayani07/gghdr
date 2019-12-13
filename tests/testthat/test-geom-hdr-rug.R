@@ -1,7 +1,9 @@
-library(ggplot2)
-ggplot(faithful, aes(x = eruptions)) +
-  stat_density(geom = "line") + xlim(0, 6)
+test_that("hdr rug plot draws correctly", {
 
-ggplot(faithful, aes(x = eruptions)) +
-  geom_hdr_rug()
+  hdr_rugplot <- ggplot(faithful, aes(x = eruptions)) +
+    geom_hdr_rug() +
+    theme_bw()
 
+  vdiffr::expect_doppelganger("hdr rugplot",
+                              hdr_rugplot)
+})

@@ -17,6 +17,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
                              na.rm = FALSE,
                              show.legend = NA,
                              inherit.aes = TRUE,
+                             sides = "bl",
                              prob = c(0.5, 0.95, 0.99)) {
 
   # Add basic input checks if needed
@@ -39,6 +40,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
     params = list(
       varwidth = varwidth,
       na.rm = na.rm,
+      sides = sides,
       probs = prob,
       ...
     )
@@ -61,9 +63,11 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                           },
 
                           draw_group = function(data, panel_params, coord, varwidth = FALSE,
+                                                sides = sides,
                                                 prob = c(0.5, 0.95, 0.99)) {
 
-                            sides <- "btlr"
+
+
                             rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])

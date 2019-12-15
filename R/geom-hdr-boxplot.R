@@ -85,8 +85,8 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                          data$xmin <- data$x - data$width / 2
                          data$xmax <- data$x + data$width / 2
 
-                         data$width <- NULL
-                         data$outliers <- NULL
+#                         data$width <- NULL
+#                         data$outliers <- NULL
                          data
                        },
 
@@ -101,25 +101,33 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
                            alpha = NA
                          )
 
+                        num_boxes <- sapply(data$box, nrow)
+                        num_probs <- sapply(data$prob, length)
+                        #ignore dodged widths if doing cde
+                        if (nrow(data) > 1) {
+                          data$xmin <- data$x_cde - data$width / 2
+                          data$xmax <- data$x_cde + data$width / 2
+                        }
+
                          box <- tibble::as_tibble(c(
                            list(
-
-                             xmin = data$xmin + 0.1* (data$xmax-data$xmin),
-                             xmax = data$xmax - 0.1* (data$xmax-data$xmin),
-                             ymin = data$box[[1]][,"lower"],
-                             ymax = data$box[[1]][,"upper"],
-                             fill = scales::alpha(fill_shade, data$alpha),
+                             #Expand out packed HDR box specifications
+                             xmin = rep(data$xmin + 0.1* (data$xmax-data$xmin), times = num_boxes),
+                             xmax = rep(data$xmax - 0.1* (data$xmax-data$xmin), times = num_boxes),
+                             ymin = unlist(lapply(data$box, function(b) b[,"lower"])),
+                             ymax = unlist(lapply(data$box, function(b) b[,"upper"])),
+                             fill = rep(scales::alpha(fill_shade, unique(data$alpha)), length.out = sum(num_probs)),
                              colour = NA
                            ),
-                           common
+                           lapply(common, rep, length.out = sum(num_boxes))
                          ))
 
                          mode <- tibble::as_tibble(c(
                            list(
                              x = data$xmin,
                              xend = data$xmax,
-                             y = data$mode[[1]],
-                             yend = data$mode[[1]],
+                             y = unlist(data$mode),
+                             yend = unlist(data$mode),
                              colour = data$colour
                            ),
                            common

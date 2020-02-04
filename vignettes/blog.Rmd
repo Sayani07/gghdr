@@ -1,5 +1,5 @@
 ---
-title: "blog"
+title: "A journey to gghdr"
 author: "Sayani Gupta"
 date: "02/02/2020"
 output: html_document
@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 >They may forget what you said, but they will never forget how you made them feel.
 
-This was how being a newcomer in rOpenSci OzUnconf 2019 felt like.  While you can read more about the project on [the package vignette](https://github.com/ropenscilabs/gghdr) or [Github](https://ropenscilabs.github.io/gghdr/) - what would be more fun to talk about would be how we all came and worked together to make this project happen and the twists and turns along the way. 
+This was how being a newcomer in [rOpenSci OzUnconf 2019](https://ozunconf19.ropensci.org/) felt like.  While you can read about the project on [the package website](https://github.com/ropenscilabs/gghdr) or learn more about it on [Github](https://ropenscilabs.github.io/gghdr/) - what would be more fun to talk about would be how we all came and worked together to make this project happen and the twists and turns along the way. 
 
-<!-- It started with Steph reminding us of the code of conduct regarding providing a safe and inclusive environment for all. And then when Nicholas Tierney and Sarah takes the stage to cover a tutorial, then you can feel the code of coduct is no fake or just another statement in this community. -->
+<!-- It started with Steph reminding us of the code of conduct regarding providing a safe and inclusive environment for all. And then when Nicholas Tierney and Sarah takes the stage to cover a tutorial, then you can feel the code of conduct is no fake or just another statement in this community. -->
 
 
 <!-- While it was not different that like any community event, it started with the code of conduct and commitment to provide a safe and inclusive environment to all, uniqueness was in implementing it right there. -->
@@ -82,12 +82,12 @@ faithful %>% ggplot(aes(x = eruptions)) +
 </div>
 </div>
 
-Also, display of 1d marginal distributions for both variables would be an useful feature to have.
+Also, display of 1d marginal distributions for both variables could be an useful feature to have.
 
 ```{r}
- ggplot(faithful, aes(x= waiting, y = eruptions)) +
-   geom_point() +
-   geom_hdr_rug(fill = "blue") 
+ggplot(faithful, aes(y = eruptions, x = waiting)) + 
+    geom_hdr_rug(sides = "trbl", fill = "blue") + 
+    geom_point()
 ```
 
 3.  `hdr_bin()` to replace `hdrscatterplot()`. This would not be a geom rather a function to be added in the aesthetic color with each color representing a HDR with a specified coverage.
@@ -110,19 +110,33 @@ ggplot(data = faithful,
 </div>
 </div>
 
-- `geom_hdr_boxplot.2d()` to replace the `hdr.boxplot.2d` which calculates and plots HDRs in two dimensions (only if time permits)
-- `geom_hdrcde_boxplot()`to replace `hdr.cde` which is used to HDRS for a conditional density estimate.
-(only if time permits)
+
+ 3. `geom_hdrcde_boxplot()`to replace `hdr.cde()` which is used to HDRS for a conditional density estimate.
+
+<div class = "row">
+<div class = "col-md-6">
+```{r hdrcde-cde, echo=TRUE, message=FALSE, warning=FALSE}
+faithful.cde <- cde(faithful$waiting,faithful$eruptions)
+plot(faithful.cde,xlab="Waiting time",ylab="Duration time",plot.fn="hdr")
+```
+</div>
+<div class = "col-md-6">
+```{r gghdr-cde, echo=TRUE, message=FALSE, warning=FALSE}
+ggplot(faithful, aes(x = eruptions, y = waiting)) + 
+    geom_hdr_boxplot(fill="steelblue") + 
+    theme_minimal()
+```
+</div>
+</div>
 - 
-We also deliberated on names of potential functions which led to the idea of a [package design collaboration corner](https://github.com/ropensci/ozunconf19/issues/19).  Although rOpenSci strongly encourages to work on projects that you might decide that very day, doing a bit of brainstorming on a projet you really want to see through helped us to set the expectations right and communicate clearly to our fellow teammates. 
+ 4. We also deliberated on names of potential functions at the brainstorming stage which led to the idea of a [package design collaboration corner](https://github.com/ropensci/ozunconf19/issues/19).  Although rOpenSci strongly encourages to work even on projects that you might decide that very day, doing a bit of brainstorming on the project helped us to set the expectations right and communicate clearly to onboard the excellent team. 
 
 
 # Bottlenecks along the way
 
-Now where there's a will, there's a way. Except that soon we could say where there is a merge, there is a conflict.  While most times we use Github as a code sharing, publishing software and collaborating with our future self, this was the time to show how we collaborate with others. It took almost 2 hours, Git kraken and Mitch to get us out of the merge conflicts.
+- Now where there's a will, there's a way. Except that soon we could say where there is a merge, there is a conflict.  While most times we use Github as a code sharing, publishing software and collaborating with our future self, this was the time to show how we collaborate with others. It took almost 2 hours, Git kraken and Mitch to get us out of the merge conflicts.
 
 (photo of the merge conflict tree)
-
 
 - Extending ggplot2 (https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html) is not trivial when it comes to adding a geom. (writing about the scale problem that was faced).
 
@@ -132,5 +146,5 @@ Now where there's a will, there's a way. Except that soon we could say where the
 
 # Where to from here?
 
-CRAN or submitting to rOpenSci for review.
+A missing piece is to replace the `hdr.boxplot.2d()` with `geom_hdr_boxplot.2d()`  which would calculate and plot HDRs in two dimensions. Nevertheless, we have the raw materials for an R package. All we need is some embellishment and review (lots) to get it to CRAN. Kudos team!
 

@@ -34,7 +34,7 @@ You could install the development version from Github using:
 
 ```{r install_github, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("https://github.com/ropenscilabs/gghdr")
+remotes::install_github("ropenscilabs/gghdr")
 ```
 
 # An overview of gghdr

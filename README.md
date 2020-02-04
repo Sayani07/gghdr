@@ -34,7 +34,7 @@ You could install the development version from Github using:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("https://github.com/ropenscilabs/gghdr")
+remotes::install_github("ropenscilabs/gghdr")
 ```
 
 # An overview of gghdr
@@ -47,10 +47,10 @@ large samples. The method of summarizing a distribution using highest
 density regions are useful for analyzing multimodal distributions. We
 illustrate this by exploring the data set `faithful` which contains the
 waiting time and duration of eruptions for the old faithful geyser in
-the Yellowstone National Park, USA.
+the Yellowstone National Park,
+USA.
 
     #> This is hdrcde 3.3
-    #> Warning: package 'ggplot2' was built under R version 3.5.2
 
 ![](README_files/figure-gfm/boxplot-1.png)<!-- -->
 

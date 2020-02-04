@@ -104,34 +104,58 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             if (!inherits(rug_width, "unit")) {
                               stop("'length' must be a 'unit' object.", call. = FALSE)
                             }
-
                             rugs <- list()
 
                             fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
                             gp <- gpar(col = NA, fill = alpha(fill_shade, data$alpha),
                                        lty = data$linetype, lwd = data$size * .pt)
 
-
+                            line_gp <- gpar(col = data$colour, lty = data$linetype, lwd = data$size * .pt, lineend = "butt")
                             if (!is.null(data$box_x)) {
                               box <- data$box_x[[1]]
                               box <- coord$transform(data.frame(xmin = box[,"lower"], xmax = box[,"upper"]), panel_params)
+
+                              modes <- coord$transform(data.frame(x = data$mode_x[[1]]), panel_params)
+
                               if (grepl("b", sides)) {
-                                rugs$x_b <- rectGrob(
-                                  x = box$xmin, width = box$xmax - box$xmin,
-                                  y = rep(unit(0, "npc"), nrow(box)), height = rep(rug_width, nrow(box)),
-                                  just = c(0,0),
-                                  gp = gp,
-                                  default.units = "native"
+                                rugs$x_b <- grid::gTree(
+                                  children = grid::gList(
+                                    rectGrob(
+                                      x = box$xmin, width = box$xmax - box$xmin,
+                                      y = rep(unit(0, "npc"), nrow(box)), height = rep(rug_width, nrow(box)),
+                                      just = c(0,0),
+                                      gp = gp,
+                                      default.units = "native"
+                                    ),
+                                    segmentsGrob(
+                                      x0 = modes$x,
+                                      x1 = modes$x,
+                                      y0 = rep(unit(0, "npc"), nrow(modes)),
+                                      y1 = rep(rug_width, nrow(modes)),
+                                      gp = line_gp
+                                    )
+                                  )
                                 )
                               }
 
                               if (grepl("t", sides)) {
-                                rugs$x_t <- rectGrob(
-                                  x = box$xmin, width = box$xmax - box$xmin,
-                                  y = rep(unit(1, "npc")-rug_width, nrow(box)), height = rep(rug_width, nrow(box)),
-                                  just = c(0,0),
-                                  gp = gp,
-                                  default.units = "native"
+                                rugs$x_t <- grid::gTree(
+                                  children = grid::gList(
+                                    rectGrob(
+                                      x = box$xmin, width = box$xmax - box$xmin,
+                                      y = rep(unit(1, "npc")-rug_width, nrow(box)), height = rep(rug_width, nrow(box)),
+                                      just = c(0,0),
+                                      gp = gp,
+                                      default.units = "native"
+                                    ),
+                                    segmentsGrob(
+                                      x0 = modes$x,
+                                      x1 = modes$x,
+                                      y0 = rep(unit(1, "npc"), nrow(modes)),
+                                      y1 = rep(unit(1, "npc") - rug_width, nrow(modes)),
+                                      gp = line_gp
+                                    )
+                                  )
                                 )
                               }
                             }
@@ -139,23 +163,48 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
                             if (!is.null(data$box_y)) {
                               box <- data$box_y[[1]]
                               box <- coord$transform(data.frame(ymin = box[,"lower"], ymax = box[,"upper"]), panel_params)
+
+                              modes <- coord$transform(data.frame(y = data$mode_y[[1]]), panel_params)
+
                               if (grepl("l", sides)) {
-                                rugs$y_l <- rectGrob(
-                                  x = rep(unit(0.0, "npc"), nrow(box)), width = rep(rug_width, nrow(box)),
-                                  y = box$ymin, height = box$ymax-box$ymin,
-                                  just = c(0,0),
-                                  gp = gp,
-                                  default.units = "native"
+                                rugs$y_l <- grid::gTree(
+                                  children = grid::gList(
+                                    rectGrob(
+                                      x = rep(unit(0.0, "npc"), nrow(box)), width = rep(rug_width, nrow(box)),
+                                      y = box$ymin, height = box$ymax-box$ymin,
+                                      just = c(0,0),
+                                      gp = gp,
+                                      default.units = "native"
+                                    ),
+                                    segmentsGrob(
+                                      x0 = rep(unit(0.0, "npc"), nrow(modes)),
+                                      x1 = rep(rug_width, nrow(modes)),
+                                      y0 = modes$y,
+                                      y1 = modes$y,
+                                      gp = line_gp
+                                    )
+                                  )
                                 )
                               }
 
                               if (grepl("r", sides)) {
-                                rugs$y_r <- rectGrob(
-                                  x = rep(unit(1, "npc")-rug_width, nrow(box)), width = rep(rug_width, nrow(box)),
-                                  y = box$ymin, height = box$ymax-box$ymin,
-                                  just = c(0,0),
-                                  gp = gp,
-                                  default.units = "native"
+                                rugs$y_r <- grid::gTree(
+                                  children = grid::gList(
+                                    rectGrob(
+                                      x = rep(unit(1, "npc")-rug_width, nrow(box)), width = rep(rug_width, nrow(box)),
+                                      y = box$ymin, height = box$ymax-box$ymin,
+                                      just = c(0,0),
+                                      gp = gp,
+                                      default.units = "native"
+                                    ),
+                                    segmentsGrob(
+                                      x0 = rep(unit(1, "npc"), nrow(modes)),
+                                      x1 = rep(unit(1, "npc") - rug_width, nrow(modes)),
+                                      y0 = modes$y,
+                                      y1 = modes$y,
+                                      gp = line_gp
+                                    )
+                                  )
                                 )
                               }
                             }

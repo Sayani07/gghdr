@@ -15,6 +15,7 @@ Geom and Stat components to visualise highest density
 Useful links:
 \itemize{
   \item \url{https://github.com/ropenscilabs/gghdr}
+  \item Report bugs at \url{https://github.com/ropenscilabs/gghdr/issues}
 }
 
 }

@@ -50,6 +50,7 @@ rug visualization for HDR plot
 \examples{
 library(ggplot2)
 
-ggplot(faithful, aes(y = eruptions)) +
+ggplot(faithful, aes(x= waiting, y = eruptions)) +
+  geom_point() +
   geom_hdr_rug()
 }

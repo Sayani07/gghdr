@@ -23,7 +23,7 @@ Initially, the aim was to visualize _Highest Density Regions_ (HDR) in one and t
 
 # Planning and execution
 
-Shortly after we got to know we are a part of RopenSci 2019, Mitch posted the idea on the [rOpenSci github issues page](https://github.com/ropensci/ozunconf19/issues). This is a great place to start a discussion on a rough idea or to learn more or comment on any idea that you find exciting. We brainstormed for a couple of days on how [`hdrcde`](https://github.com/robjhyndman/hdrcde) worked and what are the potential functions and features we would like to have or improve in the new package. The discussion led to a workflow which pretty much looked like this: 
+Shortly after we got to know we are a part of rOpenSci 2019, Mitch posted the idea on the [rOpenSci github issues page](https://github.com/ropensci/ozunconf19/issues). This is a great place to start a discussion on a rough idea or to learn more or comment on any idea that you find exciting. We brainstormed for a couple of days on how [`hdrcde`](https://github.com/robjhyndman/hdrcde) worked and what are the potential functions and features we would like to have or improve in the new package. The discussion led to a workflow which pretty much looked like this: 
 
 ```{r}
 knitr::include_graphics(here::here("/man/figures/board.jpg"))
@@ -31,7 +31,7 @@ knitr::include_graphics(here::here("/man/figures/board.jpg"))
 
 Although rOpenSci strongly encourages to work on projects that you thought of even on that very day, doing a bit of brainstorming on the project helped us to set the expectations right and communicate that to the onboarding team members. 
 
-Fast-forward to the first day of the conference! The participants had already suggested ideas (there were many brilliant ones - found [here](https://github.com/ropensci/ozunconf19/issues) and then voting started for the projects people were excited to be associated with. Little did we know that time there would be five more enthusiasts ([Stephen Pearce](https://github.com/sparce), [Ryo Nakagawara](https://github.com/Ryo-N7), [Darya Vanichkina](https://github.com/dvanic), [Emi Tanaka](https://emitanaka.org/) and [Thomas Fung](https://github.com/thomas-fung)) who would be as eager to contribute to this project and learn about ggplot2 internals (very aptly put by Mitch while advertising the project. Smart move mate)! Oh and what a fun and collaborative team to work with! See how they won’t stop coding:
+Fast-forward to the first day of the conference! The participants had already suggested ideas (there were many brilliant ones - found [here](https://github.com/ropensci/ozunconf19/issues)) and then voting started for the projects people were excited to be associated with. Little did we know that time there would be five more enthusiasts ([Stephen Pearce](https://github.com/sparce), [Ryo Nakagawara](https://github.com/Ryo-N7), [Darya Vanichkina](https://github.com/dvanic), [Emi Tanaka](https://emitanaka.org/) and [Thomas Fung](https://github.com/thomas-fung)) who would be as eager to contribute to this project and learn about ggplot2 internals (very aptly put by Mitch while advertising the project. Smart move mate)! Oh and what a fun and collaborative team to work with! See how they won’t stop coding:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Channeling our inner <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw">@hadleywickham</a> at <a href="https://twitter.com/rOpenSci?ref_src=twsrc%5Etfw">@rOpenSci</a> <a href="https://twitter.com/hashtag/ozunconf19?src=hash&amp;ref_src=twsrc%5Etfw">#ozunconf19</a>.<br>Are we doing it right? <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/F7EbFEjbVl">pic.twitter.com/F7EbFEjbVl</a></p>&mdash; Mitchell O&#39;Hara-Wild (@mitchoharawild) <a href="https://twitter.com/mitchoharawild/status/1205008586130149376?ref_src=twsrc%5Etfw">December 12, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -60,7 +60,7 @@ ggplot(faithful, aes(y = eruptions)) +
 </div>
 </div>
 
-2. The interval bars in `hdr.den()` to be replaced with a rug plot to display HDRs of 1d marginal distributions in `geom_hdr_rug()`. `geom_density()` could then be added to the resultant plot to get plots equivant to `hdr.den()`.
+2. The interval bars in `hdr.den()` to be replaced with a rug plot to display HDRs of 1d marginal distributions in `geom_hdr_rug()`. `geom_density()` could then be added to the resultant plot to get plots equivalent to `hdr.den()`.
  
 <div class = "row">
 <div class = "col-md-6">
@@ -137,7 +137,7 @@ ggplot(faithful, aes(x = eruptions, y = waiting)) +
 
 5. We also deliberated on names of potential functions at the brainstorming stage which led to the idea of a [package design collaboration corner](https://github.com/ropensci/ozunconf19/issues/19). 
 
-6. Documentation, testing and illustratives followed along the way to make it CRAN ready.
+6. Documentation, testing and illustrative followed along the way to make it CRAN ready.
 
 
 # Bottlenecks along the way

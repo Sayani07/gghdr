@@ -21,7 +21,7 @@ Initially, the aim was to visualize _Highest Density Regions_ (HDR) in one and t
 
 # Planning and execution
 
-Shortly after we got to know we are a part of rOpenSci 2019, Mitch posted the idea on the [rOpenSci github issues page](https://github.com/ropensci/ozunconf19/issues). This is a great place to start a discussion on a rough idea or to learn more or comment on any idea that you find exciting. We brainstormed for a couple of days on how [`hdrcde`](https://github.com/robjhyndman/hdrcde) worked and what are the potential functions and features we would like to have or improve in the new package. The discussion led to a workflow which pretty much looked like this: 
+Shortly after we got to know we are a part of rOpenSci 2019, Mitch posted the idea on the [rOpenSci Github issues page](https://github.com/ropensci/ozunconf19/issues). This is a great place to start a discussion on a rough idea or to learn more or comment on any idea that you find exciting. We brainstormed for a couple of days on how [`hdrcde`](https://github.com/robjhyndman/hdrcde) worked and what are the potential functions and features we would like to have or improve in the new package. The discussion led to a workflow which pretty much looked like this: 
 
 ```{r}
 knitr::include_graphics(here::here("/man/figures/board.jpg"))

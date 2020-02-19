@@ -27,10 +27,10 @@ test_that("hdr_bin outputting right stuff", {
   ## With plot
   binned_plot <- ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
     geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions)))
-  expect_doppelganger("binned plot", binned_plot)
+  vdiffr::expect_doppelganger("binned plot", binned_plot)
 
   binned_plot2 <- ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
     geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions,
                                     prob = c(0.12, 0.6, 0.84))))
-  expect_doppelganger("binned plot 2", binned_plot2)
+  vdiffr::expect_doppelganger("binned plot 2", binned_plot2)
 })

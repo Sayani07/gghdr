@@ -23,7 +23,8 @@ Initially, the aim was to visualize _Highest Density Regions_ (HDR) in one and t
 
 Shortly after we got to know we are a part of rOpenSci 2019, Mitch posted the idea on the [rOpenSci Github issues page](https://github.com/ropensci/ozunconf19/issues). This is a great place to start a discussion on a rough idea or to learn more or comment on any idea that you find exciting. We brainstormed for a couple of days on how [`hdrcde`](https://github.com/robjhyndman/hdrcde) worked and what are the potential functions and features we would like to have or improve in the new package. The discussion led to a workflow which pretty much looked like this: 
 
-```{r echo=FALSE}
+
+```{r, echo = F}
 knitr::include_graphics(here::here("/man/figures/board.jpg"))
 ```
 
@@ -76,8 +77,9 @@ library(gghdr)
 library(ggplot2)
 library(dplyr)
 faithful %>% ggplot(aes(x = eruptions)) +
-  geom_density(n= 1001) +
-  geom_hdr_rug(fill=  "blue")
+  geom_density(n= 1001, bw = hdrcde::hdrbw(faithful$eruptions, mean(c(0.5, 0.95, 0.99)))) +
+  geom_hdr_rug(fill=  "blue") + 
+  xlim(c(0.6833018, 6.0166982))
 ```
 </div>
 </div>

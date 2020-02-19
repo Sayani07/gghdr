@@ -38,3 +38,18 @@ stat_hdr(
 \description{
 stat for hdr (rug)
 }
+\details{
+Hyndman's (1996) density quantile algorithm is used for calculation.
+}
+\references{
+Hyndman, R.J. (1996) Computing and graphing highest density
+regions. \emph{American Statistician}, \bold{50}, 120-126.
+
+Samworth, R.J. and Wand, M.P. (2010). Asymptotics and optimal bandwidth
+selection for highest density region estimation.  \emph{The Annals of
+Statistics}, \bold{38}, 1767-1792.
+
+Wand, M.P., Marron, J S., Ruppert, D. (1991) Transformations in density
+estimation. \emph{Journal of the American Statistical Association},
+\bold{86}, 343-353.
+}

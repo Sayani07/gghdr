@@ -47,10 +47,12 @@ large samples. The method of summarizing a distribution using highest
 density regions are useful for analyzing multimodal distributions. We
 illustrate this by exploring the data set `faithful` which contains the
 waiting time and duration of eruptions for the old faithful geyser in
-the Yellowstone National Park,
-USA.
+the Yellowstone National Park, USA.
 
-    #> This is hdrcde 3.3
+``` r
+library(ggplot2)
+ggplot(faithful, aes(y=eruptions)) + geom_boxplot()
+```
 
 ![](README_files/figure-gfm/boxplot-1.png)<!-- -->
 

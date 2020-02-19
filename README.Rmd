@@ -41,12 +41,15 @@ remotes::install_github("ropenscilabs/gghdr")
 
 There are several statistical methods to summarize a distribution by region of the sample space covering certain probability. For example, in a traditional boxplot, the central box bounded by the interquartile range represents 50% coverage and whiskers represents 99% coverage for large samples. The method of summarizing a distribution using highest density regions are useful for analyzing multimodal distributions. We illustrate this by exploring the data set `faithful` which contains the waiting time and duration of eruptions for the old faithful geyser in the Yellowstone National Park, USA.
 
-```{r boxplot, echo=FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 library(hdrcde)
+```
+
+```{r boxplot}
 library(ggplot2)
-par(mfrow = c(1, 2))
 ggplot(faithful, aes(y=eruptions)) + geom_boxplot()
 ```
+
 
  <!-- In both HDR and box plots, the interquartile range or 50% HDR will have a coverage probability of 50%. -->
 

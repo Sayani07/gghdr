@@ -19,6 +19,7 @@ Authors@R: c(
     person(given = "Sayani",
            family = "Gupta",
            role = c("aut", "cre"),
+           email = "gupta.sayani@gmail.com", 
            comment = c(ORCID = "0000-0003-0643-5358")),
     person(given = "Darya",
            family = "Vanichkina",

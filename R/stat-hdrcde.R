@@ -54,13 +54,15 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
     data
   },
 
-  compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
+  compute_group = function(data, scales, width = NULL, probs = NULL,
+                           all.modes = TRUE, na.rm = FALSE) {
     if (length(unique(data$x)) > 1) {
       width <- diff(range(data$x)) * 0.9
     }
 
     if (!all(data$x == data$x[1])) {
-      stop("Conditional density estimation is not yet supported. Make sure each plot group contains only one x value.")
+      stop("Conditional density estimation is not yet supported.
+           Make sure each plot group contains only one x value.")
     }
 
     # imported from hdrcde
@@ -68,11 +70,13 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
 
     hdr <- hdr_stats$hdr
 
-    # number of boxes (for all probabilities max number of boxes will be shown although it has got NA values)
+    # number of boxes (for all probabilities max number of boxes will be
+    # shown although it has got NA values)
     max_boxes <- ncol(hdr) / 2
 
     # initialise 1 row data.frame
-    df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
+    df <- structure(list(), .Names = character(0), row.names = c(NA, -1L),
+                    class = "data.frame")
 
     box <- split(hdr, col(hdr) %% 2)
     is_box <- complete.cases(box)

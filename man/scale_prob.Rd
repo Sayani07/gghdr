@@ -87,7 +87,8 @@ A ggproto object inheriting from `Scale`
 }
 \description{
 This set of scales defines new scales for prob geoms equivalent to the
-ones already defined by ggplot2. This allows the shade of confidence intervals
+ones already defined by ggplot2. This allows the shade of confidence
+intervals
 to work with the legend output.
 }
 \concept{scale_prob_*}

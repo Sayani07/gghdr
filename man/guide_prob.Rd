@@ -12,8 +12,10 @@ If \code{NULL}, the title is not shown. By default
 (\code{\link[ggplot2:waiver]{waiver()}}), the name of the scale object or the name
 specified in \code{\link[ggplot2:labs]{labs()}} is used for the title.}
 
-\item{...}{Further arguments passed onto either \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}}
+\item{...}{Further arguments passed onto either
+\code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}}
 }
 \description{
-The prob guide shows the colour from the forecast intervals which is blended with the series colour.
+The prob guide shows the colour from the forecast intervals
+which is blended with the series colour.
 }

@@ -1,7 +1,8 @@
 #' prob colour scales
 #'
 #' This set of scales defines new scales for prob geoms equivalent to the
-#' ones already defined by ggplot2. This allows the shade of confidence intervals
+#' ones already defined by ggplot2. This allows the shade of confidence
+#' intervals
 #' to work with the legend output.
 #' @return A ggproto object inheriting from `Scale`
 #' @family scale_prob_*
@@ -28,9 +29,11 @@ prob_scale <- function(...) {
 }
 
 #' @title prob shade bar guide
-#' @description The prob guide shows the colour from the forecast intervals which is blended with the series colour.
+#' @description The prob guide shows the colour from the forecast intervals
+#' which is blended with the series colour.
 #' @inheritParams ggplot2::guide_colourbar
-#' @param ... Further arguments passed onto either \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}
+#' @param ... Further arguments passed onto either
+#' \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}
 #' @export
 
 guide_prob <- function(title = waiver(), ...) {

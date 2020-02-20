@@ -65,13 +65,15 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{prob}{Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)}
+\item{prob}{Probability coverage required for HDRs,
+Default: c(0.5, 0.95, 0.99)}
 }
 \description{
 A box plot for the highest density region
 }
 \details{
-Calculates and plots the boxplot of highest density regions in one dimension.
+Calculates and plots the boxplot of highest density regions in one
+dimension.
 }
 \examples{
 library(ggplot2)

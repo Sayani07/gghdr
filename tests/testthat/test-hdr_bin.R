@@ -1,5 +1,7 @@
 context("hdr_bin")
 
+library(ggplot2)
+
 test_that("hdr_bin outputting right stuff", {
 
   faithful_binned <- hdr_bin(x = faithful$waiting, y = faithful$eruptions)
@@ -25,6 +27,7 @@ test_that("hdr_bin outputting right stuff", {
   expect_equal(as.character(faithful_binned[[5]]), "60%")
 
   ## With plot
+  set.seed(5)
   binned_plot <- ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
     geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions)))
   vdiffr::expect_doppelganger("binned plot", binned_plot)

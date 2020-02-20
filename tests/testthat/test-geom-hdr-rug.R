@@ -6,6 +6,8 @@ test_that("hdr rug plot draws correctly", {
     geom_hdr_rug() +
     theme_bw()
 
-  vdiffr::expect_doppelganger("hdr rugplot",
-                              hdr_rugplot)
+  vdiffr::expect_doppelganger(
+    "hdr rugplot",
+    hdr_rugplot
+  )
 })

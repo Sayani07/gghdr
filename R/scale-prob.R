@@ -34,10 +34,13 @@ prob_scale <- function(...) {
 #' @export
 
 guide_prob <- function(title = waiver(), ...) {
-  structure(list(title = title,
-                 available_aes = "prob",
-                 args = list(...)),
-            class = c("guide", "prob_guide"))
+  structure(list(
+    title = title,
+    available_aes = "prob",
+    args = list(...)
+  ),
+  class = c("guide", "prob_guide")
+  )
 }
 
 #' @title Helper methods for guides
@@ -48,56 +51,60 @@ guide_prob <- function(title = waiver(), ...) {
 #' @keywords internal
 
 guide_train.prob_guide <- function(guide, scale, aesthetic) {
-  args <- append(guide[!(names(guide)%in%c("args"))], guide$args)
+  args <- append(guide[!(names(guide) %in% c("args"))], guide$args)
   probs <- scale$range$probs
-  if (length(probs) == 0 || all(is.na(probs)))
+  if (length(probs) == 0 || all(is.na(probs))) {
     return()
+  }
   guide <- do.call("guide_legend", args)
   class(guide) <- c("guide", "guide_prob")
   breaks <- probs
 
   breaks_mapped <- darken_fill(rep("black", length(breaks)), breaks)
   key <- as.data.frame(stats::setNames(list(breaks_mapped), aesthetic %||%
-                                         scale$aesthetics[1]), stringsAsFactors = FALSE)
-  key$.label <- scales::percent(breaks) #scale$get_labels(breaks)
+    scale$aesthetics[1]), stringsAsFactors = FALSE)
+  key$.label <- scales::percent(breaks) # scale$get_labels(breaks)
   if (!scale$is_discrete()) {
     limits <- scale$get_limits()
     noob <- !is.na(breaks) & limits[1] <= breaks & breaks <=
       limits[2]
     key <- key[noob, , drop = FALSE]
   }
-  if (guide$reverse)
+  if (guide$reverse) {
     key <- key[nrow(key):1, ]
+  }
   guide$key <- key
-  guide$hash <- with(guide, digest::digest(list(title, key$.label,
-                                                direction, name)))
+  guide$hash <- with(guide, digest::digest(list(
+    title, key$.label,
+    direction, name
+  )))
   guide
 }
 
 #' @export
 #' @importFrom ggplot2 guide_geom guide_legend
 #' @rdname guide-helpers
-guide_geom.guide_prob <- function (guide, layers, default_mapping)
-{
+guide_geom.guide_prob <- function(guide, layers, default_mapping) {
   class(guide) <- c("guide", "legend")
   guide <- guide_geom(guide, layers, default_mapping)
-  guide$geoms <- lapply(guide$geoms, function(x){
-    x$draw_key <- ggplot2::ggproto(NULL,NULL,
-                                   draw_key = function(data, params, size){
-                                     lwd <- min(data$size, min(size) / 4)
-                                     fillcol <- data$prob
-                                     grid::rectGrob(
-                                       width = grid::unit(1, "npc") - grid::unit(lwd, "mm"),
-                                       height = grid::unit(1, "npc") - grid::unit(lwd, "mm"),
-                                       gp = grid::gpar(
-                                         col = fillcol,
-                                         fill = scales::alpha(fillcol, data$alpha),
-                                         lty = data$linetype,
-                                         lwd = lwd * ggplot2::.pt,
-                                         linejoin = "mitre"
-                                       )
-                                     )
-                                   })$draw_key
+  guide$geoms <- lapply(guide$geoms, function(x) {
+    x$draw_key <- ggplot2::ggproto(NULL, NULL,
+      draw_key = function(data, params, size) {
+        lwd <- min(data$size, min(size) / 4)
+        fillcol <- data$prob
+        grid::rectGrob(
+          width = grid::unit(1, "npc") - grid::unit(lwd, "mm"),
+          height = grid::unit(1, "npc") - grid::unit(lwd, "mm"),
+          gp = grid::gpar(
+            col = fillcol,
+            fill = scales::alpha(fillcol, data$alpha),
+            lty = data$linetype,
+            lwd = lwd * ggplot2::.pt,
+            linejoin = "mitre"
+          )
+        )
+      }
+    )$draw_key
     x
   })
   guide

@@ -12,13 +12,18 @@ draw_key_hdr_boxplot <- function(data, params, size) {
   fill_colour <- darken_fill(rep(fill_colour, 2), c(0.5, 0.9))
 
   grid::grobTree(
-    grid::rectGrob(height = 0.5, width = 0.75,
-                   gp = grid::gpar(fill = fill_colour[2])),
-    grid::rectGrob(height = 0.25, width = 0.75,
-                   gp = grid::gpar(fill = fill_colour[1])),
-    gp = grid::gpar(col = NA,
-              lwd = (data$size %||% 0.5) * .pt,
-              lty = data$linetype %||% 1
+    grid::rectGrob(
+      height = 0.5, width = 0.75,
+      gp = grid::gpar(fill = fill_colour[2])
+    ),
+    grid::rectGrob(
+      height = 0.25, width = 0.75,
+      gp = grid::gpar(fill = fill_colour[1])
+    ),
+    gp = grid::gpar(
+      col = NA,
+      lwd = (data$size %||% 0.5) * .pt,
+      lty = data$linetype %||% 1
     )
   )
 }

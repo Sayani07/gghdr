@@ -44,43 +44,43 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 #' @export
 
 StatHdr <- ggproto("StatHdr", Stat,
-                       optional_aes = c("x", "y"),
-                       # non_missing_aes = "weight",
+  optional_aes = c("x", "y"),
+  # non_missing_aes = "weight",
 
-                       # setup_params = ggplot2::StatBoxplot$setup_params,
+  # setup_params = ggplot2::StatBoxplot$setup_params,
 
-                       setup_data = function(data, params) {
-                         # How are missing values handled?
-                         data
-                       },
+  setup_data = function(data, params) {
+    # How are missing values handled?
+    data
+  },
 
-                       compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
-                         # initialise 1 row data.frame
-                         df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
+  compute_group = function(data, scales, width = NULL, probs = NULL, all.modes = TRUE, na.rm = FALSE) {
+    # initialise 1 row data.frame
+    df <- structure(list(), .Names = character(0), row.names = c(NA, -1L), class = "data.frame")
 
-                         has_x <- !is.null(data$x)
-                         has_y <- !is.null(data$y)
-                         # imported from hdrcde
-                         if (has_x) {
-                           hdr_x <- hdrcde::hdr(data$x, prob = probs*100, all.modes = all.modes)
-                           df$box_x <- list(hdr_boxes(hdr_x))
-                           df$mode_x <- list(hdr_x$mode)
-                           df$f_alpha_x <- list(hdr_x$falpha)
-                           df$xmax <- max(c(df$box_x[[1]][,"upper"]), na.rm = TRUE)
-                           df$xmin <- min(c(df$box_x[[1]][,"lower"]), na.rm = TRUE)
-                         }
-                         if (has_y) {
-                           hdr_y <- hdrcde::hdr(data$y, prob = probs*100, all.modes = all.modes)
-                           df$box_y <- list(hdr_boxes(hdr_y))
-                           df$mode_y <- list(hdr_y$mode)
-                           df$f_alpha_y <- list(hdr_y$falpha)
-                           df$ymax <- max(c(df$box_y[[1]][,"upper"]), na.rm = TRUE)
-                           df$ymin <- min(c(df$box_y[[1]][,"lower"]), na.rm = TRUE)
-                         }
+    has_x <- !is.null(data$x)
+    has_y <- !is.null(data$y)
+    # imported from hdrcde
+    if (has_x) {
+      hdr_x <- hdrcde::hdr(data$x, prob = probs * 100, all.modes = all.modes)
+      df$box_x <- list(hdr_boxes(hdr_x))
+      df$mode_x <- list(hdr_x$mode)
+      df$f_alpha_x <- list(hdr_x$falpha)
+      df$xmax <- max(c(df$box_x[[1]][, "upper"]), na.rm = TRUE)
+      df$xmin <- min(c(df$box_x[[1]][, "lower"]), na.rm = TRUE)
+    }
+    if (has_y) {
+      hdr_y <- hdrcde::hdr(data$y, prob = probs * 100, all.modes = all.modes)
+      df$box_y <- list(hdr_boxes(hdr_y))
+      df$mode_y <- list(hdr_y$mode)
+      df$f_alpha_y <- list(hdr_y$falpha)
+      df$ymax <- max(c(df$box_y[[1]][, "upper"]), na.rm = TRUE)
+      df$ymin <- min(c(df$box_y[[1]][, "lower"]), na.rm = TRUE)
+    }
 
 
-                         df$prob <- list(sort(probs, decreasing = TRUE))
-                         df$width <- width
-                         df
-                       }
+    df$prob <- list(sort(probs, decreasing = TRUE))
+    df$width <- width
+    df
+  }
 )

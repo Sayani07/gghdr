@@ -40,14 +40,16 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
   ## ex. 5 >>> 0.05, 95 >>> 0.95
   if (any(prob > 100 | prob < 0)) {
     stop(
-      "Probability values should not exceed 100 or be below 0. Please make sure the values are between 0 and 1.",
+      "Probability values should not exceed 100 or be below 0.
+      Please make sure the values are between 0 and 1.",
       call. = FALSE
     )
   }
 
   if (any(prob > 1)) {
     warning(
-      "Probability values should be on a scale between 0 to 1. If not, values will be converted to decimal values.",
+      "Probability values should be on a scale between 0 to 1.
+      If not, values will be converted to decimal values.",
       call. = FALSE
     )
     prob <- prob / 100
@@ -105,16 +107,22 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
     }
     rugs <- list()
 
-    fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])), data$prob[[1]])
+    fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])),
+                              data$prob[[1]])
     gp <- gpar(
       col = NA, fill = alpha(fill_shade, data$alpha),
       lty = data$linetype, lwd = data$size * .pt
     )
 
-    line_gp <- gpar(col = data$colour, lty = data$linetype, lwd = data$size * .pt, lineend = "butt")
+    line_gp <- gpar(col = data$colour,
+                    lty = data$linetype,
+                    lwd = data$size * .pt,
+                    lineend = "butt")
     if (!is.null(data$box_x)) {
       box <- data$box_x[[1]]
-      box <- coord$transform(data.frame(xmin = box[, "lower"], xmax = box[, "upper"]), panel_params)
+      box <- coord$transform(data.frame(xmin = box[, "lower"],
+                                        xmax = box[, "upper"]),
+                             panel_params)
 
       modes <- coord$transform(data.frame(x = data$mode_x[[1]]), panel_params)
 
@@ -123,7 +131,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
           children = grid::gList(
             rectGrob(
               x = box$xmin, width = box$xmax - box$xmin,
-              y = rep(unit(0, "npc"), nrow(box)), height = rep(rug_width, nrow(box)),
+              y = rep(unit(0, "npc"), nrow(box)),
+              height = rep(rug_width, nrow(box)),
               just = c(0, 0),
               gp = gp,
               default.units = "native"
@@ -144,7 +153,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
           children = grid::gList(
             rectGrob(
               x = box$xmin, width = box$xmax - box$xmin,
-              y = rep(unit(1, "npc") - rug_width, nrow(box)), height = rep(rug_width, nrow(box)),
+              y = rep(unit(1, "npc") - rug_width, nrow(box)),
+              height = rep(rug_width, nrow(box)),
               just = c(0, 0),
               gp = gp,
               default.units = "native"
@@ -163,7 +173,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
     if (!is.null(data$box_y)) {
       box <- data$box_y[[1]]
-      box <- coord$transform(data.frame(ymin = box[, "lower"], ymax = box[, "upper"]), panel_params)
+      box <- coord$transform(data.frame(ymin = box[, "lower"],
+                                        ymax = box[, "upper"]), panel_params)
 
       modes <- coord$transform(data.frame(y = data$mode_y[[1]]), panel_params)
 
@@ -171,7 +182,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
         rugs$y_l <- grid::gTree(
           children = grid::gList(
             rectGrob(
-              x = rep(unit(0.0, "npc"), nrow(box)), width = rep(rug_width, nrow(box)),
+              x = rep(unit(0.0, "npc"), nrow(box)),
+              width = rep(rug_width, nrow(box)),
               y = box$ymin, height = box$ymax - box$ymin,
               just = c(0, 0),
               gp = gp,
@@ -192,7 +204,8 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
         rugs$y_r <- grid::gTree(
           children = grid::gList(
             rectGrob(
-              x = rep(unit(1, "npc") - rug_width, nrow(box)), width = rep(rug_width, nrow(box)),
+              x = rep(unit(1, "npc") - rug_width, nrow(box)),
+              width = rep(rug_width, nrow(box)),
               y = box$ymin, height = box$ymax - box$ymin,
               just = c(0, 0),
               gp = gp,

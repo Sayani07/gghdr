@@ -46,7 +46,6 @@ URL: https://github.com/ropenscilabs/gghdr
 Imports: 
     hdrcde,
     ggplot2,
-    vctrs,
     grid,
     scales,
     farver,

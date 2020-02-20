@@ -153,5 +153,8 @@ ggplot(faithful, aes(x = eruptions, y = waiting)) +
 
 A missing piece is to replace the `hdr.boxplot.2d()` with `geom_hdr_boxplot.2d()`  which would calculate and plot HDRs in two dimensions. Nevertheless, we have the raw materials for an R package. All we need is some embellishment and (lots of) review to get it on CRAN. Kudos team!!
 
-(add our group photo near Sydney Opera house)
+```{r, echo = F}
+knitr::include_graphics(here::here("/man/figures/team.jpg"))
+```
+
 

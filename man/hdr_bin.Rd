@@ -24,6 +24,6 @@ Binning highest density regions in one or two dimensions
 \examples{
 library(ggplot2)
 
-ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
-   geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions)))
+ggplot(data = faithful, aes(x = waiting, y = eruptions)) +
+  geom_point(aes(colour = hdr_bin(x = waiting, y = eruptions)))
 }

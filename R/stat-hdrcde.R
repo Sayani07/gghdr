@@ -91,9 +91,9 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
 
     # keep only modes within boxes
     mode_proxy <- matrix(0, length(hdr_stats$mode), df$ymax)
-    for (i in 1:length(hdr_stats$mode))
+    for (i in seq_len(length(hdr_stats$mode)))
     {
-      for (j in 1:length(df$ymax)) {
+      for (j in seq_len(length(df$ymax))) {
         if (hdr_stats$mode[i] <= df$ymax[j] & hdr_stats$mode[i] >= df$ymin[j]) {
           mode_proxy[i, j] <- 0
         }

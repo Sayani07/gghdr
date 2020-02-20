@@ -22,7 +22,8 @@
 #' The variables are as follows:
 #'
 #'  \itemize{
-#'   \item flow. a numeric vector giving the traffic flow in vehicles per lane per hour
+#'   \item flow. a numeric vector giving the traffic flow in vehicles per
+#'    lane per hour
 #'   \item speed. a numeric vector giving he speed in miles per hour
 #'  }
 #'

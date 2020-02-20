@@ -79,3 +79,6 @@ library(ggplot2)
 ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_boxplot()
 }
+\seealso{
+\code{\link{hdr.boxplot.2d}}
+}

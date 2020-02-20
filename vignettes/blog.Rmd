@@ -129,7 +129,7 @@ plot(faithful.cde, plot.fn = "hdr",
 __After:__
 ```{r gghdr-cde, echo=TRUE, message=FALSE, warning=FALSE}
 ggplot(faithful, aes(x = eruptions, y = waiting)) + 
-    geom_hdr_boxplot(fill = "steelblue") + 
+    geom_hdr_boxplot(fill="steelblue") + 
     theme_minimal()
 ```
 </div>

@@ -31,12 +31,17 @@ col2hex <- function(col){
 #' @param prob probability values
 #' @rdname darken_fill
 #' @export
-#' @importFrom farver convert_colour
-#' @importFrom grDevices col2rgb
+#' @importFrom grDevices grey.colors
+#' @importFrom grDevices colorRampPalette
 darken_fill <- function(col, prob) {
-  col <- farver::convert_colour(t(grDevices::col2rgb(col)), "RGB", "HSL")
   n_prob <- length(unique(prob))
-  col[,3] <- seq(90 - (n_prob - 1)*10, 90, length.out = n_prob)[match(prob, sort(unique(prob)))]
-  col <- farver::convert_colour(col, "HSL", "RGB")
-  col2hex(col)
+  if (col[1] == "white"){
+    # code breaks, i.e. won't give us distinct colour, if col is on the grey scale.
+    # Will handle those cases separately
+    col <- grDevices::grey.colors(n = n_prob, rev=ifelse(col[1]=="white", FALSE, TRUE))
+  } else {
+    palette  <- grDevices::colorRampPalette(colors=c(col[1], "white"))
+    col <- palette(c(n_prob+5))[n_prob:1]
+    }
+return(col)
 }

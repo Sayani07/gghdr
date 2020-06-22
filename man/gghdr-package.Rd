@@ -20,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Sayani Gupta (\href{https://orcid.org/0000-0003-0643-5358}{ORCID})
+\strong{Maintainer}: Sayani Gupta \email{gupta.sayani@gmail.com} (\href{https://orcid.org/0000-0003-0643-5358}{ORCID})
 
 Authors:
 \itemize{

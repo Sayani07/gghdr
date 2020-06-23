@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `gghdr` imports the [`hdrcde` package](https://cran.r-project.org/web/packages/hdrcde/index.html) and provides tools for plotting highest density regions with [`ggplot2`](https://ggplot2.tidyverse.org/). 
+The `gghdr` imports the [`hdrcde` package](https://cran.r-project.org/package=hdrcde) and provides tools for plotting highest density regions with [`ggplot2`](https://ggplot2.tidyverse.org/). 
 
 > The following vignette assumes familiarity with the grammar of graphics as implemented in ggplot2. 
 
@@ -51,7 +51,7 @@ ggplot(data = faithful, aes(x = eruptions)) + geom_density()
 
 ## High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets
 
-The [`hdrcde package`](http://pkg.robjhyndman.com/hdrcde/index.html) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
+The [`hdrcde package`](https://cran.r-project.org/package=hdrcde) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
 
 
 Formally, HDRs are [defined in the following manner (Hyndman  1996  American Statistician, **50**, 120-126)](https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/):
@@ -62,7 +62,7 @@ Formally, HDRs are [defined in the following manner (Hyndman  1996  American Sta
 
 
 
-The [`hdrcde package`](http://pkg.robjhyndman.com/hdrcde/index.html) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
+The [`hdrcde package`](https://cran.r-project.org/package=hdrcde) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
 
 We can use this package to create a density plot of the `eruptions` variable.
 

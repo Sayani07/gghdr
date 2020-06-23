@@ -4,7 +4,9 @@
 \name{GeomHdrBoxplot}
 \alias{GeomHdrBoxplot}
 \title{GeomHdrBoxplot}
-\format{An object of class \code{GeomHdrBoxplot} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 8.}
+\format{
+An object of class \code{GeomHdrBoxplot} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 8.
+}
 \usage{
 GeomHdrBoxplot
 }

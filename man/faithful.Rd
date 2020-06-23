@@ -4,7 +4,8 @@
 \name{faithful}
 \alias{faithful}
 \title{example dataframe for gghdr}
-\format{This contains the 'Old Faithful Geyser' data used
+\format{
+This contains the 'Old Faithful Geyser' data used
 in the examples in README and vignettes.
 
 The variables are as follows:
@@ -12,7 +13,8 @@ The variables are as follows:
  \itemize{
   \item eruptions. Eruption time in mins
   \item waiting. Waiting time to next eruption in mins
- }}
+ }
+}
 \usage{
 data(faithful)
 }

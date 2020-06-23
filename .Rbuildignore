@@ -10,3 +10,5 @@
 ^\.github/workflows/ghci\.yaml$
 ^codecov\.yml$
 ^.github/
+^NEWS\.md$
+^README\.md$

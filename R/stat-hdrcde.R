@@ -75,8 +75,10 @@ StatHdrcde <- ggproto("StatHdrcde", Stat,
     max_boxes <- ncol(hdr) / 2
 
     # initialise 1 row data.frame
-    df <- structure(list(), .Names = character(0), row.names = c(NA, -1L),
-                    class = "data.frame")
+    df <- structure(list(),
+      .Names = character(0), row.names = c(NA, -1L),
+      class = "data.frame"
+    )
 
     box <- split(hdr, col(hdr) %% 2)
     is_box <- complete.cases(box)

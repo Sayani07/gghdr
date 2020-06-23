@@ -96,9 +96,13 @@ GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
   draw_group = function(data, panel_params, coord, varwidth = FALSE,
                         prob = c(0.5, 0.95, 0.99)) {
-    fill_shade <- darken_fill(rep_len(data$fill,
-                                      length(data$prob[[1]])),
-                              data$prob[[1]])
+    fill_shade <- darken_fill(
+      rep_len(
+        data$fill,
+        length(data$prob[[1]])
+      ),
+      data$prob[[1]]
+    )
     common <- list(
       size = data$size,
       linetype = data$linetype,

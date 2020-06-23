@@ -107,22 +107,30 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
     }
     rugs <- list()
 
-    fill_shade <- darken_fill(rep_len(data$fill, length(data$prob[[1]])),
-                              data$prob[[1]])
+    fill_shade <- darken_fill(
+      rep_len(data$fill, length(data$prob[[1]])),
+      data$prob[[1]]
+    )
     gp <- gpar(
       col = NA, fill = alpha(fill_shade, data$alpha),
       lty = data$linetype, lwd = data$size * .pt
     )
 
-    line_gp <- gpar(col = data$colour,
-                    lty = data$linetype,
-                    lwd = data$size * .pt,
-                    lineend = "butt")
+    line_gp <- gpar(
+      col = data$colour,
+      lty = data$linetype,
+      lwd = data$size * .pt,
+      lineend = "butt"
+    )
     if (!is.null(data$box_x)) {
       box <- data$box_x[[1]]
-      box <- coord$transform(data.frame(xmin = box[, "lower"],
-                                        xmax = box[, "upper"]),
-                             panel_params)
+      box <- coord$transform(
+        data.frame(
+          xmin = box[, "lower"],
+          xmax = box[, "upper"]
+        ),
+        panel_params
+      )
 
       modes <- coord$transform(data.frame(x = data$mode_x[[1]]), panel_params)
 
@@ -173,8 +181,10 @@ GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
     if (!is.null(data$box_y)) {
       box <- data$box_y[[1]]
-      box <- coord$transform(data.frame(ymin = box[, "lower"],
-                                        ymax = box[, "upper"]), panel_params)
+      box <- coord$transform(data.frame(
+        ymin = box[, "lower"],
+        ymax = box[, "upper"]
+      ), panel_params)
 
       modes <- coord$transform(data.frame(y = data$mode_y[[1]]), panel_params)
 

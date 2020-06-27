@@ -4,7 +4,7 @@
 \name{gghdr-package}
 \alias{gghdr}
 \alias{gghdr-package}
-\title{gghdr: Visualisation of Highest Density Regions (HDR) using ggplot2}
+\title{gghdr: Visualisation of Highest Density Regions using ggplot2}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

@@ -140,13 +140,13 @@ ggplot(faithful, aes(x = eruptions, y = waiting)) +
 6. Documentation, testing and illustrative followed along the way to make it CRAN ready.
 
 
-# Bottlenecks along the way
+<!-- # Bottlenecks along the way -->
 
-- Now where there's a will, there's a way. Except that soon we could say where there is a merge, there is a conflict.  While most times we use Github for code-sharing, publishing software and collaborating with our future self, this was the time to show how we collaborate with others. It took almost 2 hours, GitKraken and Mitch to get us out of the merge conflicts.
+<!-- - Now where there's a will, there's a way. Except that soon we could say where there is a merge, there is a conflict.  While most times we use Github for code-sharing, publishing software and collaborating with our future self, this was the time to show how we collaborate with others. It took almost 2 hours, GitKraken and Mitch to get us out of the merge conflicts. -->
 
-(photo of the Gitkraken merge conflict tree)
+<!-- (photo of the Gitkraken merge conflict tree) -->
 
-- Extending ggplot2 (https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html). __(Writing about the scale problem that was faced.)__
+<!-- - Extending ggplot2 (https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html). __(Writing about the scale problem that was faced.)__ -->
 
 
 # Where to from here?

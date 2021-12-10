@@ -1,6 +1,11 @@
 ---
 title: "A journey to gghdr"
-output: html_document
+output: 
+  rmarkdown::html_vignette:
+vignette: >
+  %\VignetteIndexEntry{Exploring probability distributions for cricket}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

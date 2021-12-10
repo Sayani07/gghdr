@@ -2,7 +2,7 @@
 title: "Getting Started with gghdr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{gghdr}
+  %\VignetteIndexEntry{Getting Started with gghdr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

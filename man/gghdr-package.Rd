@@ -4,18 +4,17 @@
 \name{gghdr-package}
 \alias{gghdr}
 \alias{gghdr-package}
-\title{gghdr: Visualisation of Highest Density Regions using ggplot2}
+\title{gghdr: Visualisation of Highest Density Regions for 'ggplot2'}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Geom and Stat components to visualise highest density 
-             regions from the 'hdrcde' package with 'ggplot2'.
+Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2'.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ropenscilabs/gghdr}
-  \item Report bugs at \url{https://github.com/ropenscilabs/gghdr/issues}
+  \item \url{https://github.com/Sayani07/gghdr}
+  \item Report bugs at \url{https://github.com/Sayani07/gghdr/issues}
 }
 
 }

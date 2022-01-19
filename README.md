@@ -122,6 +122,6 @@ ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
 ![](README_files/figure-gfm/hdr_bin-1.png)<!-- -->
 
 You can read more about gghdr in the
-\[vignette\].
+\[vignette\](https://sayani07.github.io/gghdr/).
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

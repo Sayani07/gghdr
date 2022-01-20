@@ -1,5 +1,4 @@
 CMD
-Codecov
 GeomHdrBoxplot
 GeomHdrRug
 Github
@@ -9,15 +8,14 @@ Hyndman
 Lifecycle
 ORCID
 PARAM
-Stat
 StatHdrcde
-analyzing
 aroud
 asn
 atanh
 bimodally
 boxcox
-geoms
+com
+doi
 geq
 ggplot
 ggproto
@@ -28,7 +26,9 @@ hms
 hrdr
 leq
 npc
+pkg
 prob
 rlang
+robjhyndman
 ropensci
 stat

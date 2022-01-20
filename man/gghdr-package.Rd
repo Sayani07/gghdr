@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Geom and Stat components to visualise highest density regions from the 'hdrcde' package with 'ggplot2'.
+Provides `ggplot2` framework for visualising distributions that are designed for displaying Highest Density Regions (HDR). This work is based on the package ['hdrcde'](https://pkg.robjhyndman.com/hdrcde/) <doi:10.1080/00031305.1996.10474359> and displays highest density regions in one and two dimensions and univariate densities conditional on one covariate.
 }
 \seealso{
 Useful links:

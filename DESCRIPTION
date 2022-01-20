@@ -35,10 +35,11 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-2601-0728"))  
            )
 Description: Provides `ggplot2` framework for visualising distributions that are 
-designed for displaying Highest Density Regions (HDR). 
-This work is based on the package ['hdrcde'](https://pkg.robjhyndman.com/hdrcde/)
-<doi:10.2307/2684423> and displays highest density regions in one and two dimensions
-and univariate densities conditional on one covariate.
+             designed for displaying Highest Density Regions (HDR). 
+             This work is based on the package 
+             ['hdrcde'](https://pkg.robjhyndman.com/hdrcde/) <doi:10.2307/2684423>
+             and displays highest density regions in one and two dimensions
+             and univariate densities conditional on one covariate.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

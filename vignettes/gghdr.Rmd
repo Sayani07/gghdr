@@ -152,7 +152,7 @@ ggplot(data = faithful,
 
 ## Combining `geom_hdr_boxplot()` with `geom_jitter()` to visualise both the raw data and HDRs
 
-We can combine all sorts of ggplot2 geoms with `geom_hdr_boxplot()`. For example, we can use `geom_jitter()` to showcase the underlying data.
+We can combine all sorts of ggplot2 geometries with `geom_hdr_boxplot()`. For example, we can use `geom_jitter()` to showcase the underlying data.
 
 ```{r withJitter}
 ggplot(data = faithful, 

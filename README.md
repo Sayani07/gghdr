@@ -6,9 +6,8 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build
-status](https://github.com/ropenscilabs/gghdr/workflows/ghci/badge.svg)](https://github.com/ropenscilabs/gghdr)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/Sayani07/gghdr/workflows/R-CMD-check/badge.svg)](https://github.com/Sayani07/gghdr/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master)
 <!-- badges: end -->
@@ -23,11 +22,8 @@ displaying HDRs under ggplot2 framework.
 # Installation
 
 <!-- You could install the stable version on CRAN: -->
-
 <!-- ```{r install, eval = FALSE} -->
-
 <!-- install.packages("gghdr") -->
-
 <!-- ``` -->
 
 You could install the development version from Github using:
@@ -54,20 +50,15 @@ library(ggplot2)
 ggplot(faithful, aes(y=eruptions)) + geom_boxplot()
 ```
 
-![](README_files/figure-gfm/boxplot-1.png)<!-- -->
+<img src="man/figures/README-boxplot-1.png" width="100%" />
 
 <!-- In both HDR and box plots, the interquartile range or 50% HDR will have a coverage probability of 50%. -->
 
 <!-- # ```{r hdrcde-boxplot_more, echo=TRUE, eval = FALSE} -->
-
 <!-- # hdr.boxplot(x, prob = c(99, 50), h = hdrbw(BoxCox(x, lambda), -->
-
 <!-- #   mean(prob)), lambda = 1, boxlabels = "", col = gray((9:1)/10), -->
-
 <!-- #   main = "", xlab = "", ylab = "", pch = 1, border = 1, -->
-
 <!-- #   outline = TRUE, space = 0.25, ...) -->
-
 <!-- # ``` -->
 
 We can use `geom_hdr_boxplot` to display the same variable. Along with
@@ -84,7 +75,7 @@ ggplot(faithful, aes(y = eruptions)) +
   theme_minimal()
 ```
 
-![](README_files/figure-gfm/gg_hdr-boxplot-1.png)<!-- -->
+<img src="man/figures/README-gg_hdr-boxplot-1.png" width="100%" />
 
 It can be interesting to supplement a scatterplot with marginal
 distributions of one or both variables to enhance insights on the
@@ -93,8 +84,7 @@ relationship between the two variables. This is possible through
 with shorter waiting times and shorter eruptions (around 2 minutes) and
 another with longer waiting times and longer eruptions (around 4.5
 minutes). The `geom_hdr_rug` adds to this information by displaying the
-highest density region of eruption time covering 50% and
-99%.
+highest density region of eruption time covering 50% and 99%.
 
 <!-- eruptions with longer waiting times tend to be longer in duration (around 4.5 minutes) and with shorter waiting times are most likely to last shorter (around 2 minutes).  -->
 
@@ -104,7 +94,7 @@ ggplot(faithful) +
   geom_hdr_rug(aes(x = eruptions), prob = c(0.99, 0.5), fill = "blue")
 ```
 
-![](README_files/figure-gfm/hdr_rug-1.png)<!-- -->
+<img src="man/figures/README-hdr_rug-1.png" width="100%" />
 
 The previous example can be extended to allow displaying the scatterplot
 with points coloured according to the bivariate highest density regions
@@ -119,9 +109,8 @@ ggplot(data = faithful, aes(x = waiting, y=eruptions)) +
   scale_colour_viridis_d(direction = -1) 
 ```
 
-![](README_files/figure-gfm/hdr_bin-1.png)<!-- -->
+<img src="man/figures/README-hdr_bin-1.png" width="100%" />
 
-You can read more about gghdr in the
-\[vignette\](https://sayani07.github.io/gghdr/).
+You can read more about gghdr in the \[vignette\].
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

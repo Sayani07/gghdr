@@ -14,3 +14,4 @@
 ^README\.md$
 ^cran-comments\.md$
 ^doc$
+^\.github$

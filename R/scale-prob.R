@@ -7,14 +7,8 @@
 #' @return A ggproto object inheriting from `Scale`
 #' @family scale_prob_*
 #' @name scale_prob
-#' @rdname scale_prob
-
-NULL
-
-#' @rdname scale_prob
 #' @inheritParams ggplot2::scale_colour_gradient
 #' @export
-
 scale_prob_identity <- function(..., guide = "prob") {
   prob_scale("prob", "identity", identity, guide = guide, ...)
 }
@@ -28,14 +22,13 @@ prob_scale <- function(...) {
   scale
 }
 
-#' @title prob shade bar guide
+#' @title Probability shade bar guide
 #' @description The prob guide shows the colour from the forecast intervals
 #' which is blended with the series colour.
 #' @inheritParams ggplot2::guide_colourbar
 #' @param ... Further arguments passed onto either
 #' \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}
 #' @export
-
 guide_prob <- function(title = waiver(), ...) {
   structure(list(
     title = title,

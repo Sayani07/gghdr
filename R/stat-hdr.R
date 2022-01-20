@@ -11,7 +11,6 @@
 #' @param inherit.aes Default: TRUE
 #' @rdname stat_hdr
 #' @export
-
 stat_hdr <- function(mapping = NULL, data = NULL,
                      geom = "hdr_rug", position = "dodge2",
                      ...,
@@ -42,7 +41,7 @@ stat_hdr <- function(mapping = NULL, data = NULL,
 #' @importFrom ggplot2 Stat
 #' @rdname StatHdr
 #' @export
-
+#' @keywords internal
 StatHdr <- ggproto("StatHdr", Stat,
   optional_aes = c("x", "y"),
   # non_missing_aes = "weight",

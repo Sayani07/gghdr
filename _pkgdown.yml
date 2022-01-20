@@ -1,42 +1,46 @@
-destination: doc
 template:
   params:
     bootswatch: flatly
     docsearch:
       index_name:  gghdr
 
-home:
-  links:
-  - text: Learn more
-    href: https://github.com/Sayani07/gghdr
-
-reference:
-  - title: "Graphing univarite HDRs"
-    desc: >
-
-    contents:
-      - geom_hdr_boxplot
-      - geom_hdr_rug
-      - hdr_bin
-
-  - title: "Graphing multivariate HDRs"
-    desc: >
-    contents:
-      - geom_hdr_boxplot
-      - geom_hdr_ridge
-
-  - title: "Data sets"
-    contents:
-      - faithful
-      - lane2
-
-
-
 navbar:
   left:
   - text: "Vignettes"
     menu:
       - text: Univariate HDRs
-        href: doc/gghdr.html
+        href: articles/gghdr.html
   - text: Reference
     href: reference/index.html
+
+reference:
+  - title: "Graphing univariate HDRs"
+    desc: >
+    contents:
+      - geom_hdr_boxplot
+      - geom_hdr_rug
+      - hdr_bin
+  - title: "Graphing multivariate HDRs"
+    desc: >
+    contents:
+      - geom_hdr_boxplot
+      # - geom_hdr_ridge
+  - title: "gghdr scales and guide functions"
+    desc: >
+    contents:
+      - scale_prob
+      - guide_prob
+      - draw_key_hdr_boxplot
+      # - geom_hdr_ridge
+  - title: "ggplot2 stat functions"
+    desc: >
+    contents:
+      - stat_hdr
+      - stat_hdrcde
+  - title: "Datasets"
+    contents:
+      - faithful
+      - lane2
+  - title: "Package"
+    contents:
+      - gghdr-package

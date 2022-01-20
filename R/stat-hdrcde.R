@@ -41,7 +41,7 @@ stat_hdrcde <- function(mapping = NULL, data = NULL,
 #' @importFrom ggplot2 Stat
 #' @rdname StatHdrcde
 #' @export
-
+#' @keywords internal
 StatHdrcde <- ggproto("StatHdrcde", Stat,
                       required_aes = c("y"),
                       # non_missing_aes = "weight",

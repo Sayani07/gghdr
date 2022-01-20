@@ -13,4 +13,4 @@ GeomHdrRug
 \description{
 ggproto object for geom_hrdr_rug
 }
-\keyword{datasets}
+\keyword{internal}

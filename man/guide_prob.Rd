@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale-prob.R
 \name{guide_prob}
 \alias{guide_prob}
-\title{prob shade bar guide}
+\title{Probability shade bar guide}
 \usage{
 guide_prob(title = waiver(), ...)
 }

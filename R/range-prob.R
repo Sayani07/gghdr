@@ -1,8 +1,6 @@
-#' @title prob_range
-#' @description proto object for probability range
-#' @rdname prob_range
+# #' @title prob_range
+# #' @description proto object for probability range
 #' @importFrom ggplot2 ggproto
-
 prob_range <- function() {
   ggplot2::ggproto(NULL, RangeProb)
 }

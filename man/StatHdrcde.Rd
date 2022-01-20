@@ -7,4 +7,4 @@
 \description{
 stat for hdrcde
 }
-\keyword{datasets}
+\keyword{internal}

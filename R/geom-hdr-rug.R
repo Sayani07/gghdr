@@ -86,7 +86,7 @@ geom_hdr_rug <- function(mapping = NULL, data = NULL,
 #' @importFrom ggplot2 ggproto Geom
 #' @importFrom grid segmentsGrob
 #' @export
-
+#' @keywords internal
 GeomHdrRug <- ggproto("GeomHdrRug", Geom,
 
   # If we're doing custom width, we need this:

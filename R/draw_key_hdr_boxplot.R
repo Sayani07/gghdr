@@ -5,8 +5,6 @@
 #' @param size size of legend key
 #' @importFrom grid rectGrob grobTree gpar
 #' @importFrom grDevices col2rgb
-#' @export
-
 draw_key_hdr_boxplot <- function(data, params, size) {
   fill_colour <- data$fill %||% "grey20"
   fill_colour <- darken_fill(rep(fill_colour, 2), c(0.5, 0.9))

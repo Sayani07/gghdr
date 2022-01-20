@@ -74,7 +74,7 @@ geom_hdr_boxplot <- function(mapping = NULL, data = NULL,
 #' @importFrom ggplot2 ggproto Geom
 #' @importFrom tibble as_tibble
 #' @export
-
+#' @keywords internal
 GeomHdrBoxplot <- ggproto("GeomHdrBoxplot", Geom,
 
                           # need to declare `width` here in case this geom is used with a stat that

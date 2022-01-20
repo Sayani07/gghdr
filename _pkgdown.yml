@@ -11,13 +11,13 @@ navbar:
   left:
   - text: "Vignettes"
     menu:
-      - text: Univariate HDRs
+      - text: Getting started
         href: articles/gghdr.html
   - text: Reference
     href: reference/index.html
 
 reference:
-  - title: "Graphing HDRs"
+  - title: "graphing HDRs"
     desc: >
     contents:
       - geom_hdr_boxplot

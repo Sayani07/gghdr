@@ -79,5 +79,6 @@ library(ggplot2)
 ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_boxplot()
 ggplot(faithful, aes(y = eruptions, x= waiting)) +
-  geom_hdr_boxplot()
+geom_hdr_boxplot(fill="steelblue") +
+theme_minimal()
 }

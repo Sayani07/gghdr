@@ -8,8 +8,7 @@
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/Sayani07/gghdr/workflows/R-CMD-check/badge.svg)](https://github.com/Sayani07/gghdr/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master)
+<!-- [![Codecov test coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master) -->
 <!-- badges: end -->
 
 Package `gghdr` helps to visualize Highest Density Regions (HDR) in one
@@ -30,7 +29,7 @@ You could install the development version from Github using:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ropenscilabs/gghdr")
+remotes::install_github("Sayani07/gghdr")
 ```
 
 # An overview of gghdr
@@ -40,7 +39,7 @@ region of the sample space covering certain probability. For example, in
 a traditional boxplot, the central box bounded by the interquartile
 range represents 50% coverage and whiskers represents 99% coverage for
 large samples. The method of summarizing a distribution using highest
-density regions are useful for analyzing multimodal distributions. We
+density regions are useful for analysing multimodal distributions. We
 illustrate this by exploring the data set `faithful` which contains the
 waiting time and duration of eruptions for the old faithful geyser in
 the Yellowstone National Park, USA.

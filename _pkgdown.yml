@@ -4,6 +4,9 @@ template:
     docsearch:
       index_name:  gghdr
 
+development:
+  mode: auto
+
 navbar:
   left:
   - text: "Vignettes"

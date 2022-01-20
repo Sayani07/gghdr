@@ -52,7 +52,8 @@ Imports:
     farver,
     tibble,
     digest
-Suggests: 
+Suggests:
+    spelling, 
     knitr,
     testthat (>= 2.1.0),
     vdiffr,
@@ -61,3 +62,4 @@ Suggests:
 Depends: R (>= 2.10)
 VignetteBuilder: knitr
 BugReports: https://github.com/Sayani07/gghdr/issues
+Language: en-GB

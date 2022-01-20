@@ -17,17 +17,12 @@ navbar:
     href: reference/index.html
 
 reference:
-  - title: "Graphing univariate HDRs"
+  - title: "Graphing HDRs"
     desc: >
     contents:
       - geom_hdr_boxplot
       - geom_hdr_rug
       - hdr_bin
-  - title: "Graphing multivariate HDRs"
-    desc: >
-    contents:
-      - geom_hdr_boxplot
-      # - geom_hdr_ridge
   - title: "gghdr scales and guide functions"
     desc: >
     contents:
@@ -35,7 +30,7 @@ reference:
       - guide_prob
       - draw_key_hdr_boxplot
       # - geom_hdr_ridge
-  - title: "ggplot2 stat functions"
+  - title: "gghdr stat functions"
     desc: >
     contents:
       - stat_hdr

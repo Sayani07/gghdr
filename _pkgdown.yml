@@ -1,1 +1,42 @@
-destination: docs
+destination: doc
+template:
+  params:
+    bootswatch: flatly
+    docsearch:
+      index_name:  gghdr
+
+home:
+  links:
+  - text: Learn more
+    href: https://github.com/Sayani07/gghdr
+
+reference:
+  - title: "Graphing 1D HDRs"
+    desc: >
+
+    contents:
+      - geom_hdr_boxplot
+      - geom_hdr_rug
+      - hdr_bin
+
+  - title: "Graphing 2D HDRs"
+    desc: >
+    contents:
+      - geom_hdr_boxplot
+      - geom_hdr_ridge
+
+  - title: "Data sets"
+    contents:
+      - faithful
+      - lane2
+
+
+
+navbar:
+  left:
+  - text: "Vignettes"
+    menu:
+      - text: Univariate HDRs
+        href: doc/gghdr.html
+  - text: Reference
+    href: reference/index.html

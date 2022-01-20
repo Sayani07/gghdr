@@ -108,12 +108,12 @@
 <p>You could install the development version from Github using:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropenscilabs/gghdr"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Sayani07/gghdr"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="an-overview-of-gghdr">An overview of gghdr<a class="anchor" aria-label="anchor" href="#an-overview-of-gghdr"></a>
 </h1>
-<p>There are several statistical methods to summarize a distribution by region of the sample space covering certain probability. For example, in a traditional boxplot, the central box bounded by the interquartile range represents 50% coverage and whiskers represents 99% coverage for large samples. The method of summarizing a distribution using highest density regions are useful for analyzing multimodal distributions. We illustrate this by exploring the data set <code>faithful</code> which contains the waiting time and duration of eruptions for the old faithful geyser in the Yellowstone National Park, USA.</p>
+<p>There are several statistical methods to summarize a distribution by region of the sample space covering certain probability. For example, in a traditional boxplot, the central box bounded by the interquartile range represents 50% coverage and whiskers represents 99% coverage for large samples. The method of summarizing a distribution using highest density regions are useful for analysing multimodal distributions. We illustrate this by exploring the data set <code>faithful</code> which contains the waiting time and duration of eruptions for the old faithful geyser in the Yellowstone National Park, USA.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -195,7 +195,6 @@
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/Sayani07/gghdr/actions" class="external-link"><img src="https://github.com/Sayani07/gghdr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/ropenscilabs/gghdr?branch=master" class="external-link"><img src="https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 

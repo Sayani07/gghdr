@@ -11,7 +11,7 @@ home:
     href: https://github.com/Sayani07/gghdr
 
 reference:
-  - title: "Graphing 1D HDRs"
+  - title: "Graphing univarite HDRs"
     desc: >
 
     contents:
@@ -19,7 +19,7 @@ reference:
       - geom_hdr_rug
       - hdr_bin
 
-  - title: "Graphing 2D HDRs"
+  - title: "Graphing multivariate HDRs"
     desc: >
     contents:
       - geom_hdr_boxplot

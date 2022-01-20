@@ -1,5 +1,5 @@
-#' @title A box plot for the highest density region
-#' @details Calculates and plots the boxplot of highest density regions in one dimension.
+#' @title Box plot for the highest density region
+#' @details Calculates and plots the box plot of highest density regions.
 #' @param varwidth width, Default: FALSE
 #' @param prob Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)
 #' @rdname geom_hdr_boxplot
@@ -12,9 +12,9 @@
 #'
 #' ggplot(faithful, aes(y = eruptions)) +
 #'   geom_hdr_boxplot()
+#'
 #' ggplot(faithful, aes(y = eruptions, x= waiting)) +
-#' geom_hdr_boxplot(fill="steelblue") +
-#' theme_minimal()
+#' geom_hdr_boxplot(fill="steelblue")
 #' @export
 
 geom_hdr_boxplot <- function(mapping = NULL, data = NULL,

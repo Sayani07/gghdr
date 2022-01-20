@@ -1,4 +1,4 @@
-#' @title draw_key_hdr_boxplot
+#' @title Draw legend key
 #' @description draw legend key for HDR box plot
 #' @param data data
 #' @param params parameters

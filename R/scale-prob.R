@@ -1,4 +1,4 @@
-#' prob colour scales
+#' Probability colour scales
 #'
 #' This set of scales defines new scales for prob geometries equivalent to the
 #' ones already defined by ggplot2. This allows the shade of confidence

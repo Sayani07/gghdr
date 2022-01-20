@@ -3,7 +3,7 @@
 \name{scale_prob}
 \alias{scale_prob}
 \alias{scale_prob_identity}
-\title{prob colour scales}
+\title{Probability colour scales}
 \usage{
 scale_prob_identity(..., guide = "prob")
 }

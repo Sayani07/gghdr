@@ -1,4 +1,4 @@
-#' @title geom_hdr_rug
+#' @title Rug plot for the highest density region
 #' @description rug visualization for HDR plot
 #' @param rug_width width of rugs, Default: unit(0.03, "npc")
 #' @param sides position to put rugs

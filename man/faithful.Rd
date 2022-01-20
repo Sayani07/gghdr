@@ -3,7 +3,7 @@
 \docType{data}
 \name{faithful}
 \alias{faithful}
-\title{example dataframe for gghdr}
+\title{Example dataframe for gghdr}
 \format{
 This contains the 'Old Faithful Geyser' data used
 in the examples in README and vignettes.
@@ -19,6 +19,6 @@ The variables are as follows:
 data(faithful)
 }
 \description{
-example dataframe for gghdr
+Example dataframe for gghdr
 }
 \keyword{datasets}

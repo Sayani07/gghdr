@@ -2,7 +2,7 @@
 % Please edit documentation in R/draw_key_hdr_boxplot.R
 \name{draw_key_hdr_boxplot}
 \alias{draw_key_hdr_boxplot}
-\title{draw_key_hdr_boxplot}
+\title{Draw legend key}
 \usage{
 draw_key_hdr_boxplot(data, params, size)
 }

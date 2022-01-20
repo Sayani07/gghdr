@@ -1,5 +1,5 @@
-#' @title stat_hdrc (rug)
-#' @description stat for hdr (rug)
+#' @title Stat for hdr box and rug plot
+#' @description calculate components of hdr box and rug plot
 #' @param geom PARAM_DESCRIPTION, Default: 'hdr_boxplot'
 #' @param position PARAM_DESCRIPTION, Default: 'dodge2'
 #' @param mapping Default: NULL

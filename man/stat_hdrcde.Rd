@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat-hdrcde.R
 \name{stat_hdrcde}
 \alias{stat_hdrcde}
-\title{stat_hdrcde}
+\title{Stat for hdrcde}
 \usage{
 stat_hdrcde(
   mapping = NULL,
@@ -36,5 +36,5 @@ stat_hdrcde(
 \item{inherit.aes}{Default: TRUE}
 }
 \description{
-layer for hdrcde
+compute highest density regions continuously over some conditioned variable
 }

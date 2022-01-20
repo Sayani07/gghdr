@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-hdr-rug.R
 \name{geom_hdr_rug}
 \alias{geom_hdr_rug}
-\title{geom_hdr_rug}
+\title{Rug plot for the highest density region}
 \usage{
 geom_hdr_rug(
   mapping = NULL,

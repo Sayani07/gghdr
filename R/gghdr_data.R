@@ -1,4 +1,4 @@
-#' example dataframe for gghdr
+#' Example dataframe for gghdr
 #' @format This contains the 'Old Faithful Geyser' data used
 #' in the examples in README and vignettes.
 #'
@@ -15,7 +15,7 @@
 "faithful"
 
 
-#' example dataframe for gghdr
+#' Example dataframe for gghdr
 #' @format This contains the 'lane2' data from the 'hdrcde' package
 #' and is used in the examples in README and vignettes.
 #'

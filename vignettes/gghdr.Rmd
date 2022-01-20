@@ -32,16 +32,10 @@ In a standard boxplot:
 
 ```{r prework}
 library(ggplot2)
-library(hdrcde)
-# we will set the ggplot2 theme to use theme_minimal() for the vignette
 theme_set(theme_minimal())
 ggplot(data = faithful, aes(y = eruptions)) + 
   geom_boxplot() 
-# fixme? show the interquartile range with labels on the plot
 ```
-
-
-
 
 If we look more closely at our data, however, we can see that it's actually multimodal, but our choice of visualisation technique limited our ability to see this:
 
@@ -53,30 +47,23 @@ ggplot(data = faithful, aes(x = eruptions)) + geom_density()
 
 The [`hdrcde package`](https://cran.r-project.org/package=hdrcde) is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset. 
 
-
 Formally, HDRs are [defined in the following manner (Hyndman  1996  American Statistician, **50**, 120-126)](https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/):
 
 > If $f(x)$ is the density function of a random variable X, 
 > then the  $100 (1 -\alpha)$ HDR is the subset R($f_\alpha$) of the sample space of X such that 
 > $R(f_\alpha) = \{x: f(x) \geq f_\alpha\}$, where $f_\alpha$ is the largest constant such that Pr(X $\in R(f_\alpha)) \geq 1-\alpha$)
 
-
-
 The [`hdrcde package`](https://cran.r-project.org/package=hdrcde) provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression. 
 
 We can use this package to create a density plot of the `eruptions` variable.
 
-```{r densityHDR2, fig.width = 5, echo=TRUE, eval=FALSE}
-hdr.den(faithful$eruptions, 
-        col = c("skyblue", "slateblue2", "slateblue4"))
+```{r densityHDR, fig.width = 5}
+library(hdrcde)
+hdr_info <- hdr.den(
+  faithful$eruptions, 
+  col = c("skyblue", "slateblue2", "slateblue4")
+)
 ```
-
-```{r densityHDR, fig.width = 5, echo=FALSE,  fig.height = 4}
-invisible(hdr.den(faithful$eruptions, 
-                  col = c("skyblue", "slateblue2", "slateblue4")))
-```
-
-
 
 - 50% of the dataset is "located" in the regions shown by the darkest blue rectangles/dashed lines
 - 95% of the dataset is "located" in the regions shown by the blue rectangles/dashed lines

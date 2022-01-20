@@ -12,12 +12,14 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with gghdr">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Getting Started with gghdr">
 <meta property="og:description" content="gghdr">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -26,6 +28,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,20 +42,23 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gghdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
      
+    <span class="caret"></span>
   </a>
-</li>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../articles/gghdr.html">Get started</a>
+      <a href="../articles/gghdr.html">Univariate HDRs</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -59,13 +66,19 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropenscilabs/gghdr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/Sayani07/gghdr/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -74,62 +87,66 @@
 
       
 
-      </header><div class="row">
+      </header><script src="gghdr_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started with gghdr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ropenscilabs/gghdr/blob/master/vignettes/gghdr.Rmd"><code>vignettes/gghdr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Sayani07/gghdr/blob/HEAD/vignettes/gghdr.Rmd" class="external-link"><code>vignettes/gghdr.Rmd</code></a></small>
       <div class="hidden name"><code>gghdr.Rmd</code></div>
 
     </div>
 
     
     
-<p>The <code>gghdr</code> imports the <a href="https://cran.r-project.org/package=hdrcde"><code>hdrcde</code> package</a> and provides tools for plotting highest density regions with <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<p>The <code>gghdr</code> imports the <a href="https://cran.r-project.org/package=hdrcde" class="external-link"><code>hdrcde</code> package</a> and provides tools for plotting highest density regions with <a href="https://ggplot2.tidyverse.org/" class="external-link"><code>ggplot2</code></a>.</p>
 <blockquote>
 <p>The following vignette assumes familiarity with the grammar of graphics as implemented in ggplot2.</p>
 </blockquote>
-<div id="introduction-the-limitations-of-a-boxplot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction-the-limitations-of-a-boxplot" class="anchor"></a>Introduction: the limitations of a boxplot</h2>
-<p>Let's begin by using ggplot2 to create a boxplot of the <code>eruptions</code> variable of the <code>faithful</code> dataset, built into the <code>hdrcde</code> library.</p>
+<div class="section level2">
+<h2 id="introduction-the-limitations-of-a-boxplot">Introduction: the limitations of a boxplot<a class="anchor" aria-label="anchor" href="#introduction-the-limitations-of-a-boxplot"></a>
+</h2>
+<p>Let’s begin by using ggplot2 to create a boxplot of the <code>eruptions</code> variable of the <code>faithful</code> dataset, built into the <code>hdrcde</code> library.</p>
 <p>In a standard boxplot:</p>
 <ul>
 <li>The central box is bounded by Q1 and Q3, which represents the interquartile range.</li>
 <li>The whiskers extend from Q1 - 1.5 (Q3 - Q1) to Q3 + to 1.5 (Q3 - Q1), which represents 99% coverage for large samples.</li>
 <li>Finally, the horizontal line represents the median.</li>
 </ul>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hdrcde</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.robjhyndman.com/hdrcde/" class="external-link">hdrcde</a></span><span class="op">)</span>
 <span class="co"># we will set the ggplot2 theme to use theme_minimal() for the vignette</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>())
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span>()</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p><img src="gghdr_files/figure-html/prework-1.png" width="700"></p>
-<div class="sourceCode"><html><body><pre class="r"># fixme? show the interquartile range with labels on the plot</pre></body></html></div>
-<p>If we look more closely at our data, however, we can see that it's actually multimodal, but our choice of visualisation technique limited our ability to see this:</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">eruptions</span>)) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># fixme? show the interquartile range with labels on the plot</span></code></pre></div>
+<p>If we look more closely at our data, however, we can see that it’s actually multimodal, but our choice of visualisation technique limited our ability to see this:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/hist-1.png" width="700"></p>
 </div>
-<div id="high-density-regions-hdrs-enable-us-to-effectively-summarise-and-visualise-multimodal-datasets" class="section level2">
-<h2 class="hasAnchor">
-<a href="#high-density-regions-hdrs-enable-us-to-effectively-summarise-and-visualise-multimodal-datasets" class="anchor"></a>High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets</h2>
-<p>The <a href="https://cran.r-project.org/package=hdrcde"><code>hdrcde package</code></a> is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset.</p>
-<p>Formally, HDRs are <a href="https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/">defined in the following manner (Hyndman 1996 American Statistician, <strong>50</strong>, 120-126)</a>:</p>
+<div class="section level2">
+<h2 id="high-density-regions-hdrs-enable-us-to-effectively-summarise-and-visualise-multimodal-datasets">High-density regions (HDRs) enable us to effectively summarise and visualise multimodal datasets<a class="anchor" aria-label="anchor" href="#high-density-regions-hdrs-enable-us-to-effectively-summarise-and-visualise-multimodal-datasets"></a>
+</h2>
+<p>The <a href="https://cran.r-project.org/package=hdrcde" class="external-link"><code>hdrcde package</code></a> is an R package that allows us to address this. It provides a way of calculating and visualising so-called high-density regions (HDRs), which can intuitively be understood as boxplot-like plots, with darker boxes showing regions of higher data density. For example, a light rectangle might be used to show the region in which over 99% of the data is contained, whereas a smaller, darker rectangle would highlight a region within that which contains the most closely co-localised 50% of the dataset.</p>
+<p>Formally, HDRs are <a href="https://robjhyndman.com/publications/computing-and-graphing-highest-density-regions/" class="external-link">defined in the following manner (Hyndman 1996 American Statistician, <strong>50</strong>, 120-126)</a>:</p>
 <blockquote>
 <p>If <span class="math inline">\(f(x)\)</span> is the density function of a random variable X, then the <span class="math inline">\(100 (1 -\alpha)\)</span> HDR is the subset R(<span class="math inline">\(f_\alpha\)</span>) of the sample space of X such that <span class="math inline">\(R(f_\alpha) = \{x: f(x) \geq f_\alpha\}\)</span>, where <span class="math inline">\(f_\alpha\)</span> is the largest constant such that Pr(X <span class="math inline">\(\in R(f_\alpha)) \geq 1-\alpha\)</span>)</p>
 </blockquote>
-<p>The <a href="https://cran.r-project.org/package=hdrcde"><code>hdrcde package</code></a> provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression.</p>
+<p>The <a href="https://cran.r-project.org/package=hdrcde" class="external-link"><code>hdrcde package</code></a> provides tools for computing these highest density regions in one and two dimensions, kernel estimates of univariate density functions conditional on one covariate, and multimodal regression.</p>
 <p>We can use this package to create a density plot of the <code>eruptions</code> variable.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/hdrcde/man/hdr.html">hdr.den</a></span>(<span class="no">faithful</span>$<span class="no">eruptions</span>,
-        <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"skyblue"</span>, <span class="st">"slateblue2"</span>, <span class="st">"slateblue4"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://pkg.robjhyndman.com/hdrcde/reference/hdr.den.html" class="external-link">hdr.den</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span>, 
+        col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"skyblue"</span>, <span class="st">"slateblue2"</span>, <span class="st">"slateblue4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/densityHDR-1.png" width="480"></p>
 <ul>
-<li>50% of the dataset is "located" in the regions shown by the darkest blue rectangles/dashed lines</li>
-<li>95% of the dataset is "located" in the regions shown by the blue rectangles/dashed lines</li>
-<li>99% of the dataset is "located" in the regions shown by the light blue rectangles/dashed lines</li>
+<li>50% of the dataset is “located” in the regions shown by the darkest blue rectangles/dashed lines</li>
+<li>95% of the dataset is “located” in the regions shown by the blue rectangles/dashed lines</li>
+<li>99% of the dataset is “located” in the regions shown by the light blue rectangles/dashed lines</li>
 </ul>
 <p>This can be visualised more compactly using the <code>hdr.boxplot</code> function, in which:</p>
 <ul>
@@ -137,123 +154,135 @@
 <li>The region shown using the whiskers is replaced by the 99% HDR (light blue)</li>
 <li>The horizontal line represents the mode</li>
 </ul>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/hdrcde/man/hdr.html">hdr.boxplot</a></span>(<span class="no">faithful</span>$<span class="no">eruptions</span>,
-            <span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">99</span>, <span class="fl">95</span>, <span class="fl">50</span>),
-            <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"skyblue"</span>, <span class="st">"slateblue2"</span>, <span class="st">"slateblue4"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://pkg.robjhyndman.com/hdrcde/reference/hdr.boxplot.html" class="external-link">hdr.boxplot</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span>, 
+            prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">99</span>, <span class="fl">95</span>, <span class="fl">50</span><span class="op">)</span>,
+            col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"skyblue"</span>, <span class="st">"slateblue2"</span>, <span class="st">"slateblue4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/hdrboxplot-1.png" width="480"></p>
-<p><code><a href="https://rdrr.io/pkg/hdrcde/man/hdr.html">hdr.boxplot()</a></code> uses base plotting tools to create the visualisation, limiting users' ability to customise and combine it with other <code>ggplot2</code> visualisations.</p>
+<p><code><a href="https://pkg.robjhyndman.com/hdrcde/reference/hdr.boxplot.html" class="external-link">hdr.boxplot()</a></code> uses base plotting tools to create the visualisation, limiting users’ ability to customise and combine it with other <code>ggplot2</code> visualisations.</p>
 </div>
-<div id="hdr-boxplots-in-ggplot2-geom_hdr_boxplot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hdr-boxplots-in-ggplot2-geom_hdr_boxplot" class="anchor"></a>HDR boxplots in ggplot2: <code>geom_hdr_boxplot()</code>
+<div class="section level2">
+<h2 id="hdr-boxplots-in-ggplot2-geom_hdr_boxplot">HDR boxplots in ggplot2: <code>geom_hdr_boxplot()</code><a class="anchor" aria-label="anchor" href="#hdr-boxplots-in-ggplot2-geom_hdr_boxplot"></a>
 </h2>
-<p>We can visualise the same dataset using <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. By default, it will plot respectively darker boxes for 99%, 95% or 50% of the data.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gghdr</span>)
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>()</pre></body></html></div>
+<p>We can visualise the same dataset using <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. By default, it will plot respectively darker boxes for 99%, 95% or 50% of the data.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sayani07/gghdr" class="external-link">gghdr</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p><img src="gghdr_files/figure-html/setup-1.png" width="700"></p>
 </div>
-<div id="adding-colour" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adding-colour" class="anchor"></a>Adding colour</h2>
-<p>We can specify the base colour we'd like to use.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>))</pre></body></html></div>
+<div class="section level2">
+<h2 id="adding-colour">Adding colour<a class="anchor" aria-label="anchor" href="#adding-colour"></a>
+</h2>
+<p>We can specify the base colour we’d like to use.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="gghdr_files/figure-html/speccols-1.png" width="700"></p>
 </div>
-<div id="specifying-your-own-probabilities" class="section level2">
-<h2 class="hasAnchor">
-<a href="#specifying-your-own-probabilities" class="anchor"></a>Specifying your own probabilities</h2>
-<p>We can also specify which set of probability coverages we'd like to display HDRs for. For example, we can visualise the 25%, 50%, 75%, 95%, and 99% HDR of the faithful eruptions.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>),
-                   <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>))</pre></body></html></div>
+<div class="section level2">
+<h2 id="specifying-your-own-probabilities">Specifying your own probabilities<a class="anchor" aria-label="anchor" href="#specifying-your-own-probabilities"></a>
+</h2>
+<p>We can also specify which set of probability coverages we’d like to display HDRs for. For example, we can visualise the 25%, 50%, 75%, 95%, and 99% HDR of the faithful eruptions.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span><span class="op">)</span>,
+                   fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
 <p><img src="gghdr_files/figure-html/diftProbs-1.png" width="700"></p>
-<p>We can also specify the probabilities as percentages, i.e. out of 100.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">95</span>, <span class="fl">99</span>),
-                   <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>))
-<span class="co">#&gt; Warning: Probability values should be on a scale between 0 to 1. If not,</span>
-<span class="co">#&gt;       values will be converted to decimal values.</span></pre></body></html></div>
+<p>We can also specify the probabilities as percentages, i.e. out of 100.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">95</span>, <span class="fl">99</span><span class="op">)</span>,
+                   fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> 
+<span class="co">#&gt; Warning: Probability values should be on a scale between 0 to 1. If not, values</span>
+<span class="co">#&gt; will be converted to decimal values.</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/percentProbs-1.png" width="700"></p>
 <p>This will produce a warning, but achieve the same result. Note that mixing the two will result in all of your probabilities <span class="math inline">\(\leq1\)</span> being divided by 100.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2.55</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">95</span>, <span class="fl">99</span>),
-                   <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>))
-<span class="co">#&gt; Warning: Probability values should be on a scale between 0 to 1. If not,</span>
-<span class="co">#&gt;       values will be converted to decimal values.</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.55</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">95</span>, <span class="fl">99</span><span class="op">)</span>,
+                   fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> 
+<span class="co">#&gt; Warning: Probability values should be on a scale between 0 to 1. If not, values</span>
+<span class="co">#&gt; will be converted to decimal values.</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/percentProbs2-1.png" width="700"></p>
 </div>
-<div id="combining-geom_hdr_boxplot-with-geom_jitter-to-visualise-both-the-raw-data-and-hdrs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combining-geom_hdr_boxplot-with-geom_jitter-to-visualise-both-the-raw-data-and-hdrs" class="anchor"></a>Combining <code>geom_hdr_boxplot()</code> with <code>geom_jitter()</code> to visualise both the raw data and HDRs</h2>
-<p>We can combine all sorts of ggplot2 geoms with <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. For example, we can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter()</a></code> to showcase the underlying data.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fl">0</span>))</pre></body></html></div>
+<div class="section level2">
+<h2 id="combining-geom_hdr_boxplot-with-geom_jitter-to-visualise-both-the-raw-data-and-hdrs">Combining <code>geom_hdr_boxplot()</code> with <code>geom_jitter()</code> to visualise both the raw data and HDRs<a class="anchor" aria-label="anchor" href="#combining-geom_hdr_boxplot-with-geom_jitter-to-visualise-both-the-raw-data-and-hdrs"></a>
+</h2>
+<p>We can combine all sorts of ggplot2 geoms with <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. For example, we can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter()</a></code> to showcase the underlying data.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/withJitter-1.png" width="700"></p>
 </div>
-<div id="combining-geom_hdr_boxplot-with-geom_rug-to-visualise-the-hdrs-and-distribution-of-the-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combining-geom_hdr_boxplot-with-geom_rug-to-visualise-the-hdrs-and-distribution-of-the-data" class="anchor"></a>Combining <code>geom_hdr_boxplot()</code> with <code>geom_rug()</code> to visualise the HDRs and distribution of the data</h2>
-<p>We can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug()</a></code> to show this distribution in the margin along the y axis.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"blue"</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span>()</pre></body></html></div>
+<div class="section level2">
+<h2 id="combining-geom_hdr_boxplot-with-geom_rug-to-visualise-the-hdrs-and-distribution-of-the-data">Combining <code>geom_hdr_boxplot()</code> with <code>geom_rug()</code> to visualise the HDRs and distribution of the data<a class="anchor" aria-label="anchor" href="#combining-geom_hdr_boxplot-with-geom_rug-to-visualise-the-hdrs-and-distribution-of-the-data"></a>
+</h2>
+<p>We can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug()</a></code> to show this distribution in the margin along the y axis.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/withRug-1.png" width="700"></p>
 </div>
-<div id="marginal-hdrs-are-supported-with-geom_hdr_rug" class="section level2">
-<h2 class="hasAnchor">
-<a href="#marginal-hdrs-are-supported-with-geom_hdr_rug" class="anchor"></a>Marginal HDRs are supported with <code>geom_hdr_rug()</code>
+<div class="section level2">
+<h2 id="marginal-hdrs-are-supported-with-geom_hdr_rug">Marginal HDRs are supported with <code>geom_hdr_rug()</code><a class="anchor" aria-label="anchor" href="#marginal-hdrs-are-supported-with-geom_hdr_rug"></a>
 </h2>
-<p>Inspired by this feature of <code><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug()</a></code>, we provide <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_rug.html">geom_hdr_rug()</a></code>, which enables us to plot HDRs in the margins of other plots.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_rug.html">geom_hdr_rug</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="st">"blue"</span>)</pre></body></html></div>
+<p>Inspired by this feature of <code><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug()</a></code>, we provide <code><a href="../reference/geom_hdr_rug.html">geom_hdr_rug()</a></code>, which enables us to plot HDRs in the margins of other plots.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_hdr_rug.html">geom_hdr_rug</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/hdrRug-1.png" width="480"></p>
-<p><code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_rug.html">geom_hdr_rug()</a></code> supports multiple probability specifications, just like <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. It expects probabilities between 0 and 1, but, similarly to <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>, it will complain but accept probabilities between 0 and 100.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_rug.html">geom_hdr_rug</a></span>(<span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">99</span>), <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"blue"</span>)
+<p><code><a href="../reference/geom_hdr_rug.html">geom_hdr_rug()</a></code> supports multiple probability specifications, just like <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>. It expects probabilities between 0 and 1, but, similarly to <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code>, it will complain but accept probabilities between 0 and 100.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_hdr_rug.html">geom_hdr_rug</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">99</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Probability values should be on a scale between 0 to 1.</span>
-<span class="co">#&gt;       If not, values will be converted to decimal values.</span></pre></body></html></div>
+<span class="co">#&gt;       If not, values will be converted to decimal values.</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/hdrRugmultprob-1.png" width="480"></p>
 </div>
-<div id="grouped-hdr-boxplots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#grouped-hdr-boxplots" class="anchor"></a>Grouped HDR boxplots</h2>
-<p>One of the most exciting features <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code> supports (unlike <code>hdr.boxplot</code>) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2's native syntax to do this. Let's explore the <code><a href="https://ggplot2.tidyverse.org/reference/mpg.html">ggplot2::mpg</a></code> dataset. First, let's look at a histogram of the data, faceted by number of cylinders</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">mpg</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">hwy</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">cyl</span>))) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">cyl</span>)~<span class="no">.</span>) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">bins</span> <span class="kw">=</span> <span class="fl">50</span>)</pre></body></html></div>
+<div class="section level2">
+<h2 id="grouped-hdr-boxplots">Grouped HDR boxplots<a class="anchor" aria-label="anchor" href="#grouped-hdr-boxplots"></a>
+</h2>
+<p>One of the most exciting features <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code> supports (unlike <code>hdr.boxplot</code>) is the ability to create separate HDR boxplots for different groups in a dataset. We use ggplot2’s native syntax to do this. Let’s explore the <code><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">ggplot2::mpg</a></code> dataset. First, let’s look at a histogram of the data, faceted by number of cylinders</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hwy</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">~</span><span class="va">.</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> </code></pre></div>
 <p><img src="gghdr_files/figure-html/showMPG-1.png" width="480"></p>
-<p>We can see that cars with 6 cylinders seem to be bimodally distributed. As expected, <code><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code> nicely shows us both modes in the data.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">mpg</span>,
+<p>We can see that cars with 6 cylinders seem to be bimodally distributed. As expected, <code><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot()</a></code> nicely shows us both modes in the data.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span>, 
        <span class="co"># make sure to change x to y from geom_density to geom_hdr_boxplot</span>
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span> <span class="kw">=</span> <span class="no">hwy</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">cyl</span>))) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span>()</pre></body></html></div>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">hwy</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/geom_hdr_boxplot.html">geom_hdr_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/mpgBox1-1.png" width="480"></p>
 </div>
-<div id="scatterplots-with-hdr-information" class="section level2">
-<h2 class="hasAnchor">
-<a href="#scatterplots-with-hdr-information" class="anchor"></a>Scatterplots with HDR information</h2>
-<p><code>gghdr</code> provides the <code><a href="https://rdrr.io/pkg/gghdr/man/hdr_bin.html">hdr_bin()</a></code> function for annotating data with the HDR they fall under. Providing this to the <code>colour</code> aesthetic produces scatterplots with the HDR information.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/hdr_bin.html">hdr_bin</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>))) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d</a></span>(<span class="kw">direction</span> <span class="kw">=</span> -<span class="fl">1</span>)</pre></body></html></div>
+<div class="section level2">
+<h2 id="scatterplots-with-hdr-information">Scatterplots with HDR information<a class="anchor" aria-label="anchor" href="#scatterplots-with-hdr-information"></a>
+</h2>
+<p><code>gghdr</code> provides the <code><a href="../reference/hdr_bin.html">hdr_bin()</a></code> function for annotating data with the HDR they fall under. Providing this to the <code>colour</code> aesthetic produces scatterplots with the HDR information.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="../reference/hdr_bin.html">hdr_bin</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/binned_scatterplot-1.png" width="480"></p>
 <p>Feel free to combine this with a rug for more <code>gghdr</code> goodness.</p>
-<div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/hdr_bin.html">hdr_bin</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">waiting</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">eruptions</span>))) +
-  <span class="fu"><a href="https://rdrr.io/pkg/gghdr/man/geom_hdr_rug.html">geom_hdr_rug</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_d</a></span>(<span class="kw">direction</span> <span class="kw">=</span> -<span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="../reference/hdr_bin.html">hdr_bin</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_hdr_rug.html">geom_hdr_rug</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="gghdr_files/figure-html/all_together_now-1.png" width="480"></p>
 </div>
   </div>
@@ -269,18 +298,33 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Mitchell O'Hara-Wild, Stephen Pearce, Ryo Nakagawara, Sayani Gupta, Darya Vanichkina, Emi Tanaka, Thomas Fung.</p>
+  <p></p>
+<p>Developed by Mitchell O’Hara-Wild, Stephen Pearce, Ryo Nakagawara, Sayani Gupta, Darya Vanichkina, Emi Tanaka, Thomas Fung.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
 </div>
 
   
-
-
-  </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
+  docsearch({
+    
+    
+    apiKey: '',
+    indexName: 'gghdr',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>

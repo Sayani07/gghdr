@@ -1,5 +1,5 @@
-#' @title stat_hdrcde
-#' @description layer for hdrcde
+#' @title Stat for hdrcde
+#' @description compute highest density regions continuously over some conditioned variable
 #' @param geom PARAM_DESCRIPTION, Default: 'hdr_boxplot'
 #' @param position PARAM_DESCRIPTION, Default: 'dodge2'
 #' @param mapping Default: NULL

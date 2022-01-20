@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat-hdr.R
 \name{stat_hdr}
 \alias{stat_hdr}
-\title{stat_hdrc (rug)}
+\title{Stat for hdr box and rug plot}
 \usage{
 stat_hdr(
   mapping = NULL,
@@ -36,5 +36,5 @@ stat_hdr(
 \item{inherit.aes}{Default: TRUE}
 }
 \description{
-stat for hdr (rug)
+calculate components of hdr box and rug plot
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-hdr-boxplot.R
 \name{geom_hdr_boxplot}
 \alias{geom_hdr_boxplot}
-\title{A box plot for the highest density region}
+\title{Box plot for the highest density region}
 \usage{
 geom_hdr_boxplot(
   mapping = NULL,
@@ -68,17 +68,17 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \item{prob}{Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)}
 }
 \description{
-A box plot for the highest density region
+Box plot for the highest density region
 }
 \details{
-Calculates and plots the boxplot of highest density regions in one dimension.
+Calculates and plots the box plot of highest density regions.
 }
 \examples{
 library(ggplot2)
 
 ggplot(faithful, aes(y = eruptions)) +
   geom_hdr_boxplot()
+
 ggplot(faithful, aes(y = eruptions, x= waiting)) +
-geom_hdr_boxplot(fill="steelblue") +
-theme_minimal()
+geom_hdr_boxplot(fill="steelblue")
 }

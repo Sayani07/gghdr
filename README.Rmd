@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/Sayani07/gghdr/workflows/R-CMD-check/badge.svg)](https://github.com/Sayani07/gghdr/actions)
-[![Codecov test coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master)
+<!-- [![Codecov test coverage](https://codecov.io/gh/ropenscilabs/gghdr/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/gghdr?branch=master) -->
 <!-- badges: end -->
 
  
@@ -36,7 +36,7 @@ You could install the development version from Github using:
 
 ```{r install_github, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("ropenscilabs/gghdr")
+remotes::install_github("Sayani07/gghdr")
 ```
 
 # An overview of gghdr

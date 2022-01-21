@@ -27,7 +27,7 @@ Authors:
   \item Stephen Pearce (\href{https://orcid.org/0000-0002-9400-8091}{ORCID})
   \item Ryo Nakagawara \email{ryonakagawara@gmail.com}
   \item Darya Vanichkina \email{d.vanichkina@gmail.com} (\href{https://orcid.org/0000-0002-0406-164X}{ORCID})
-  \item Emi Tanaka
+  \item Emi Tanaka (\href{https://orcid.org/0000-0002-1455-259X}{ORCID})
   \item Thomas Fung \email{thomas.fung.dr@gmail.com } (\href{https://orcid.org/0000-0003-2601-0728}{ORCID})
 }
 

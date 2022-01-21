@@ -11,7 +11,7 @@
 #' @param data data
 #' @param stat stat
 #' @param position Default: "identity"
-#' @return geom_hdr_rug
+#' @return Calculates and plots the rug plot of highest density regions.
 #' @rdname geom_hdr_rug
 #' @examples
 #' library(ggplot2)

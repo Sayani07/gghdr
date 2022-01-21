@@ -42,7 +42,7 @@ geom_hdr_rug(
 \item{prob}{PARAM_DESCRIPTION, Default: c(0.5, 0.95, 0.99)}
 }
 \value{
-geom_hdr_rug
+Calculates and plots the rug plot of highest density regions.
 }
 \description{
 rug visualization for HDR plot

@@ -10,3 +10,13 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+## Re-submission
+
+>  Description contains package 'hdrcde'<URL:https://pkg.robjhyndman.com/hdrcde/>
+
+re-written this as 'hdrcde'<https://pkg.robjhyndman.com/hdrcde/>
+
+>  Description contains displays highest density regions in ggplot2 for one and two...
+
+re-written this as 'ggplot2'

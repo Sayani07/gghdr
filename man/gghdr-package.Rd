@@ -4,11 +4,11 @@
 \name{gghdr-package}
 \alias{gghdr}
 \alias{gghdr-package}
-\title{gghdr: Visualisation of Highest Density Regions for 'ggplot2'}
+\title{gghdr: Visualisation of Highest Density Regions in 'ggplot2'}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Provides 'ggplot2' framework for visualising Highest Density Regions (HDR) <doi:10.1080/00031305.1996.10474359>. This work is based on the package 'hdrcde'<URL:https://pkg.robjhyndman.com/hdrcde/> and displays highest density regions in ggplot2 for one and two dimensions and univariate densities conditional on one covariate.
+Provides 'ggplot2' framework for visualising Highest Density Regions (HDR) <doi:10.1080/00031305.1996.10474359>. This work is based on the package 'hdrcde'<https://pkg.robjhyndman.com/hdrcde/> and displays highest density regions in 'ggplot2' for one and two dimensions and univariate densities conditional on one covariate.
 }
 \seealso{
 Useful links:
@@ -27,8 +27,9 @@ Authors:
   \item Stephen Pearce (\href{https://orcid.org/0000-0002-9400-8091}{ORCID})
   \item Ryo Nakagawara \email{ryonakagawara@gmail.com}
   \item Darya Vanichkina \email{d.vanichkina@gmail.com} (\href{https://orcid.org/0000-0002-0406-164X}{ORCID})
-  \item Emi Tanaka (\href{https://orcid.org/0000-0002-1455-259X}{ORCID})
-  \item Thomas Fung \email{thomas.fung.dr@gmail.com } (\href{https://orcid.org/0000-0003-2601-0728}{ORCID})
+  \item Emi Tanaka \email{dr.emi.tanaka@gmail.com} (\href{https://orcid.org/0000-0002-1455-259X}{ORCID})
+  \item Thomas Fung \email{thomas.fung.dr@gmail.com} (\href{https://orcid.org/0000-0003-2601-0728}{ORCID})
+  \item Rob Hyndman \email{Rob.Hyndman@monash.edu} (\href{https://orcid.org/0000-0002-2140-5352}{ORCID})
 }
 
 }

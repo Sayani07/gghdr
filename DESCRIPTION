@@ -1,5 +1,5 @@
 Package: gghdr
-Title: Visualisation of Highest Density Regions for 'ggplot2'
+Title: Visualisation of Highest Density Regions in 'ggplot2'
 Version: 0.1.0
 Authors@R: c(
     person(given = "Mitchell",
@@ -28,17 +28,22 @@ Authors@R: c(
     person(given = "Emi",
            family = "Tanaka",
            role = c("aut"),
+           email = "dr.emi.tanaka@gmail.com",
            comment = c(ORCID = "0000-0002-1455-259X")),
     person(given = "Thomas",
            family = "Fung",
            role = c("aut"),
-           email = "thomas.fung.dr@gmail.com ",
-           comment = c(ORCID = "0000-0003-2601-0728"))  
-           )
+           email = "thomas.fung.dr@gmail.com",
+           comment = c(ORCID = "0000-0003-2601-0728")),
+    person(given = "Rob",
+             family = "Hyndman",
+             role = c("aut"),
+             email="Rob.Hyndman@monash.edu", 
+             comment = c(ORCID = "0000-0002-2140-5352")))
 Description: Provides 'ggplot2' framework for visualising Highest Density Regions (HDR) 
     <doi:10.1080/00031305.1996.10474359>. This work is based on
-    the package 'hdrcde'<URL:https://pkg.robjhyndman.com/hdrcde/> and 
-    displays highest density regions in ggplot2 for one and two dimensions and
+    the package 'hdrcde'<https://pkg.robjhyndman.com/hdrcde/> and 
+    displays highest density regions in 'ggplot2' for one and two dimensions and
     univariate densities conditional on one covariate.
 License: GPL-3
 Encoding: UTF-8

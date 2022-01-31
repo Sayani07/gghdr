@@ -15,7 +15,9 @@ specified in \code{\link[ggplot2:labs]{labs()}} is used for the title.}
 \item{...}{Further arguments passed onto either
 \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}}
 }
+\value{
+A guide object
+}
 \description{
-The prob guide shows the colour from the forecast intervals
-which is blended with the series colour.
+The guide shows the colour scales mapped to different probability coverage required for HDRs
 }

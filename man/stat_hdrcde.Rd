@@ -35,6 +35,9 @@ stat_hdrcde(
 
 \item{inherit.aes}{Default: TRUE}
 }
+\value{
+A [ggplot2::Stat] representing the data transformations with required mappings for plotting conditional HDRs using [geom_hdr_boxplot].
+}
 \description{
 compute highest density regions continuously over some conditioned variable
 }

@@ -9,6 +9,9 @@
 
 \method{guide_geom}{guide_prob}(guide, layers, default_mapping)
 }
+\value{
+A guide object
+}
 \description{
 Helper methods for guides
 }

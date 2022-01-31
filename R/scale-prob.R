@@ -4,7 +4,7 @@
 #' ones already defined by ggplot2. This allows the shade of confidence
 #' intervals
 #' to work with the legend output.
-#' @return A ggproto object inheriting from `Scale`
+#' @return A ggproto object inheriting from `[ggplot2::Scale]`
 #' @family scale_prob_*
 #' @name scale_prob
 #' @inheritParams ggplot2::scale_colour_gradient
@@ -23,11 +23,11 @@ prob_scale <- function(...) {
 }
 
 #' @title Probability shade bar guide
-#' @description The prob guide shows the colour from the forecast intervals
-#' which is blended with the series colour.
+#' @description The guide shows the colour scales mapped to different probability coverage required for HDRs
 #' @inheritParams ggplot2::guide_colourbar
 #' @param ... Further arguments passed onto either
 #' \code{\link[ggplot2]{guide_colourbar}} or \code{\link[ggplot2]{guide_legend}}
+#' @return A guide object
 #' @export
 guide_prob <- function(title = waiver(), ...) {
   structure(list(
@@ -45,6 +45,7 @@ guide_prob <- function(title = waiver(), ...) {
 #' @importFrom ggplot2 guide_colourbar guide_train guide_legend
 #' @importFrom digest digest
 #' @keywords internal
+#' @return A guide object
 
 guide_train.prob_guide <- function(guide, scale, aesthetic) {
   args <- append(guide[!(names(guide) %in% c("args"))], guide$args)

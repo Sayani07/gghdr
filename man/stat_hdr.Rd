@@ -35,6 +35,9 @@ stat_hdr(
 
 \item{inherit.aes}{Default: TRUE}
 }
+\value{
+A [ggplot2::Stat] representing the data transformations with required mappings for plotting HDRs using [geom_hdr_boxplot()] and [geom_hdr_rug()].
+}
 \description{
 calculate components of hdr box and rug plot
 }

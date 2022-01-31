@@ -7,6 +7,7 @@
 #' @importFrom ggplot2 layer aes
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_bar
+#' @return A [ggplot2::Geom] representing a highest density region box plot geometry which can be added to a [ggplot()] object.
 #' @examples
 #' library(ggplot2)
 #'

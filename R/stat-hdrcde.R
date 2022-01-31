@@ -10,6 +10,7 @@
 #' @param show.legend Default: NA
 #' @param inherit.aes Default: TRUE
 #' @rdname stat_hdrcde
+#' @return A [ggplot2::Stat] representing the data transformations with required mappings for plotting conditional HDRs using [geom_hdr_boxplot].
 #' @export
 stat_hdrcde <- function(mapping = NULL, data = NULL,
                         geom = "hdr_boxplot", position = "dodge2",

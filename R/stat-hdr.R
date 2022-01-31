@@ -10,6 +10,7 @@
 #' @param show.legend Default: NA
 #' @param inherit.aes Default: TRUE
 #' @rdname stat_hdr
+#' @return A [ggplot2::Stat] representing the data transformations with required mappings for plotting HDRs using [geom_hdr_boxplot()] and [geom_hdr_rug()].
 #' @export
 stat_hdr <- function(mapping = NULL, data = NULL,
                      geom = "hdr_rug", position = "dodge2",

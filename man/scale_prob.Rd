@@ -107,7 +107,7 @@ expand the scale by 5\% on each side for continuous variables, and by
 colour bar, or \code{"legend"} for discrete colour legend.}
 }
 \value{
-A ggproto object inheriting from `Scale`
+A ggproto object inheriting from `[ggplot2::Scale]`
 }
 \description{
 This set of scales defines new scales for prob geometries equivalent to the

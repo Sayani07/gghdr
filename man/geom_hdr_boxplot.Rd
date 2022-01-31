@@ -67,6 +67,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{prob}{Probability coverage required for HDRs, Default: c(0.5, 0.95, 0.99)}
 }
+\value{
+A [ggplot2::Geom] representing a highest density region box plot geometry which can be added to a [ggplot()] object.
+}
 \description{
 Box plot for the highest density region
 }

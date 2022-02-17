@@ -23,4 +23,4 @@ re-written this as 'ggplot2'
 
 ##Re-submission
 
-This is a resubmission. In this version, I have addressed the documentation issues found during CRAN testing (add  add \value to .Rd files)
+This is a resubmission. In this version, I have addressed the documentation issues found during CRAN testing (add \value to .Rd files)

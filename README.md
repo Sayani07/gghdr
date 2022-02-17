@@ -20,10 +20,11 @@ displaying HDRs under `ggplot2` framework.
 
 # Installation
 
-<!-- You could install the stable version on CRAN: -->
-<!-- ```{r install, eval = FALSE} -->
-<!-- install.packages("gghdr") -->
-<!-- ``` -->
+You could install the stable version on CRAN:
+
+``` r
+install.packages("gghdr")
+```
 
 You could install the development version from Github using:
 

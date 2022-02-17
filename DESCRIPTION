@@ -1,6 +1,6 @@
 Package: gghdr
 Title: Visualisation of Highest Density Regions in 'ggplot2'
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
     person(given = "Mitchell",
            family = "O'Hara-Wild",

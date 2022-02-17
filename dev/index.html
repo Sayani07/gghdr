@@ -105,12 +105,11 @@
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
-<!-- You could install the stable version on CRAN: -->
-<!-- ```{r install, eval = FALSE} -->
-<!-- install.packages("gghdr") -->
-<!-- ``` -->
-<p>You could install the development version from Github using:</p>
+<p>You could install the stable version on CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"gghdr"</span><span class="op">)</span></code></pre></div>
+<p>You could install the development version from Github using:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Sayani07/gghdr"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -118,7 +117,7 @@
 <h1 id="an-overview-of-gghdr">An overview of gghdr<a class="anchor" aria-label="anchor" href="#an-overview-of-gghdr"></a>
 </h1>
 <p>There are several statistical methods to summarize a distribution by region of the sample space covering certain probability. For example, in a traditional boxplot, the central box bounded by the interquartile range represents 50% coverage and whiskers represent 99% coverage for large samples. The method of summarizing a distribution using highest density regions is useful for analysing multimodal distributions. We illustrate this by exploring the data set <code>faithful</code> which contains the waiting time and duration of eruptions for the old faithful geyser in the Yellowstone National Park, USA.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-boxplot-1.png" width="100%"></p>
@@ -130,7 +129,7 @@
 <!-- #   outline = TRUE, space = 0.25, ...) -->
 <!-- # ``` -->
 <p>We can use <code>geom_hdr_boxplot</code> to display the same variable. Along with displaying the 99% and 50% highest density regions, it also shows the local mode in each of the regions. This shows that eruption times are likely to be around 4.5 minutes or 2 minutes, but rarely for around 3 minutes. This insight was not apparent in the above boxplot.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Sayani07/gghdr" class="external-link">gghdr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
@@ -139,13 +138,13 @@
 <p><img src="reference/figures/README-gg_hdr-boxplot-1.png" width="100%"></p>
 <p>It can be interesting to supplement a scatterplot with marginal distributions of one or both variables to enhance insights into the relationship between the two variables. This is possible through <code>geom_hdr_rug</code>. This shows two clear clusters, one with shorter waiting times and shorter eruptions (around 2 minutes) and another with longer waiting times and longer eruptions (around 4.5 minutes). The <code>geom_hdr_rug</code> adds to this information by displaying the highest density region of eruption time covering 50% and 99%.</p>
 <!-- eruptions with longer waiting times tend to be longer in duration (around 4.5 minutes) and with shorter waiting times are most likely to last shorter (around 2 minutes).  -->
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span>, y <span class="op">=</span> <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="reference/geom_hdr_rug.html">geom_hdr_rug</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.99</span>, <span class="fl">0.5</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-hdr_rug-1.png" width="100%"></p>
 <p>The previous example can be extended to allow displaying the scatterplot with points coloured according to the bivariate highest density regions using <code>hdr_bin</code>.<code>hdr_bin</code> can also be mapped to only the x-axis or y-axis to show the marginal distribution of any one variable. This figure enriches the information in the scatterplot by emphasizing the highest bivariate density regions covering 50%, 90%, 99%, and more than 99% coverage.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">faithful</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y<span class="op">=</span><span class="va">eruptions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="reference/hdr_bin.html">hdr_bin</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">waiting</span>, y <span class="op">=</span> <span class="va">eruptions</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> </code></pre></div>

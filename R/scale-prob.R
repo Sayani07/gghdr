@@ -117,3 +117,20 @@ guide_geom.guide_prob <- function(guide, layers, default_mapping) {
   })
   guide
 }
+
+
+#' @export
+#' @importFrom ggplot2 guide_gengrob
+#' @rdname guide-helpers
+guide_gengrob.guide_prob <- function(guide, theme) {
+  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+    return(NextMethod())
+  } else {
+    # Make version adjustments
+    guide$decor <- guide$geoms
+
+    # Use new guide for drawing
+    legend <- guide_legend()
+    legend$draw(theme, guide)
+  }
+}

@@ -54,6 +54,10 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
     return()
   }
   guide <- do.call("guide_legend", args)
+  if (inherits(guide, "GuideLegend")) {
+    guide <- guide$params
+  }
+
   class(guide) <- c("guide", "guide_prob")
   breaks <- probs
 

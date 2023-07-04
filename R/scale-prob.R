@@ -86,8 +86,15 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
 #' @importFrom ggplot2 guide_geom guide_legend
 #' @rdname guide-helpers
 guide_geom.guide_prob <- function(guide, layers, default_mapping) {
-  class(guide) <- c("guide", "legend")
-  guide <- guide_geom(guide, layers, default_mapping)
+
+  if (utils::packageVersion("ggplot2") > "3.4.2") {
+    legend <- guide_legend()
+    guide$geoms <- legend$get_layer_key(guide, layers)$decor
+  } else {
+    class(guide) <- c("guide", "legend")
+    guide <- guide_geom(guide, layers, default_mapping)
+  }
+
   guide$geoms <- lapply(guide$geoms, function(x) {
     x$draw_key <- ggplot2::ggproto(NULL, NULL,
       draw_key = function(data, params, size) {

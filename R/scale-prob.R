@@ -87,7 +87,7 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
 #' @rdname guide-helpers
 guide_geom.guide_prob <- function(guide, layers, default_mapping) {
 
-  if (utils::packageVersion("ggplot2") > "3.4.2") {
+  if (inherits(ggplot2::guide_none(), "Guide")) {
     legend <- guide_legend()
     guide$geoms <- legend$get_layer_key(guide, layers)$decor
   } else {
@@ -123,7 +123,7 @@ guide_geom.guide_prob <- function(guide, layers, default_mapping) {
 #' @importFrom ggplot2 guide_gengrob
 #' @rdname guide-helpers
 guide_gengrob.guide_prob <- function(guide, theme) {
-  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+  if (!inherits(ggplot2::guide_none(), "Guide")) {
     return(NextMethod())
   } else {
     # Make version adjustments

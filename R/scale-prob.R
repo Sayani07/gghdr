@@ -89,7 +89,9 @@ guide_geom.guide_prob <- function(guide, layers, default_mapping) {
 
   if (inherits(ggplot2::guide_none(), "Guide")) {
     legend <- guide_legend()
-    guide$geoms <- legend$get_layer_key(guide, layers)$decor
+    guide$geoms <- legend$get_layer_key(
+      guide, layers, vector("list", length(layers))
+    )$decor
   } else {
     class(guide) <- c("guide", "legend")
     guide <- guide_geom(guide, layers, default_mapping)
@@ -130,7 +132,13 @@ guide_gengrob.guide_prob <- function(guide, theme) {
     guide$decor <- guide$geoms
 
     # Use new guide for drawing
+    position  <- theme$legend.position %||% "right"
+    direction <- theme$legend.direction %||% switch(
+      position, top = , bottom = "horizontal", "vertical"
+    )
     legend <- guide_legend()
-    legend$draw(theme, guide)
+    legend$draw(
+      theme, position = position, direction = direction, params = guide
+    )
   }
 }

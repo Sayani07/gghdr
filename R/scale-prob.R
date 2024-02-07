@@ -54,6 +54,10 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
     return()
   }
   guide <- do.call("guide_legend", args)
+  if (inherits(guide, "GuideLegend")) {
+    guide <- guide$params
+  }
+
   class(guide) <- c("guide", "guide_prob")
   breaks <- probs
 
@@ -82,8 +86,17 @@ guide_train.prob_guide <- function(guide, scale, aesthetic) {
 #' @importFrom ggplot2 guide_geom guide_legend
 #' @rdname guide-helpers
 guide_geom.guide_prob <- function(guide, layers, default_mapping) {
-  class(guide) <- c("guide", "legend")
-  guide <- guide_geom(guide, layers, default_mapping)
+
+  if (inherits(ggplot2::guide_none(), "Guide")) {
+    legend <- guide_legend()
+    guide$geoms <- legend$get_layer_key(
+      guide, layers, vector("list", length(layers))
+    )$decor
+  } else {
+    class(guide) <- c("guide", "legend")
+    guide <- guide_geom(guide, layers, default_mapping)
+  }
+
   guide$geoms <- lapply(guide$geoms, function(x) {
     x$draw_key <- ggplot2::ggproto(NULL, NULL,
       draw_key = function(data, params, size) {
@@ -105,4 +118,27 @@ guide_geom.guide_prob <- function(guide, layers, default_mapping) {
     x
   })
   guide
+}
+
+
+#' @export
+#' @importFrom ggplot2 guide_gengrob
+#' @rdname guide-helpers
+guide_gengrob.guide_prob <- function(guide, theme) {
+  if (!inherits(ggplot2::guide_none(), "Guide")) {
+    return(NextMethod())
+  } else {
+    # Make version adjustments
+    guide$decor <- guide$geoms
+
+    # Use new guide for drawing
+    position  <- theme$legend.position %||% "right"
+    direction <- theme$legend.direction %||% switch(
+      position, top = , bottom = "horizontal", "vertical"
+    )
+    legend <- guide_legend()
+    legend$draw(
+      theme, position = position, direction = direction, params = guide
+    )
+  }
 }

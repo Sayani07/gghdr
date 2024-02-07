@@ -3,11 +3,14 @@
 \name{guide_train.prob_guide}
 \alias{guide_train.prob_guide}
 \alias{guide_geom.guide_prob}
+\alias{guide_gengrob.guide_prob}
 \title{Helper methods for guides}
 \usage{
 \method{guide_train}{prob_guide}(guide, scale, aesthetic)
 
 \method{guide_geom}{guide_prob}(guide, layers, default_mapping)
+
+\method{guide_gengrob}{guide_prob}(guide, theme)
 }
 \value{
 A guide object
